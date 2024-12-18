@@ -1,0 +1,39 @@
+.home-page {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.logo-container {
+  position: fixed;
+  left: 2rem;
+  top: 2rem;
+}
+.home-page-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 15rem;
+  gap: 2rem;
+}
+.home-page-text p {
+  text-align: center;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-top: 25rem;
+  margin-bottom: 3rem;
+}
+
+.home-page-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  text-align: end;
+  margin-top: 1rem;
+  bottom: 0;
+  padding: 0.5rem;
+  background: var(--primary-color);
+  color: white;
+}
+.home-page-footer a {
+  text-decoration: none;
+  color: white;
+}
