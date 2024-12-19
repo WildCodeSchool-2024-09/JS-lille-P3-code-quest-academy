@@ -1,0 +1,18 @@
+body {
+    background: url("../../assets/images/background.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+#root {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+    gap: 20px;
+  }
+
+  .gameboard-container { grid-area: 1 / 1 / 6 / 6; }
+  .profil-container { grid-area: 1 / 6 / 3 / 8; }
+  .instructions-container  { grid-area: 3 / 6 / 8 / 8; }
+  .command-container { grid-area: 6 / 1 / 8 / 6; } 
