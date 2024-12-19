@@ -9,6 +9,8 @@ create table progress (
   id int primary key auto_increment not null,
   user_id int,
   challenge_id int
+  foreign key(user_id) references account(user_id)
+  foreign key(challenge_id) references challenge(id)
 );
 
 create table challenge (
@@ -18,6 +20,7 @@ create table challenge (
   hint text not null,
   soluce text not null,
   room_id int
+  foreign key(room_id) references room(id)
 );
 
 create table room (
