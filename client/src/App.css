@@ -1,3 +1,12 @@
+/* Small devices (landscape phones, 576px and up)
+@media screen (min-width: 576px)
+
+Medium devices (tablets, 768px and up)
+@media screen (min-width: 768px)
+
+Large devices (desktops, 992px and up)
+@media screen (min-width: 992px) */
+
 * {
   margin: 0;
   padding: 0;
