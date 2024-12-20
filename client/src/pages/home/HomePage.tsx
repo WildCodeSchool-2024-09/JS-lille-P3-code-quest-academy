@@ -9,7 +9,7 @@ function HomePage() {
       <div className="logo-container">
         <img
           className="logo"
-          src="client/public/logo.svg"
+          src="./src/assets/images/logo.svg"
           alt="Code Quest Academy"
         />
       </div>
