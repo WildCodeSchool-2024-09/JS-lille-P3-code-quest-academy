@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       path: "/welcome",
       element: <HomePage />,
     },
-    ],
+    ]
   },
   // Try adding a new route! For example, "/about" with an About component
 ]);
