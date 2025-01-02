@@ -7,7 +7,7 @@ function GameInstructions() {
         <p className="instructions-text">
           Bienvenue à la Code Quest Academy ! Un mystérieux bug a infecté le
           campus, qui empêche les étudiants de continuer leur apprentissage…
-          Aides nous à Résoudre ce mystère !
+          Aide-nous à Résoudre ce mystère !
         </p>
         <img
           className="help-img"
