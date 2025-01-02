@@ -1,10 +1,29 @@
+/* Small devices (landscape phones, 576px and up)
+@media screen (min-width: 576px)
+
+Medium devices (tablets, 768px and up)
+@media screen (min-width: 768px)
+
+Large devices (desktops, 992px and up)
+@media screen (min-width: 992px) */
+
 * {
   margin: 0.2rem;
   padding: 0;
   box-sizing: border-box;
 }
 
+
 #root {
   width: 99vw;
   height: 99vh;
+
+:root {
+  --primary-color: #e54d2e;
+  --primary-colot-dark: #853a2d;
+  --bg-color: #fff8f7;
+  --bg-color-dark: #1f1513;
+  --text-color: #d13415;
+  --text-color-dark: #ff977d;
+
 }
