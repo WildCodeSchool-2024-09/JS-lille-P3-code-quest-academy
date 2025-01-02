@@ -9,21 +9,21 @@
 }
 
 .profil-text {
-    margin: 1rem;
+  margin-left: 1rem;
 }
 
 .profil-button {
-    margin-top: 2rem;
-    padding: 0.5rem;
-    background-color: white;
-    color: rgb(209, 41, 7);
-    font-weight: bold;
-    border-radius: 5px;
+  margin-top: 2rem;
+  padding: 0.5rem;
+  background-color: white;
+  color: rgb(209, 41, 7);
+  font-weight: bold;
+  border-radius: 5px;
 }
 
 .profil-img {
-    width: 150px;
-    height: 150px;
-    background-color: white;
-    border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 50%;
 }
