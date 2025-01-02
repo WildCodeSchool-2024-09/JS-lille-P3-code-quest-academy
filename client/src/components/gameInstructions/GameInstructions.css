@@ -1,0 +1,19 @@
+.instructions-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  background-color: rgba(207, 207, 207, 0.9);
+  border: ridge 2px grey;
+  border-radius: 20px;
+}
+
+.instructions-text {
+  text-align: center;
+  margin: 1rem;
+}
+
+.help-img {
+  width: 250px;
+  height: 250px;
+}
