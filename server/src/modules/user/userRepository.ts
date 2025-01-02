@@ -12,19 +12,19 @@ type User = {
 class UserRepository {
   async create(user: User) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO user (username, email, password) VALUE (?, ?, ?)",
+      "INSERT INTO account (username, email, password) VALUE (?, ?, ?)",
       [user.username, user.email, user.password],
     );
     return result.insertId;
   }
 
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>("select * from user");
+    const [rows] = await databaseClient.query<Rows>("select * from account");
     return rows as User[];
   }
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM user WHERE id = ?",
+      "SELECT * FROM account WHERE id = ?",
       [id],
     );
     return rows[0] as User;
