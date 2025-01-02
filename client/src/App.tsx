@@ -1,10 +1,10 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import Game from "./pages/game/Game";
 
 function App() {
   return (
     <>
-      <Game />
+      <Outlet/>
     </>
   );
 }
