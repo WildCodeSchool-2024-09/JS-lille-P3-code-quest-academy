@@ -7,6 +7,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+
+import AdminPage from "./components/adminpage/AdminPage";
+import ProfilPage from "./components/profilpage/ProfilPage";
+
+import Game from "./pages/game/Game";
 import HomePage from "./pages/home/HomePage";
 import AdminManagement from "./pages/profil/admin/AdminManagement";
 
@@ -30,13 +35,25 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "/game",
+        element: <Game />,
+      },
+      {
+        path: "/profile", // The profile path
+        element: <ProfilPage />,
+      },
+      {
+        path: "/profile/admin", // The profile path
+        element: <AdminPage />, // Renders the AdminPage component for the profile page
+      },
+      {
         path: "/profile/admin/manage",
         element: <AdminManagement />,
       },
     ],
   },
-  // Try adding a new route! For example, "/about" with an About component
 ]);
+// Try adding a new route! For example, "/about" with an About component
 
 /* ************************************************************************* */
 
