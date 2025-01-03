@@ -1,4 +1,4 @@
-.haut-de-page {
+.admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,7 +46,7 @@ h1 {
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family:"Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;
@@ -72,7 +72,7 @@ h1 {
   display: inline-block;
   cursor: pointer;
   color: #3a8a9e;
-  font-family:"Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;
@@ -110,7 +110,7 @@ h1 {
   display: inline-block;
   cursor: pointer;
   color: #3a8a9e;
-  font-family:"Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;
@@ -147,7 +147,7 @@ h1 {
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family:"Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;
@@ -195,7 +195,7 @@ h1 {
   display: inline-block;
   cursor: pointer;
   color: #3a8a9e;
-  font-family:"Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;

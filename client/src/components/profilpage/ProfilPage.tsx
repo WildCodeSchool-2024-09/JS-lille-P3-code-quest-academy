@@ -2,8 +2,8 @@ import "./ProfilPage.css";
 
 function ProfilPage() {
   return (
-    <div className="admin-page">
-      <div className="haut-de-page">
+    <div className="profil-page">
+      <div className="profile-header">
         <img src="./public/logo.svg" alt="Logo" className="logo" />
         <img
           src=".\src\assets\images\sprite-admin-page (1).png"

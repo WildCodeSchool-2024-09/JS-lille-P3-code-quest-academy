@@ -5,7 +5,7 @@ import sprite from "../../assets/images/sprite-admin-page (1).png";
 function AdminPage() {
   return (
     <div className="admin-page">
-      <div className="haut-de-page">
+      <div className="admin-header">
         <img src={logo} alt="Logo" className="logo" />
         <img
           src={sprite}
