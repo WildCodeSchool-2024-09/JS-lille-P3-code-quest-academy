@@ -9,7 +9,7 @@ function GameBoard() {
           src="./src/assets/images/game-background.jpeg"
           alt="plateau de jeu"
         />
-        {/* Éléments superposés */}
+        {/* Éléments superposés pour selectionner la salle */}
         <div className="overlay-item item1" />
         <div className="overlay-item item2" />
         <div className="overlay-item item3" />
@@ -19,11 +19,6 @@ function GameBoard() {
         <div className="overlay-item item7" />
         <div className="overlay-item item8" />
         <div className="overlay-item item9" />
-      </div>
-      <div className="command-container">
-        <p className="command-text">
-          Tu pourras taper ou sélectionner les réponses ici !
-        </p>
       </div>
     </>
   );
