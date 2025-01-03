@@ -1,7 +1,8 @@
 .game-page {
   width: 100%;
   height: 99vh;
-  background: url("../../assets/images/background.png") no-repeat center center fixed;
+  background: url("../../assets/images/background.png") no-repeat center center
+    fixed;
   background-size: cover;
   display: grid;
   grid-template-columns: repeat(7, 1fr);

@@ -1,16 +1,15 @@
-import "./GameCommands.css"
+import "./GameCommands.css";
 
 function GameCommands() {
-
-    return ( 
+  return (
     <>
-    <div className="command-container">
+      <div className="command-container">
         <p className="command-text">
           Tu pourras taper ou sélectionner les réponses ici !
         </p>
       </div>
-    </> 
-    );
+    </>
+  );
 }
 
 export default GameCommands;
