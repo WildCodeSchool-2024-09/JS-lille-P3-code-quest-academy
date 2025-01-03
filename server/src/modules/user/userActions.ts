@@ -29,9 +29,9 @@ const edit: RequestHandler = async (req, res, next) => {
   try {
     const user = {
       id: Number(req.params.id),
-      username: req.params.username,
-      email: req.params.email,
-      password: req.params.password,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     };
 
     const affectedRows = await userRepository.update(user);
@@ -50,9 +50,9 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newUser = {
       id: Number(req.params.id),
-      username: req.params.username,
-      email: req.params.email,
-      password: req.params.password,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     };
 
     const insertId = await userRepository.create(newUser);

@@ -14,8 +14,6 @@ import ProfilPage from "./components/profilpage/ProfilPage";
 import Game from "./pages/game/Game";
 import HomePage from "./pages/home/HomePage";
 
-
-
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -46,10 +44,11 @@ const router = createBrowserRouter([
       {
         path: "/profile/admin", // The profile path
         element: <AdminPage />, // Renders the AdminPage component for the profile page
-      }
-    ]
-  }
-  // Try adding a new route! For example, "/about" with an About component
+      },
+    ],
+  },
+]);
+// Try adding a new route! For example, "/about" with an About component
 
 /* ************************************************************************* */
 
