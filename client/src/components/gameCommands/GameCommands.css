@@ -6,3 +6,24 @@
   border: ridge 2px grey;
   border-radius: 20px;
 }
+
+.answer-a, .answer-b, .answer-c, .answer-d {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-weight: bold;
+  border-radius: 5px;
+  width: 40%;
+  text-align: center;
+}
+
+.answer-a:hover, .answer-b:hover, .answer-c:hover, .answer-d:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+.quizz {
+    display: flex;
+    flex-wrap: wrap;
+}
