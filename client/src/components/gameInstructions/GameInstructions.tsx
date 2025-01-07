@@ -10,22 +10,23 @@ function GameInstructions() {
     return <div>Error: Context is not available</div>;
   }
 
-  const {instructions, gameType, currentType, setCurrentType} = context;
+  const {challenge, currentIndex, setCurrentIndex} = context;
 
-  const handleChangeType = () => {
-  if (currentType !== null) {
-    const nextIndex = (gameType.indexOf(currentType) + 1) % gameType.length;
-    setCurrentType(gameType[nextIndex]);
-  }
-};
-
+  const handleChange = () => {
+    if (currentIndex < challenge.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+  };
+  
   return (
     <>
       <div className="instructions-container">
         <p className="instructions-text">
-          {instructions[0]}
+          {challenge[currentIndex]?.guideline}
         </p>
-          <button className="instructions-button" type="button" onClick={handleChangeType}>Suivant</button>
+          <button className="instructions-button" onClick={handleChange} type="button">Suivant</button>
           
         <img
           className="help-img"

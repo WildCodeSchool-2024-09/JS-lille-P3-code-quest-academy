@@ -1,11 +1,22 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
+import { useEffect } from "react";
 
 interface ContextValue {
-    gameType: string[];
-    instructions: string[];
-    currentType: string | null;
-    setCurrentType: (type: string) => void;
+    challenge: ChallengeProps[];
+    setChallenge: React.Dispatch<React.SetStateAction<ChallengeProps[]>>;
+    currentIndex: number;
+    setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+}
+
+interface ChallengeProps {
+    id: number;
+    title: string;
+    guideline: string;
+    hint: string;
+    soluce: string;
+    type: string;
+    room_id: number;
 }
 
 interface ProviderProps {
@@ -16,15 +27,20 @@ export const Context = createContext<ContextValue | null>(null);
 
 export const Provider = ({ children }: ProviderProps) => {
 
-    const [currentType, setCurrentType] = useState<string | null>("");
+    const [challenge, setChallenge] = useState([] as ChallengeProps[]);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const instructions = ["Bienvenue à la Code Quest Academy ! Un mystérieux bug a infecté le campus, qui empêche les étudiants de continuer leur apprentissage…  Aide-nous à Résoudre ce mystère !"]
-   
-        const gameType = ["quizz", "text", "checkbox"];
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/api/challenges`)
+          .then((response) => response.json())
+          .then((data: ChallengeProps[]) => {
+            setChallenge(data);
+          });
+      }, []);
 
 
     return (
-        <Context.Provider value={{ gameType, instructions, currentType, setCurrentType }}>
+        <Context.Provider value={{ challenge, setChallenge, currentIndex, setCurrentIndex}}>
             {children}
         </Context.Provider>
     );
