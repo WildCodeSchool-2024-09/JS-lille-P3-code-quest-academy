@@ -22,6 +22,7 @@ class UserRepository {
     const [rows] = await databaseClient.query<Rows>("select * from account");
     return rows as User[];
   }
+
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM account WHERE id = ?",
@@ -29,6 +30,7 @@ class UserRepository {
     );
     return rows[0] as User;
   }
+
   async update(user: User) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE account SET username = ?, email = ?, password =? WHERE id = ?",
@@ -36,6 +38,7 @@ class UserRepository {
     );
     return result.affectedRows;
   }
+
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
       "DELETE FROM account WHERE id = ?",

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AdminManagement.css";
+import EditUser from "./EditUser";
 
 type User = {
   id: number;
@@ -11,9 +12,14 @@ type User = {
 function AdminManagement() {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+  // Gère la liste des utilisateurs avec la barre de recherche
   const [searchQuery, setSearchQuery] = useState("");
+  // Contrôle le tri par ordre alphabétique
   const [isAsc, setIsAsc] = useState(true);
+  // Détermine si le formulaire d'edition est affiché et quel utilisateur est en cours de modification
+  const [editingUser, setEditingUser] = useState<User | null>(null);
 
+  // ------------------------------------- //
   //   Appel API
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/users`)
@@ -24,6 +30,7 @@ function AdminManagement() {
       });
   }, []);
 
+  // ----------------------------------- //
   //   Recherche d'utilisateur
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value.toLowerCase();
@@ -41,6 +48,7 @@ function AdminManagement() {
     }
   };
 
+  // ------------------------------------- //
   //    Tri des utilisateurs
   const sortUsers = (key: "username" | "email") => {
     // key: "" nous permet d'utiliser le code plusieurs fois selon ce que l'on souhaite trier
@@ -52,8 +60,27 @@ function AdminManagement() {
     setIsAsc(!isAsc);
   };
 
+  // ------------------------------------ //
   // Modifier les utilisateurs
+  const startEditingUser = (user: User) => {
+    setEditingUser(user);
+  };
+  // fonction callback qui permet à EditUser de notifier à AdminManagement qu'un utilisateur a été modifier
+  const handleUserUpdate = (updatedUser: User) => {
+    // map pour parcourir tous les utilisateurs
+    const updatedUsers = users.map((user) =>
+      // si l'id de l'utilisateur correspond àcelui de updateduser alors on le change, sinon on n'y touche pas
+      user.id === updatedUser.id ? updatedUser : user,
+    );
+    // mise à jour de la liste principale users
+    setUsers(updatedUsers);
+    // mise à jour de la liste des utilisateurs filtrés
+    setFilteredUsers(updatedUsers);
+    // sert à fermer l'interface d'édition quand l'utilisateur a été modifié
+    setEditingUser(null);
+  };
 
+  // ---------------------------------- //
   // Supprimer les utilisateurs
   const deleteUser = (userId: number) => {
     if (
@@ -121,7 +148,9 @@ function AdminManagement() {
               <td>{user.email}</td>
               <td>{"*".repeat(user.password.length)}</td>
               <td>
-                <button type="button">Modifier</button>
+                <button type="button" onClick={() => startEditingUser(user)}>
+                  Modifier
+                </button>
                 <button type="button" onClick={() => deleteUser(user.id)}>
                   Supprimer
                 </button>
@@ -130,6 +159,9 @@ function AdminManagement() {
           ))}
         </tbody>
       </table>
+      {editingUser && (
+        <EditUser user={editingUser} onUpdate={handleUserUpdate} />
+      )}
     </div>
   );
 }
