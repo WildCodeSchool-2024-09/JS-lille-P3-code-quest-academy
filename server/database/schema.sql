@@ -5,12 +5,10 @@ CREATE TABLE account (
   password VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE progress (
+CREATE TABLE room (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  user_id INT,
-  challenge_id INT,
-  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(user_id),
-  CONSTRAINT fk_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
+  boss_name VARCHAR(50) NOT NULL,
+  img_url TEXT NOT NULL
 );
 
 CREATE TABLE challenge (
@@ -19,38 +17,60 @@ CREATE TABLE challenge (
   guideline TEXT NOT NULL,
   hint TEXT NOT NULL,
   soluce TEXT NOT NULL,
+  type TEXT NOT NULL,
   room_id INT,
   CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id)
 );
 
-CREATE TABLE room (
+CREATE TABLE progress (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  boss_name VARCHAR(50) NOT NULL,
-  img_url TEXT NOT NULL
+  user_id INT,
+  challenge_id INT,
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(user_id),
+  CONSTRAINT fk_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
 );
 
 INSERT INTO account (username, email, password)
 VALUES
-  ("admin", "admin@gmail.com", "admin");
-
-INSERT INTO progress (user_id, challenge_id)
-VALUES
-  (1, 1);
-
-INSERT INTO challenge (id, title, guideline, hint, soluce, room_id)
-VALUES
-  (1, "HTML", "Tu dois récupérer les bonnes balises", "Une balise est composée comme ceci : <main/>", "<main/>", 1),
-  (2, "CSS", "Change la couleur du fond d'écran en rouge", "TU dois modifier la propriété background-color", "background-color: red;", 2),
-  (3, "Javascript", "Initialise une variable dont la valeur restera inchangée", "Utilise const", "const test = 2;", 3),
-  (4, "React", "Tu dois créer un composant", "Un composant ressemble à une balise", "< Composant/>", 4),
-  (5, "Node.js", "Tu dois créer un serveur", "Un serveur est composé de plusieurs fichiers", "server.js", 5),
-  (6, "SQL", "Tu dois créer une base de données", "Une base de données est composée d'entités et relations", "database", 6);
+  ("admin", "admin@gmail.com", "admin"),
+  ("user1", "user1@gmail.com", "user1"),
+  ("user2", "user2@gmail.com", "user2"),
+  ("user3", "user3@gmail.com", "user3"),
+  ("user4", "user4@gmail.com", "user4"),
+  ("user5", "user5@gmail.com", "user5");
+  
 
 INSERT INTO room (id, boss_name, img_url)
 VALUES
   (1, "Le seigneur des balises", "https://www.exemple.com"),
   (2, "Gridzilla", "https://www.exemple.com"),
   (3, "DOM-inator", "https://www.exemple.com"),
-  (4, "Componentus Rex", "https://www.exemple.com"),
-  (5, "JSONator", "https://www.exemple.com"),
+  (4, "Captain Hook", "https://www.exemple.com"),
+  (5, "CORS'aire", "https://www.exemple.com"),
   (6, "Soufiane Maski", "https://www.exemple.com");
+
+INSERT INTO challenge (id, title, guideline, hint, soluce, type, room_id)
+VALUES
+  (1, "HTML", "question 1", "reponse 1", "quizz", 1),
+  (2, "HTML", "question 2", "reponse 2", "quizz", 1),
+  (3, "HTML", "question 3", "reponse 3", "quizz", 1),
+  (4, "CSS", "question 1", "reponse 1", "quizz", 2),
+  (5, "CSS", "question 2", "reponse 2", "quizz", 2),
+  (6, "CSS", "question 3", "reponse 3", "quizz", 2),
+  (7, "Javascript", "question 1", "reponse 1", "quizz", 3),
+  (8, "Javascript", "question 2", "reponse 2", "quizz", 3),
+  (9, "Javascript", "question 3", "reponse 3", "quizz", 3),
+  (10, "React", "question 1", "reponse 1","quizz", 4),
+  (11, "React", "question 2", "reponse 2","quizz", 4),
+  (12, "React", "question 3", "reponse 3","quizz", 4),
+  (13, "Node.js", "question 1", "reponse 1","quizz", 5),
+  (14, "Node.js", "question 2", "reponse 2","quizz", 5),
+  (15, "Node.js", "question 3", "reponse 3","quizz", 5),
+  (16, "SQL", "question 1", "reponse 1","quizz", 6),
+  (17, "SQL", "question 2", "reponse 2","quizz", 6),
+  (18, "SQL", "question 3", "reponse 3","quizz", 6);
+
+INSERT INTO progress (user_id, challenge_id)
+VALUES
+  (1, 1);
+
