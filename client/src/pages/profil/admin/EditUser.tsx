@@ -14,7 +14,7 @@ function EditUser({
   user: User;
   onUpdate: (updatedUser: User) => void;
 }) {
-  // user passer en tant que props
+  // user passer en tant que prop
   // onUpdate utilisé pour actualiser les données une fois l'edit réussi
 
   const [formData, setFormData] = useState<User>({ ...user });

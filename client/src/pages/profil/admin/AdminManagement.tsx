@@ -53,9 +53,15 @@ function AdminManagement() {
   const sortUsers = (key: "username" | "email") => {
     // key: "" nous permet d'utiliser le code plusieurs fois selon ce que l'on souhaite trier
     const sorted = [...filteredUsers].sort((a, b) => {
-      if (isAsc) return a[key].localeCompare(b[key]);
-      return b[key].localeCompare(a[key]);
+      // J'extrait les chiffres des chaines de caractères
+      const numA = Number.parseInt(a[key].replace(/\D/g, ""));
+      // replace(/\D/g, "") permet de retirer tous les caractères qui ne sont pas des chiffres
+      // a fin de faire le tri de manière alphabétique et numérique
+      // ça évite d'avoir : user1 > user10 > user11 > user2 > user21 > user3
+      const numB = Number.parseInt(b[key].replace(/\D/g, ""));
+      return isAsc ? numA - numB : numB - numA;
     });
+
     setFilteredUsers(sorted);
     setIsAsc(!isAsc);
   };
@@ -82,24 +88,28 @@ function AdminManagement() {
 
   // ---------------------------------- //
   // Supprimer les utilisateurs
-  const deleteUser = (userId: number) => {
+  const deleteUser = (id: number) => {
     if (
       window.confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")
     ) {
-      fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
         method: "DELETE",
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error("Erreur lors de la suppression.");
+            throw new Error(
+              `Erreur : ${response.status} - ${response.statusText}`,
+            );
           }
+
           // Mise à jour de la liste des utilisateurs
-          const updatedUsers = users.filter((user) => user.id !== userId);
+          const updatedUsers = users.filter((user) => user.id !== id);
+
           setUsers(updatedUsers);
           setFilteredUsers(updatedUsers);
         })
         .catch((error) => {
-          console.error("Erreur lors de la suppression :", error);
+          console.error("Erreur lors de la suppression =>", error);
         });
     }
   };
