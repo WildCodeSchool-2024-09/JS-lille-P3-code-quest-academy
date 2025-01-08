@@ -1,8 +1,8 @@
 import "./Game.css";
-import GameBoard from "../../components/gameBoard/GameBoard";
-import GameCommands from "../../components/gameCommands/GameCommands";
-import GameInstructions from "../../components/gameInstructions/GameInstructions";
-import GameProfil from "../../components/gameProfil/GameProfil";
+import GameBoard from "../../components/game/gameBoard/GameBoard";
+import GameCommands from "../../components/game/gameCommands/GameCommands";
+import GameInstructions from "../../components/game/gameInstructions/GameInstructions";
+import GameProfil from "../../components/game/gameProfil/GameProfil";
 
 function Game() {
   return (

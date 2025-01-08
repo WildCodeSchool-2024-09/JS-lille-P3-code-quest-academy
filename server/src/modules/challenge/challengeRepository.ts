@@ -11,16 +11,16 @@ type Challenge = {
 class ChallengeRepository {
   // The C of CRUD - Create operation
 
-//   async create(challenge: Omit<Challenge, "id">) {
-//     // Execute the SQL INSERT query to add a new challenge to the "challenge" table
-//     const [result] = await databaseClient.query<Result>(
-//       "insert into challenge (title, user_id) values (?, ?)",
-//       [challenge.title, challenge.user_id],
-//     );
+  //   async create(challenge: Omit<Challenge, "id">) {
+  //     // Execute the SQL INSERT query to add a new challenge to the "challenge" table
+  //     const [result] = await databaseClient.query<Result>(
+  //       "insert into challenge (title, user_id) values (?, ?)",
+  //       [challenge.title, challenge.user_id],
+  //     );
 
-//     // Return the ID of the newly inserted challenge
-//     return result.insertId;
-//   }
+  //     // Return the ID of the newly inserted challenge
+  //     return result.insertId;
+  //   }
 
   // The Rs of CRUD - Read operations
 
