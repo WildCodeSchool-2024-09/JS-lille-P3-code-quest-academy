@@ -34,15 +34,19 @@ function EditUser({
         {
           method: "PUT",
           headers: {
-            "Conten-Type": "application/json",
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+          }),
         },
       );
 
       if (response.ok) {
-        const updateUser = await response.json();
-        onUpdate(updateUser);
+        const updatedUser = await response.json();
+        onUpdate(updatedUser);
         alert("Utilisateur mis à jour avec succès !");
       } else {
         alert("Echec de la mise à jour de l'utilisateur.");

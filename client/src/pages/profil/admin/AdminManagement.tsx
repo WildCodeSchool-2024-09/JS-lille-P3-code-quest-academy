@@ -72,6 +72,7 @@ function AdminManagement() {
     setEditingUser(user);
   };
   // fonction callback qui permet à EditUser de notifier à AdminManagement qu'un utilisateur a été modifier
+  // sert à actualiser la liste des utilisateurs
   const handleUserUpdate = (updatedUser: User) => {
     // map pour parcourir tous les utilisateurs
     const updatedUsers = users.map((user) =>
