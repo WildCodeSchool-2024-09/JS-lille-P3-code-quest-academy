@@ -27,21 +27,41 @@ const read: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const user = {
-      id: Number(req.params.id),
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    };
+    const userId = Number(req.params.id);
+    const { username, email, password } = req.body;
 
-    const affectedRows = await userRepository.update(user);
+    if (!username || !email || !password) {
+      res.status(400).json({
+        success: false,
+        message: "Tous les champs doivent être remplis",
+      });
+      return;
+    }
+
+    const affectedRows = await userRepository.update({
+      id: userId,
+      username,
+      email,
+      password,
+    });
 
     if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
+      res
+        .status(404)
+        .json({ success: false, message: "Utilisateur non trouvé" });
     }
+    res.status(200).json({
+      success: true,
+      message: "Utilisateur mis à jour avec succès",
+      user: {
+        id: userId,
+        username,
+        email,
+        password,
+      },
+    });
   } catch (err) {
+    console.error("Erreur lors de la mise à jour de l'utilisateur", err);
     next(err);
   }
 };

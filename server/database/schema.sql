@@ -1,5 +1,5 @@
 CREATE TABLE account (
-  user_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(50) NOT NULL UNIQUE,
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL
@@ -26,7 +26,7 @@ CREATE TABLE progress (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INT,
   challenge_id INT,
-  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(user_id),
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE,
   CONSTRAINT fk_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
 );
 
@@ -38,16 +38,16 @@ VALUES
   ("user3", "user3@gmail.com", "user3"),
   ("user4", "user4@gmail.com", "user4"),
   ("user5", "user5@gmail.com", "user5");
-  
 
 INSERT INTO room (id, boss_name, img_url)
 VALUES
   (1, "Le seigneur des balises", "https://www.exemple.com"),
   (2, "Gridzilla", "https://www.exemple.com"),
   (3, "DOM-inator", "https://www.exemple.com"),
-  (4, "Captain Hook", "https://www.exemple.com"),
-  (5, "CORS'aire", "https://www.exemple.com"),
-  (6, "Soufiane Maski", "https://www.exemple.com");
+  (4, "Componentus Rex", "https://www.exemple.com"),
+  (5, "JSONator", "https://www.exemple.com"),
+  (6, "Soufiane", "https://www.exemple.com");
+
 
 INSERT INTO challenge (id, title, guideline, hint, soluce, type, room_id)
 VALUES
@@ -73,4 +73,3 @@ VALUES
 INSERT INTO progress (user_id, challenge_id)
 VALUES
   (1, 1);
-
