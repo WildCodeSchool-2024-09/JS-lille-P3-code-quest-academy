@@ -127,11 +127,11 @@ function AdminManagement() {
       />
       {/* la balise table c'est pour représenter sous forme de tableau */}
       <table className="user-table">
-        {/* la blaise thead c'est pour nommer les colonnes */}
+        {/* la balise thead c'est pour nommer les colonnes */}
         <thead>
-          {/* la blaise tr représente une ligne dans le tableau */}
+          {/* la balise tr représente une ligne dans le tableau */}
           <tr>
-            {/* la blaise th représente l'entête d'une celulle */}
+            {/* la balise th représente l'entête d'une cellule */}
             <th>ID</th>
             <th>
               Nom d'utilisateur
@@ -149,11 +149,11 @@ function AdminManagement() {
             <th>Actions</th>
           </tr>
         </thead>
-        {/* la blaise tbody contient les lignes principales */}
+        {/* la balise tbody contient les lignes principales */}
         <tbody>
           {filteredUsers.map((user) => (
             <tr key={user.id}>
-              {/* la blaise td représente une celulle du tableau */}
+              {/* la balise td représente une cellule du tableau */}
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
