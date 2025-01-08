@@ -1,5 +1,5 @@
 CREATE TABLE account (
-  user_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(50) NOT NULL UNIQUE,
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL
@@ -22,16 +22,17 @@ CREATE TABLE challenge (
   rep1 VARCHAR(100),
   rep2 VARCHAR(100),
   rep3 VARCHAR(100),
-  rep4 VARCHAR(100),
-  room_id INT,
-  CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id)
+  rep4 VARCHAR(100)
 );
 
 CREATE TABLE progress (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  level INT NOT NULL,
   user_id INT,
+  room_id INT,
   challenge_id INT,
-  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(user_id),
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(id),
+  CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id),
   CONSTRAINT fk_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
 );
 
@@ -51,30 +52,34 @@ VALUES
   ("Gridzilla", "https://www.exemple.com"),
   ("DOM-inator", "https://www.exemple.com"),
   ("Captain Hook", "https://www.exemple.com"),
-  ("CORS'aire", "https://www.exemple.com"),
+  ("Nodeferatus", "https://www.exemple.com"),
   ("Soufiane Maski", "https://www.exemple.com");
 
-INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4, room_id)
+INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4)
 VALUES
-  ("HTML", "Réponds à la question suivante en selectionnant la bonne réponse.", "astuce 1", "Blanc", "quizz", "Quelle est la couleur du cheval blanc d'Henri IV ?", "Noir", "Blanc", "C'est quoi un cheval ?", "La réponse D", 1),
-  ("HTML", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null", 1),
-  ("HTML", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null", 1),
-  ("CSS", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D", 2),
-  ("CSS", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null", 2),
-  ("CSS", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null", 2),
-  ("Javascript", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D", 3),
-  ("Javascript", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null", 3),
-  ("Javascript", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null", 3),
-  ("React", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D", 4),
-  ("React", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null", 4),
-  ("React", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null", 4),
-  ("Node.js", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D", 5),
-  ("Node.js", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null", 5),
-  ("Node.js", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null", 5),
-  ("SQL", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D", 6),
-  ("SQL", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null", 6),
-  ("SQL", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null", 6);
+  ("HTML", "Réponds à la question suivante en selectionnant la bonne réponse.", "astuce 1", "Blanc", "quizz", "Quelle est la couleur du cheval blanc d'Henri IV ?", "Noir", "Blanc", "C'est quoi un cheval ?", "La réponse D"),
+  ("HTML", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
+  ("HTML", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
+  ("CSS", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
+  ("CSS", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
+  ("CSS", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
+  ("Javascript", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
+  ("Javascript", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
+  ("Javascript", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
+  ("React", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
+  ("React", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
+  ("React", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
+  ("Node.js", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
+  ("Node.js", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
+  ("Node.js", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
+  ("SQL", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
+  ("SQL", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
+  ("SQL", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null");
 
-INSERT INTO progress (user_id, challenge_id)
+INSERT INTO progress (level, user_id, room_id, challenge_id)
 VALUES
-  (1, 1);
+  (1, 1, 1, 1),
+  (1, 2, 1, 1),
+  (1, 3, 1, 1),
+  (1, 4, 1, 1),
+  (1, 5, 1, 1);

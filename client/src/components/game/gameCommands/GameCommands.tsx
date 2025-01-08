@@ -3,12 +3,14 @@ import "./GameCommands.css";
 import { useContext } from "react";
 
 function GameCommands() {
+
+  //Importation du contexte
   const context = useContext(Context);
 
   if (!context) {
     return <div>Error: Context is not available</div>;
   }
-
+//Importation des variables du contexte utilisées sur la page
   const {
     challenge,
     currentIndex,
@@ -20,6 +22,7 @@ function GameCommands() {
     setButtonStyles,
   } = context;
 
+  //Selectionne la réponse et change le style en fonction de la réponse
   const handleQuizz = (
     e:
       | React.MouseEvent<HTMLParagraphElement>
@@ -30,17 +33,21 @@ function GameCommands() {
       (e.target as HTMLParagraphElement).innerText ===
       challenge[currentIndex]?.soluce;
 
+    //Ajoute la backgroundColor en fonction de la réponse
     setAnswerStyles((prev) => ({
       ...prev,
       [index]: isCorrect ? "correct" : "wrong",
     }));
 
+    //AJoute un message en fonction de la réponse en dessous du quizz
     setFeedbackMessage(
       isCorrect ? "Bonne réponse ! 🎉" : "Mauvaise réponse. 😢",
     );
+
+    //Active le bouton suivant si la réponse est correcte et change son style
     if (isCorrect) {
       setIsButtonEnabled(true);
-      setButtonStyles("button-enabled")
+      setButtonStyles("button-enabled");
     }
   };
 

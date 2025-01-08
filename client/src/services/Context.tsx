@@ -5,6 +5,10 @@ import { useEffect } from "react";
 interface ContextValue {
   challenge: ChallengeProps[];
   setChallenge: React.Dispatch<React.SetStateAction<ChallengeProps[]>>;
+  account: AccountProps[];
+  setAccount: React.Dispatch<React.SetStateAction<AccountProps[]>>;
+  progress: ProgressProps[];
+  setProgress: React.Dispatch<React.SetStateAction<ProgressProps[]>>;
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
   currentType: number;
@@ -38,6 +42,20 @@ interface ChallengeProps {
   room_id: number;
 }
 
+interface AccountProps {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+}
+
+interface ProgressProps {
+  level: number;
+  user_id: number;
+  room_id: number;
+  challenge_id: number;
+}
+
 interface ProviderProps {
   children: ReactNode;
 }
@@ -46,6 +64,8 @@ export const Context = createContext<ContextValue | null>(null);
 
 export const Provider = ({ children }: ProviderProps) => {
   const [challenge, setChallenge] = useState([] as ChallengeProps[]);
+  const [account, setAccount] = useState([] as AccountProps[]);
+  const [progress, setProgress] = useState([] as ProgressProps[]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentType, setCurrentType] = useState(0);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
@@ -53,6 +73,8 @@ export const Provider = ({ children }: ProviderProps) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
 
+  //----------------------------------------------------------
+  // FETCH DE LA TABLE CHALLENGE
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/challenges`)
       .then((response) => response.json())
@@ -61,11 +83,36 @@ export const Provider = ({ children }: ProviderProps) => {
       });
   }, []);
 
+  //----------------------------------------------------------
+  // FETCH DE LA TABLE ACCOUNT
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/account`)
+      .then((response) => response.json())
+      .then((data: AccountProps[]) => {
+        setAccount(data);
+      });
+  }, []);
+
+    //----------------------------------------------------------
+  // FETCH DE LA TABLE PROGRESS
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/progress`)
+      .then((response) => response.json())
+      .then((data: ProgressProps[]) => {
+        setProgress(data);
+      });
+  }, []);
+
+
   return (
     <Context.Provider
       value={{
         challenge,
         setChallenge,
+        account,
+        setAccount,
+        progress,
+        setProgress,
         currentIndex,
         setCurrentIndex,
         currentType,
@@ -77,7 +124,7 @@ export const Provider = ({ children }: ProviderProps) => {
         feedbackMessage,
         setFeedbackMessage,
         buttonStyles,
-        setButtonStyles
+        setButtonStyles,
       }}
     >
       {children}
