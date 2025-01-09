@@ -7,6 +7,8 @@
   border-radius: 20px;
 }
 
+/* TYPE QUIZZ */
+/* TYPE QUIZZ */
 .answer {
   margin: 0.5rem;
   padding: 0.5rem;
@@ -41,4 +43,20 @@
 .answer-container {
   display: flex;
   flex-wrap: wrap;
+}
+
+/* TYPE PROMPT */
+/* TYPE PROMPT */
+
+.prompt {
+  flex-direction: column;
+}
+
+.prompt-button {
+  margin-top: 2rem;
+  padding: 0.5rem;
+  background-color: white;
+  color: rgb(209, 41, 7);
+  font-weight: bold;
+  border-radius: 5px;
 }

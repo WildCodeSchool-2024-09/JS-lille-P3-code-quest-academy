@@ -46,6 +46,15 @@ function GameInstructions() {
     }
   };
 
+ {/* Bouton test pour revenir en arrière */}
+  const handleChangePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      setCurrentType(currentType - 1);
+    }
+  };
+ {/* Bouton test */}
+
   return (
     <>
       <div className="instructions-container">
@@ -60,6 +69,16 @@ function GameInstructions() {
         >
           Suivant
         </button>
+
+        {/* Bouton test pour revenir en arrière*/}
+        <button
+          className={"instructions-button"}
+          onClick={handleChangePrev}
+          type="button"
+        >
+         (dev)Précédent
+        </button>
+        {/* Bouton test */}  
 
         <img
           className="help-img"

@@ -1,8 +1,11 @@
 import "./GameProfil.css";
 import { Context } from "../../../services/Context";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function GameProfil() {
+
+  let navigate = useNavigate();
 
   const context = useContext(Context);
 
@@ -21,7 +24,7 @@ function GameProfil() {
         <div className="profil-text">
           <h2>{account[1]?.username}</h2>
           <p>Level {progress[1]?.level}</p>
-          <button className="profil-button" type="button">
+          <button className="profil-button" type="button" onClick={() => navigate("/welcome")}>
             Accueil
           </button>
         </div>
