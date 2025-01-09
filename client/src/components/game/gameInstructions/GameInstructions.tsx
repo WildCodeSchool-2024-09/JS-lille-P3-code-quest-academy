@@ -3,7 +3,6 @@ import "./GameInstructions.css";
 import { useContext } from "react";
 
 function GameInstructions() {
-
   //Importation du contexte
   const context = useContext(Context);
 
@@ -11,7 +10,7 @@ function GameInstructions() {
     return <div>Error: Context is not available</div>;
   }
 
-//Importation des variables du contexte utilisées sur la page
+  //Importation des variables du contexte utilisées sur la page
   const {
     challenge,
     currentIndex,
@@ -45,15 +44,12 @@ function GameInstructions() {
       setCurrentType(0);
     }
   };
-
- {/* Bouton test pour revenir en arrière */}
   const handleChangePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setCurrentType(currentType - 1);
     }
   };
- {/* Bouton test */}
 
   return (
     <>
@@ -76,9 +72,9 @@ function GameInstructions() {
           onClick={handleChangePrev}
           type="button"
         >
-         (dev)Précédent
+          (dev)Précédent
         </button>
-        {/* Bouton test */}  
+        {/* Bouton test */}
 
         <img
           className="help-img"

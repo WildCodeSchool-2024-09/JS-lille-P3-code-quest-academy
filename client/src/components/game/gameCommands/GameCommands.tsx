@@ -3,14 +3,14 @@ import "./GameCommands.css";
 import { useContext } from "react";
 
 function GameCommands() {
-
   //Importation du contexte
   const context = useContext(Context);
 
   if (!context) {
     return <div>Error: Context is not available</div>;
   }
-//Importation des variables du contexte utilisées sur la page
+
+  //Importation des variables du contexte utilisées sur la page
   const {
     challenge,
     currentIndex,
@@ -58,7 +58,7 @@ function GameCommands() {
   /* lOGIQUE DU PROMPT */
 
   const handlePrompt = () => {
-    let answer = prompt("tapez le mot manquant");
+    const answer = prompt("tapez le mot manquant");
     if (answer === challenge[currentIndex]?.soluce) {
       setIsButtonEnabled(true);
       setButtonStyles("button-enabled");
@@ -66,6 +66,15 @@ function GameCommands() {
     } else {
       setFeedbackMessage("Mauvaise réponse. 😢");
     }
+  };
+
+  // Active le bouton pendant les phases de transition
+  if (
+    challenge[currentIndex] &&
+    challenge[currentIndex].type === "transition"
+  ) {
+    setIsButtonEnabled(true);
+    setButtonStyles("button-enabled");
   }
 
   return (
@@ -97,11 +106,19 @@ function GameCommands() {
       ) : challenge[currentIndex]?.type === "prompt" ? (
         <div className="command-container prompt">
           <h2>{challenge[currentIndex]?.question}</h2>
-          <button type="button" className="prompt-button" onClick={handlePrompt}>Clique ici pour taper la réponse</button>
+          <button
+            type="button"
+            className="prompt-button"
+            onClick={handlePrompt}
+          >
+            Clique ici pour taper la réponse
+          </button>
           {feedbackMessage && (
             <p className="feedback-message">{feedbackMessage}</p>
           )}
         </div>
+      ) : challenge[currentIndex]?.type === "transition" ? (
+        <div className="command-container" />
       ) : null}
     </>
   );

@@ -5,9 +5,9 @@ import { Provider } from "./services/Context";
 function App() {
   return (
     <>
-    <Provider>
-      <Outlet />
-    </Provider>
+      <Provider>
+        <Outlet />
+      </Provider>
     </>
   );
 }

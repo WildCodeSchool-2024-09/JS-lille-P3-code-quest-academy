@@ -93,7 +93,7 @@ export const Provider = ({ children }: ProviderProps) => {
       });
   }, []);
 
-    //----------------------------------------------------------
+  //----------------------------------------------------------
   // FETCH DE LA TABLE PROGRESS
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/progress`)
@@ -102,7 +102,6 @@ export const Provider = ({ children }: ProviderProps) => {
         setProgress(data);
       });
   }, []);
-
 
   return (
     <Context.Provider

@@ -1,11 +1,10 @@
 import "./GameProfil.css";
-import { Context } from "../../../services/Context";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../../services/Context";
 
 function GameProfil() {
-
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const context = useContext(Context);
 
@@ -13,10 +12,7 @@ function GameProfil() {
     return <div>Error: Context is not available</div>;
   }
 
-  const {
-    account,
-    progress,
-  } = context;
+  const { account, progress } = context;
 
   return (
     <>
@@ -24,7 +20,11 @@ function GameProfil() {
         <div className="profil-text">
           <h2>{account[1]?.username}</h2>
           <p>Level {progress[1]?.level}</p>
-          <button className="profil-button" type="button" onClick={() => navigate("/welcome")}>
+          <button
+            className="profil-button"
+            type="button"
+            onClick={() => navigate("/welcome")}
+          >
             Accueil
           </button>
         </div>
