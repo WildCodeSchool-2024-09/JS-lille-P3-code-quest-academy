@@ -6,21 +6,28 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
+// Define challenge-related routes
+import challengeActions from "./modules/challenge/challengeActions";
 
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
+router.get("/api/challenges", challengeActions.browse);
+router.get("/api/challenges/:id", challengeActions.read);
 
-// Define user-related routes
-import userActions from "./modules/user/userActions";
+// Define account-related routes
+import accountActions from "./modules/account/accountActions";
 
-router.get("/api/users", userActions.browse);
-router.get("/api/users/:id", userActions.read);
-router.put("/api/users/:id", userActions.edit);
-router.post("/api/users", userActions.add);
-router.delete("/api/users/:id", userActions.destroy);
+router.get("/api/accounts", accountActions.browse);
+router.get("/api/accounts/:id", accountActions.read);
+router.put("/api/accounts/:id", accountActions.edit);
+router.post("/api/accounts", accountActions.add);
+router.delete("/api/accounts/:id", accountActions.destroy);
+
+/* ************************************************************************* */
+
+// Define progress-related routes
+import progressActions from "./modules/progress/progressActions";
+
+router.get("/api/progress", progressActions.browse);
+router.get("/api/progress/:id", progressActions.read);
 
 /* ************************************************************************* */
 

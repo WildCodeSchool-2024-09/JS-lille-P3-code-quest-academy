@@ -1,10 +1,10 @@
 import type { RequestHandler } from "express";
-import userRepository from "./userRepository";
+import accountRepository from "./accountRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const users = await userRepository.readAll();
-    res.json(users);
+    const accounts = await accountRepository.readAll();
+    res.json(accounts);
   } catch (err) {
     next(err);
   }
@@ -12,13 +12,13 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const userId = Number(req.params.id);
-    const user = await userRepository.read(userId);
+    const accountId = Number(req.params.id);
+    const account = await accountRepository.read(accountId);
 
-    if (user == null) {
+    if (account == null) {
       res.sendStatus(404);
     } else {
-      res.json(user);
+      res.json(account);
     }
   } catch (err) {
     next(err);
@@ -27,7 +27,7 @@ const read: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const userId = Number(req.params.id);
+    const accountId = Number(req.params.id);
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -38,8 +38,8 @@ const edit: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    const affectedRows = await userRepository.update({
-      id: userId,
+    const affectedRows = await accountRepository.update({
+      id: accountId,
       username,
       email,
       password,
@@ -53,8 +53,8 @@ const edit: RequestHandler = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Utilisateur mis à jour avec succès",
-      user: {
-        id: userId,
+      account: {
+        id: accountId,
         username,
         email,
         password,
@@ -68,14 +68,14 @@ const edit: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const newUser = {
+    const newAccount = {
       id: Number(req.params.id),
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     };
 
-    const insertId = await userRepository.create(newUser);
+    const insertId = await accountRepository.create(newAccount);
     res.status(201).json({ insertId });
   } catch (err) {
     next(err);
@@ -84,9 +84,9 @@ const add: RequestHandler = async (req, res, next) => {
 
 const destroy: RequestHandler = async (req, res, next) => {
   try {
-    const userId = Number(req.params.id);
+    const accountId = Number(req.params.id);
 
-    await userRepository.delete(userId);
+    await accountRepository.delete(accountId);
 
     res.sendStatus(204);
   } catch (err) {
