@@ -1,5 +1,5 @@
-import { Context } from "../../../services/Context";
 import { useContext } from "react";
+import { Context } from "../../../services/Context";
 import "./GameInstructions.css";
 
 function GameInstructions() {

@@ -1,8 +1,8 @@
 import { Context } from "../../../services/Context";
 import "./GameCommands.css";
 import { useContext } from "react";
-import Quizz from "./minigame/quizz/Quizz";
 import Prompt from "./minigame/prompt/Prompt";
+import Quizz from "./minigame/quizz/Quizz";
 
 function GameCommands() {
   //Importation du contexte
@@ -19,7 +19,8 @@ function GameCommands() {
   // Active le bouton pendant les phases de transition
   if (
     challenge[currentIndex] &&
-    challenge[currentIndex].type === "transition" && challenge[currentIndex].title !== "RoomSelection"
+    challenge[currentIndex].type === "transition" &&
+    challenge[currentIndex].title !== "RoomSelection"
   ) {
     setIsButtonEnabled(true);
     setButtonStyles("button-enabled");
@@ -31,7 +32,8 @@ function GameCommands() {
         <Quizz />
       ) : challenge[currentIndex]?.type === "prompt" ? (
         <Prompt />
-      ) : challenge[currentIndex]?.type === "transition" || challenge[currentIndex]?.title === "Boss" ? (
+      ) : challenge[currentIndex]?.type === "transition" ||
+        challenge[currentIndex]?.title === "Boss" ? (
         <div className="command-container" />
       ) : null}
     </>
