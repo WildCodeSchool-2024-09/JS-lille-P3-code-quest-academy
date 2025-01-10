@@ -38,6 +38,10 @@ const router = createBrowserRouter([
         element: <Game />,
       },
       {
+        path: "/game/room1",
+        element: <Game />,
+      },
+      {
         path: "/profile", // The profile path
         element: <ProfilPage />,
       },

@@ -1,6 +1,6 @@
 import { Context } from "../../../services/Context";
-import "./GameInstructions.css";
 import { useContext } from "react";
+import "./GameInstructions.css";
 
 function GameInstructions() {
   //Importation du contexte
@@ -23,10 +23,12 @@ function GameInstructions() {
     setFeedbackMessage,
     buttonStyles,
     setButtonStyles,
+    setRoom1Status,
   } = context;
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
+      setRoom1Status("unlocked");
       //Passe à la question suivante
       setCurrentIndex(currentIndex + 1);
       //Passe au type suivant
@@ -44,12 +46,13 @@ function GameInstructions() {
       setCurrentType(0);
     }
   };
-  const handleChangePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      setCurrentType(currentType - 1);
-    }
-  };
+
+  if (
+    challenge[currentIndex] &&
+    challenge[currentIndex].title === "RoomSelection"
+  ) {
+    setButtonStyles("button-invisible");
+  }
 
   return (
     <>
@@ -65,16 +68,6 @@ function GameInstructions() {
         >
           Suivant
         </button>
-
-        {/* Bouton test pour revenir en arrière*/}
-        <button
-          className={"instructions-button"}
-          onClick={handleChangePrev}
-          type="button"
-        >
-          (dev)Précédent
-        </button>
-        {/* Bouton test */}
 
         <img
           className="help-img"

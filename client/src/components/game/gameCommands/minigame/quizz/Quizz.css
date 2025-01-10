@@ -1,14 +1,3 @@
-.command-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(207, 207, 207, 0.9);
-  border: ridge 2px grey;
-  border-radius: 20px;
-}
-
-/* TYPE QUIZZ */
-/* TYPE QUIZZ */
 .answer {
   margin: 0.5rem;
   padding: 0.5rem;
@@ -44,4 +33,3 @@
   display: flex;
   flex-wrap: wrap;
 }
-

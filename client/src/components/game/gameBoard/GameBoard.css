@@ -83,10 +83,6 @@
   z-index: 1;
 }
 
-.item6:hover {
-  background-color: initial;
-}
-
 .item7 {
   background-color: rgba(253, 54, 32, 0.3);
   top: 52%;
@@ -112,4 +108,8 @@
   width: 195px;
   height: 96px;
   z-index: 1;
+}
+
+.unlocked {
+  background-color: rgba(253, 54, 32, 0);
 }

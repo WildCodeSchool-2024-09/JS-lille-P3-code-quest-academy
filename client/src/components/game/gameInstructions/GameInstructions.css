@@ -30,3 +30,7 @@
   background-color: white;
   color: rgb(209, 41, 7);
 }
+
+.button-invisible {
+  display: none;
+}

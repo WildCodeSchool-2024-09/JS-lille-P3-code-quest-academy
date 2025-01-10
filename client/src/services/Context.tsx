@@ -25,6 +25,8 @@ interface ContextValue {
   setButtonStyles: React.Dispatch<
     React.SetStateAction<{ [key: number]: string }>
   >;
+  room1Status: string;
+  setRoom1Status: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ChallengeProps {
@@ -72,6 +74,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [answerStyles, setAnswerStyles] = useState({});
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
+  const [room1Status, setRoom1Status] = useState("");
 
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
@@ -124,6 +127,8 @@ export const Provider = ({ children }: ProviderProps) => {
         setFeedbackMessage,
         buttonStyles,
         setButtonStyles,
+        room1Status,
+        setRoom1Status,
       }}
     >
       {children}

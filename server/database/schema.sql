@@ -55,26 +55,30 @@ VALUES
   ("Nodeferatus", "https://www.exemple.com"),
   ("Soufiane Maski", "https://www.exemple.com");
 
-INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4)
+INSERT INTO challenge (id, title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4)
 VALUES
-  ("HTML", "Réponds à la question suivante en selectionnant la bonne réponse.", "astuce 1", "Blanc", "quizz", "Quelle est la couleur du cheval blanc d'Henri IV ?", "Noir", "Blanc", "C'est quoi un cheval ?", "La réponse D"),
-  ("HTML", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
-  ("HTML", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
-  ("CSS", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
-  ("CSS", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
-  ("CSS", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
-  ("Javascript", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
-  ("Javascript", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
-  ("Javascript", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
-  ("React", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
-  ("React", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
-  ("React", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
-  ("Node.js", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
-  ("Node.js", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
-  ("Node.js", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
-  ("SQL", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
-  ("SQL", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
-  ("SQL", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null");
+  (1, "Welcome", "Bienvenue sur Code Quest Academy ! Un mystérieux bug a infecté le campus, empếchant les élèves de continuer leurs apprentissage. Peut-tu nous aider ? Clique sur le bouton suivant si tu es prêt !", "null", "null", "transition", "null", "null", "null", "null", "null"),
+  (2, "RoomSelection", "La premier niveau a été débloqué, clique dessus pour commencer", "null", "null", "transition", "null", "null", "null", "null", "null"),
+  (3, "HTML", "Nous sommes dans la première salle, c'est ici que nous allons apprendre les bases du HTML et résoudre le bug", "null", "null", "transition", "null", "null", "null", "null", "null"),
+  (4, "HTML", "Tu vas devoir résoudre les énigmes et mini-jeux dans la partie inférieure gauche de la page pour débloquer la suite", "astuce 1", "Blanc", "quizz", "Quelle est la couleur du cheval blanc d'Henri IV ?", "Noir", "Blanc", "C'est quoi un cheval ?", "La réponse D"),
+  (5, "HTML", "Tu vas devoir résoudre les énigmes et mini-jeux dans la partie inférieure gauche de la page pour débloquer la suite", "astuce 2", "markup", "prompt", "HTML signifie Hyper Text Langage ...", "null", "null", "null", "null"),
+  (6, "HTML", "Tu vas devoir résoudre les énigmes et mini-jeux dans la partie inférieure gauche de la page pour débloquer la suite", "astuce 3", "ta gueule", "prompt", "Y va faire tout noir !", "null", "null", "null", "null"),
+  (7, "Boss", "Bravo ! Tu as surmonté toute les épreuves HTML et acquis la compétence 'Lancer de div'. Attends... Mais qu'est ce que c'est que ce truc ??!", "astuce 3", "null", "prompt", "null", "null", "null", "null", "null"),
+  (8, "CSS", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
+  (9, "CSS", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
+  (10, "CSS", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
+  (11, "Javascript", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
+  (12, "Javascript", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
+  (13, "Javascript", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
+  (14,"React", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
+  (15, "React", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
+  (16, "React", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
+  (17, "Node.js", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
+  (18, "Node.js", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
+  (19, "Node.js", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
+  (20, "SQL", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
+  (21, "SQL", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
+  (22, "SQL", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null");
 
 INSERT INTO progress (level, user_id, room_id, challenge_id)
 VALUES

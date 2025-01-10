@@ -1,6 +1,8 @@
 import { Context } from "../../../services/Context";
 import "./GameCommands.css";
 import { useContext } from "react";
+import Quizz from "./minigame/quizz/Quizz";
+import Prompt from "./minigame/prompt/Prompt";
 
 function GameCommands() {
   //Importation du contexte
@@ -11,67 +13,13 @@ function GameCommands() {
   }
 
   //Importation des variables du contexte utilisées sur la page
-  const {
-    challenge,
-    currentIndex,
-    setIsButtonEnabled,
-    answerStyles,
-    setAnswerStyles,
-    feedbackMessage,
-    setFeedbackMessage,
-    setButtonStyles,
-  } = context;
-
-  /* LOGIQUE DU QUIZZ */
-  /* lOGIQUE DU QUIZZ */
-
-  //Selectionne la réponse et change le style en fonction de la réponse
-  const handleQuizz = (
-    e:
-      | React.MouseEvent<HTMLParagraphElement>
-      | React.KeyboardEvent<HTMLParagraphElement>,
-    index: number,
-  ) => {
-    const isCorrect =
-      (e.target as HTMLParagraphElement).innerText ===
-      challenge[currentIndex]?.soluce;
-
-    //Ajoute la backgroundColor en fonction de la réponse
-    setAnswerStyles((prev) => ({
-      ...prev,
-      [index]: isCorrect ? "correct" : "wrong",
-    }));
-
-    //Ajoute un message en fonction de la réponse en dessous du quizz
-    setFeedbackMessage(
-      isCorrect ? "Bonne réponse ! 🎉" : "Mauvaise réponse. 😢",
-    );
-
-    //Active le bouton suivant si la réponse est correcte et change son style
-    if (isCorrect) {
-      setIsButtonEnabled(true);
-      setButtonStyles("button-enabled");
-    }
-  };
-
-  /* lOGIQUE DU PROMPT */
-  /* lOGIQUE DU PROMPT */
-
-  const handlePrompt = () => {
-    const answer = prompt("tapez le mot manquant");
-    if (answer === challenge[currentIndex]?.soluce) {
-      setIsButtonEnabled(true);
-      setButtonStyles("button-enabled");
-      setFeedbackMessage("Bonne réponse ! 🎉");
-    } else {
-      setFeedbackMessage("Mauvaise réponse. 😢");
-    }
-  };
+  const { challenge, currentIndex, setIsButtonEnabled, setButtonStyles } =
+    context;
 
   // Active le bouton pendant les phases de transition
   if (
     challenge[currentIndex] &&
-    challenge[currentIndex].type === "transition"
+    challenge[currentIndex].type === "transition" && challenge[currentIndex].title !== "RoomSelection"
   ) {
     setIsButtonEnabled(true);
     setButtonStyles("button-enabled");
@@ -80,44 +28,10 @@ function GameCommands() {
   return (
     <>
       {challenge[currentIndex]?.type === "quizz" ? (
-        <div className="command-container quizz">
-          <h2>{challenge[currentIndex]?.question}</h2>
-          <div className="answer-container">
-            {[
-              challenge[currentIndex]?.rep1,
-              challenge[currentIndex]?.rep2,
-              challenge[currentIndex]?.rep3,
-              challenge[currentIndex]?.rep4,
-            ].map((answer, index) => (
-              <p
-                key={answer}
-                className={`answer ${answerStyles[index] || ""}`}
-                onClick={(e) => handleQuizz(e, index)}
-                onKeyDown={(e) => handleQuizz(e, index)}
-              >
-                {answer}
-              </p>
-            ))}
-          </div>
-          {feedbackMessage && (
-            <p className="feedback-message">{feedbackMessage}</p>
-          )}
-        </div>
+        <Quizz />
       ) : challenge[currentIndex]?.type === "prompt" ? (
-        <div className="command-container prompt">
-          <h2>{challenge[currentIndex]?.question}</h2>
-          <button
-            type="button"
-            className="prompt-button"
-            onClick={handlePrompt}
-          >
-            Clique ici pour taper la réponse
-          </button>
-          {feedbackMessage && (
-            <p className="feedback-message">{feedbackMessage}</p>
-          )}
-        </div>
-      ) : challenge[currentIndex]?.type === "transition" ? (
+        <Prompt />
+      ) : challenge[currentIndex]?.type === "transition" || challenge[currentIndex]?.title === "Boss" ? (
         <div className="command-container" />
       ) : null}
     </>
