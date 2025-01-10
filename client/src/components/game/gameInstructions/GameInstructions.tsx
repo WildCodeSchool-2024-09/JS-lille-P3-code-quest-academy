@@ -68,6 +68,14 @@ function GameInstructions() {
         >
           Suivant
         </button>
+        {/* <div>
+        <button type="button" onClick={handleLevel1}>Lvl 1</button>
+        <button type="button" onClick={handleLevel2}>Lvl 2</button>
+        <button type="button" onClick={handleLevel3}>Lvl 3</button>
+        <button type="button" onClick={handleLevel4}>Lvl 4</button>
+        <button type="button" onClick={handleLevel5}>Lvl 5</button>
+        <button type="button" onClick={handleLevel6}>Lvl 6</button>
+        </div> */}
 
         <img
           className="help-img"

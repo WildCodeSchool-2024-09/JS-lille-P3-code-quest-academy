@@ -17,11 +17,6 @@
   height: 100%;
 }
 
-.room-style {
-  position: absolute;
-  z-index: 2;
-}
-
 .overlay-item {
   position: absolute;
   color: white;

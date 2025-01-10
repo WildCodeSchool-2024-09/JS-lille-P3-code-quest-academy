@@ -27,6 +27,10 @@ interface ContextValue {
   >;
   room1Status: string;
   setRoom1Status: React.Dispatch<React.SetStateAction<string>>;
+  room: string;
+  setRoom: React.Dispatch<React.SetStateAction<string>>;
+  roomStyle: string;
+  setRoomStyle: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ChallengeProps {
@@ -75,6 +79,8 @@ export const Provider = ({ children }: ProviderProps) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
   const [room1Status, setRoom1Status] = useState("");
+  const [room, setRoom] = useState("./src/assets/images/game-background.jpeg");
+  const [roomStyle, setRoomStyle] = useState("");
 
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
@@ -129,6 +135,10 @@ export const Provider = ({ children }: ProviderProps) => {
         setButtonStyles,
         room1Status,
         setRoom1Status,
+        room,
+        setRoom,
+        roomStyle,
+        setRoomStyle,
       }}
     >
       {children}

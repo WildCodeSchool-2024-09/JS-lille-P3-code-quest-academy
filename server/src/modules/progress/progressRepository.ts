@@ -20,6 +20,7 @@ type Progress = {
     const [rows] = await databaseClient.query<Rows>("select * from progress");
     return rows as Progress[];
   }
+  
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM progress WHERE id = ?",
