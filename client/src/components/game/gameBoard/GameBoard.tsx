@@ -5,7 +5,6 @@ import Html from "./room/Html";
 import Main from "./room/Main";
 
 function GameBoard() {
-
   //Importation du contexte
   const context = useContext(Context);
 
@@ -16,15 +15,7 @@ function GameBoard() {
   //Importation des variables du contexte utilisées sur la page
   const { challenge, currentIndex } = context;
 
-  return (
-    <>
-      {challenge[currentIndex]?.title === "HTML" ? (
-        <Html />
-      ) : (
-        <Main />
-      )}
-    </>
-  );
+  return <>{challenge[currentIndex]?.title === "HTML" ? <Html /> : <Main />}</>;
 }
 
 export default GameBoard;

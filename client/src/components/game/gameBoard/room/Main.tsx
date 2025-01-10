@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Main() {
-
   const Navigate = useNavigate();
   //Importation du contexte
   const context = useContext(Context);
@@ -14,13 +13,8 @@ function Main() {
   }
 
   //Importation des variables du contexte utilisées sur la page
-  const {
-    room1Status,
-    room,
-    roomStyle,
-    currentIndex,
-    setCurrentIndex,
-  } = context;
+  const { room1Status, room, roomStyle, currentIndex, setCurrentIndex } =
+    context;
 
   const handleRoom = () => {
     setCurrentIndex(currentIndex + 1);
