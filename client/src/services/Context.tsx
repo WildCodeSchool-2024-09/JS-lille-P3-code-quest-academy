@@ -27,6 +27,8 @@ interface ContextValue {
   >;
   room1Status: string;
   setRoom1Status: React.Dispatch<React.SetStateAction<string>>;
+  room2Status: string;
+  setRoom2Status: React.Dispatch<React.SetStateAction<string>>;
   room: string;
   setRoom: React.Dispatch<React.SetStateAction<string>>;
   roomStyle: string;
@@ -79,6 +81,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
   const [room1Status, setRoom1Status] = useState("");
+  const [room2Status, setRoom2Status] = useState("");
   const [room, setRoom] = useState("./src/assets/images/game-background.jpeg");
   const [roomStyle, setRoomStyle] = useState("");
 
@@ -135,6 +138,8 @@ export const Provider = ({ children }: ProviderProps) => {
         setButtonStyles,
         room1Status,
         setRoom1Status,
+        room2Status,
+        setRoom2Status,
         room,
         setRoom,
         roomStyle,

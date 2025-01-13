@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Context } from "../../../services/Context";
 import Html from "./room/Html";
 import Main from "./room/Main";
+import Boss from "./room/Boss";
 
 function GameBoard() {
   //Importation du contexte
@@ -15,7 +16,7 @@ function GameBoard() {
   //Importation des variables du contexte utilisées sur la page
   const { challenge, currentIndex } = context;
 
-  return <>{challenge[currentIndex]?.title === "HTML" ? <Html /> : <Main />}</>;
+  return <>{challenge[currentIndex]?.title === "HTML" ? <Html /> : challenge[currentIndex]?.title === "Boss" ? <Boss /> : <Main />}</>;
 }
 
 export default GameBoard;

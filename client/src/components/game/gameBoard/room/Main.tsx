@@ -13,7 +13,7 @@ function Main() {
   }
 
   //Importation des variables du contexte utilisées sur la page
-  const { room1Status, room, roomStyle, currentIndex, setCurrentIndex } =
+  const { room1Status, room2Status, room, roomStyle, currentIndex, setCurrentIndex } =
     context;
 
   const handleRoom = () => {
@@ -36,7 +36,7 @@ function Main() {
           onClick={handleRoom}
           onKeyDown={handleRoom}
         />
-        <div className="overlay-item item7" />
+        <div className={`overlay-item item7 ${room2Status}`} />
         <div className="overlay-item item8" />
         <div className="overlay-item item9" />
       </div>

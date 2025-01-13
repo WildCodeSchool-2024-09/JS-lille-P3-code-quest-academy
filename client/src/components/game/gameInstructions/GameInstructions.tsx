@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Context } from "../../../services/Context";
 import "./GameInstructions.css";
+import { useNavigate } from "react-router-dom";
 
 function GameInstructions() {
   //Importation du contexte
@@ -24,7 +25,10 @@ function GameInstructions() {
     buttonStyles,
     setButtonStyles,
     setRoom1Status,
+    setRoom2Status,
   } = context;
+
+  const navigate = useNavigate();
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
@@ -40,7 +44,11 @@ function GameInstructions() {
       //Désactive le bouton suivant
       setIsButtonEnabled(false);
       //Réinitialise le style du bouton suivant
-      setButtonStyles("");
+        
+      if (challenge[currentIndex].id === 9) {
+        navigate("/game");
+        setRoom2Status("unlocked");
+      }
     } else {
       setCurrentIndex(0);
       setCurrentType(0);
