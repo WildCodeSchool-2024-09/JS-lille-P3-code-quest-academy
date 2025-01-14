@@ -1,10 +1,10 @@
-import { Context } from "../../../../../services/Context";
+import { GameContext } from "../../../../../services/GameContext";
 import "./Prompt.css";
 import { useContext } from "react";
 
 function Prompt() {
   //Importation du contexte
-  const context = useContext(Context);
+  const context = useContext(GameContext);
 
   if (!context) {
     return <div>Error: Context is not available</div>;

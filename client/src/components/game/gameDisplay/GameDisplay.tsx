@@ -1,12 +1,10 @@
-import { Context } from "../../../../services/Context";
-import "../GameBoard.css";
+import "./GameDisplay.css";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { GameContext } from "../../../services/GameContext";
 
-function Main() {
-  const Navigate = useNavigate();
+function GameBoard() {
   //Importation du contexte
-  const context = useContext(Context);
+  const context = useContext(GameContext);
 
   if (!context) {
     return <div>Error: Context is not available</div>;
@@ -24,12 +22,7 @@ function Main() {
 
   const handleRoom = () => {
     setCurrentIndex(currentIndex + 1);
-    setTimeout(() => Navigate("/game/room1"), 0);
-    
   };
-
-
-
   return (
     <>
       <div className={`gameboard-container ${roomStyle}`}>
@@ -53,4 +46,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default GameBoard;

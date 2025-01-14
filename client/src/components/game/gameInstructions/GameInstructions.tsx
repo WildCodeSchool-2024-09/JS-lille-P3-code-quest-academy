@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { Context } from "../../../services/Context";
+import { GameContext } from "../../../services/GameContext";
 import "./GameInstructions.css";
 import { useNavigate } from "react-router-dom";
 
 function GameInstructions() {
   //Importation du contexte
-  const context = useContext(Context);
+  const context = useContext(GameContext);
 
   if (!context) {
     return <div>Error: Context is not available</div>;

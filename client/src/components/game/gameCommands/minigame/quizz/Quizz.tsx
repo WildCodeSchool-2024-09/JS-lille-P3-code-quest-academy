@@ -1,9 +1,9 @@
-import { Context } from "../../../../../services/Context";
+import { GameContext } from "../../../../../services/GameContext";
 import "./Quizz.css";
 import { useContext } from "react";
 
 function Quizz() {
-  const context = useContext(Context);
+  const context = useContext(GameContext);
   if (!context) {
     return <div>Error: Context is not available</div>;
   }

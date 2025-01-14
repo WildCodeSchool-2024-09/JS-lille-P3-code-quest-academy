@@ -1,12 +1,12 @@
 import "./GameProfil.css";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../../../services/Context";
+import { UserContext } from "../../../services/UserContext";
 
 function GameProfil() {
   const navigate = useNavigate();
 
-  const context = useContext(Context);
+  const context = useContext(UserContext);
 
   if (!context) {
     return <div>Error: Context is not available</div>;

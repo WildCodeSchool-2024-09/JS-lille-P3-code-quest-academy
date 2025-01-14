@@ -11,7 +11,7 @@ import App from "./App";
 import AdminPage from "./components/adminpage/AdminPage";
 import ProfilPage from "./components/profilpage/ProfilPage";
 
-import Game from "./pages/game/Game";
+import GameBoard from "./pages/game/GameBoard";
 import HomePage from "./pages/home/HomePage";
 
 // Import additional components for new routes
@@ -35,11 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/game",
-        element: <Game />,
-      },
-      {
-        path: "/game/room1",
-        element: <Game />,
+        element: <GameBoard />,
       },
       {
         path: "/profile", // The profile path
