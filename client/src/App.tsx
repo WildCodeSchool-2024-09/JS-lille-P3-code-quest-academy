@@ -1,14 +1,12 @@
 import "./App.css";
-import LoginForm from "./components/forms/LoginForm";
-import SignupForm from "./components/forms/SignupForm";
 import { Provider } from "./services/Context";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Provider>
-        <LoginForm />
-        <SignupForm />
+        <Outlet />
       </Provider>
     </>
   );
