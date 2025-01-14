@@ -1,9 +1,9 @@
 import "../GameBoard.css";
 import { useState } from "react";
-import { Context } from "../../../../services/Context";
 import { useContext, useEffect } from "react";
 import bossHtml from "../../../../assets/images/boss-html.gif";
-import htmlBackground from "../../../../assets/images/html-room.png"
+import htmlBackground from "../../../../assets/images/html-room.png";
+import { Context } from "../../../../services/Context";
 
 function Boss() {
   //Importation du contexte
@@ -14,8 +14,7 @@ function Boss() {
   }
 
   //Importation des variables du contexte utilisées sur la page
-  const { challenge, currentIndex } =
-    context;
+  const { challenge, currentIndex } = context;
 
   const [bossImg, setBossImg] = useState(htmlBackground);
 
@@ -27,18 +26,16 @@ function Boss() {
         setBossImg(htmlBackground);
         alert("Tu as vaincu le boss  HTML! clique sur suivant pour continuer");
       }, 13000);
-     
     }
   }, [challenge, currentIndex]);
 
-    return (
-      <>
-        <div className="gameboard-container">
-          <img className="game-img" src={bossImg} alt="plateau de jeu" />
-        </div>
-      </>
-    );
-  }
-
+  return (
+    <>
+      <div className="gameboard-container">
+        <img className="game-img" src={bossImg} alt="plateau de jeu" />
+      </div>
+    </>
+  );
+}
 
 export default Boss;

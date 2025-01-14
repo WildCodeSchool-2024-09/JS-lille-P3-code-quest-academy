@@ -24,15 +24,15 @@ function GameInstructions() {
     setFeedbackMessage,
     buttonStyles,
     setButtonStyles,
-    setRoom1Status,
-    setRoom2Status,
+    setRoom1Background,
+    setRoom2Background,
   } = context;
 
   const navigate = useNavigate();
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
-      setRoom1Status("unlocked");
+      setRoom1Background("unlocked");
       //Passe à la question suivante
       setCurrentIndex(currentIndex + 1);
       //Passe au type suivant
@@ -44,10 +44,10 @@ function GameInstructions() {
       //Désactive le bouton suivant
       setIsButtonEnabled(false);
       //Réinitialise le style du bouton suivant
-        
+
       if (challenge[currentIndex].id === 9) {
         navigate("/game");
-        setRoom2Status("unlocked");
+        setRoom2Background("unlocked");
       }
     } else {
       setCurrentIndex(0);
@@ -76,14 +76,6 @@ function GameInstructions() {
         >
           Suivant
         </button>
-        {/* <div>
-        <button type="button" onClick={handleLevel1}>Lvl 1</button>
-        <button type="button" onClick={handleLevel2}>Lvl 2</button>
-        <button type="button" onClick={handleLevel3}>Lvl 3</button>
-        <button type="button" onClick={handleLevel4}>Lvl 4</button>
-        <button type="button" onClick={handleLevel5}>Lvl 5</button>
-        <button type="button" onClick={handleLevel6}>Lvl 6</button>
-        </div> */}
 
         <img
           className="help-img"

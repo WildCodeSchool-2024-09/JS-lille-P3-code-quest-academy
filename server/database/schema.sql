@@ -63,22 +63,11 @@ VALUES
   (4, "HTML", "Tu vas devoir résoudre les énigmes et mini-jeux dans la partie inférieure gauche de la page pour débloquer la suite", "astuce 1", "Blanc", "quizz", "Quelle est la couleur du cheval blanc d'Henri IV ?", "Noir", "Blanc", "C'est quoi un cheval ?", "La réponse D"),
   (5, "HTML", "Tu vas devoir résoudre les énigmes et mini-jeux dans la partie inférieure gauche de la page pour débloquer la suite", "astuce 2", "markup", "prompt", "HTML signifie Hyper Text Langage ...", "null", "null", "null", "null"),
   (6, "HTML", "Tu vas devoir résoudre les énigmes et mini-jeux dans la partie inférieure gauche de la page pour débloquer la suite", "astuce 3", "ta gueule", "prompt", "Y va faire tout noir !", "null", "null", "null", "null"),
-  (7, "Boss", "Bravo ! Tu as surmonté toute les épreuves HTML et acquis la compétence 'Lancer de div'. Attends... Mais qu'est ce que c'est que ce truc ??!", "astuce 3", "null", "transition", "null", "null", "null", "null", "null"),
-  (8, "CSS", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
-  (9, "CSS", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
-  (10, "CSS", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
-  (11, "Javascript", "guideline 1", "astuce 1", "reponse 1", "quizz", "question 1", "A", "B", "C", "D"),
-  (12, "Javascript", "guideline 2", "astuce 2", "reponse 2", "prompt", "question 2", "null", "null", "null", "null"),
-  (13, "Javascript", "guideline 3", "astuce 3", "reponse 3", "prompt", "question 3", "null", "null", "null", "null"),
-  (14,"React", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
-  (15, "React", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
-  (16, "React", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
-  (17, "Node.js", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
-  (18, "Node.js", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
-  (19, "Node.js", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null"),
-  (20, "SQL", "guideline 1", "astuce 1", "reponse 1","quizz", "question 1", "A", "B", "C", "D"),
-  (21, "SQL", "guideline 2", "astuce 2", "reponse 2","prompt", "question 2", "null", "null", "null", "null"),
-  (22, "SQL", "guideline 3", "astuce 3", "reponse 3","prompt", "question 3", "null", "null", "null", "null");
+  (7, "HTML", "Bravo ! Tu as surmonté toute les épreuves HTML et acquis la compétence 'Lancer de div'. Attends... Mais qu'est ce que c'est que ce truc ??!   Clique pour combattre le boss", "astuce 3", "null", "transition", "null", "null", "null", "null", "null"),
+  (8, "Boss", "Boss Fight", "astuce 3", "null", "transition", "null", "null", "null", "null", "null"),
+  (9, "Boss", "Tu as terminé la partie HTML, félicitations !", "astuce 3", "null", "transition", "null", "null", "null", "null", "null"),
+  (10, "RoomSelection", "Tu viens de débloquer le deuxième niveau !", "null", "null", "transition", "null", "null", "null", "null", "null");
+ 
 
 INSERT INTO progress (level, user_id, room_id, challenge_id)
 VALUES

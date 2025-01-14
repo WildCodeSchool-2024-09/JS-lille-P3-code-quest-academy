@@ -13,13 +13,22 @@ function Main() {
   }
 
   //Importation des variables du contexte utilisées sur la page
-  const { room1Status, room2Status, room, roomStyle, currentIndex, setCurrentIndex } =
-    context;
+  const {
+    room1Background,
+    room2Background,
+    room,
+    roomStyle,
+    currentIndex,
+    setCurrentIndex,
+  } = context;
 
   const handleRoom = () => {
     setCurrentIndex(currentIndex + 1);
     setTimeout(() => Navigate("/game/room1"), 0);
+    
   };
+
+
 
   return (
     <>
@@ -32,11 +41,11 @@ function Main() {
         <div className="overlay-item item4" />
         <div className="overlay-item item5" />
         <div
-          className={`overlay-item item6 ${room1Status}`}
+          className={`overlay-item item6 ${room1Background}`}
           onClick={handleRoom}
           onKeyDown={handleRoom}
         />
-        <div className={`overlay-item item7 ${room2Status}`} />
+        <div className={`overlay-item item7 ${room2Background}`} />
         <div className="overlay-item item8" />
         <div className="overlay-item item9" />
       </div>

@@ -25,10 +25,10 @@ interface ContextValue {
   setButtonStyles: React.Dispatch<
     React.SetStateAction<{ [key: number]: string }>
   >;
-  room1Status: string;
-  setRoom1Status: React.Dispatch<React.SetStateAction<string>>;
-  room2Status: string;
-  setRoom2Status: React.Dispatch<React.SetStateAction<string>>;
+  room1Background: string;
+  setRoom1Background: React.Dispatch<React.SetStateAction<string>>;
+  room2Background: string;
+  setRoom2Background: React.Dispatch<React.SetStateAction<string>>;
   room: string;
   setRoom: React.Dispatch<React.SetStateAction<string>>;
   roomStyle: string;
@@ -80,8 +80,8 @@ export const Provider = ({ children }: ProviderProps) => {
   const [answerStyles, setAnswerStyles] = useState({});
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
-  const [room1Status, setRoom1Status] = useState("");
-  const [room2Status, setRoom2Status] = useState("");
+  const [room1Background, setRoom1Background] = useState("");
+  const [room2Background, setRoom2Background] = useState("");
   const [room, setRoom] = useState("./src/assets/images/game-background.jpeg");
   const [roomStyle, setRoomStyle] = useState("");
 
@@ -136,10 +136,10 @@ export const Provider = ({ children }: ProviderProps) => {
         setFeedbackMessage,
         buttonStyles,
         setButtonStyles,
-        room1Status,
-        setRoom1Status,
-        room2Status,
-        setRoom2Status,
+        room1Background,
+        setRoom1Background,
+        room2Background,
+        setRoom2Background,
         room,
         setRoom,
         roomStyle,
