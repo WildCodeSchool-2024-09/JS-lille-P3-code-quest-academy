@@ -1,6 +1,6 @@
 import "./App.css";
-import { Provider } from "./services/Context";
 import { Outlet } from "react-router-dom";
+import { Provider } from "./services/Context";
 
 function App() {
   return (
