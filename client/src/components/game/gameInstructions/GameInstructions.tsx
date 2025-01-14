@@ -3,7 +3,6 @@ import "./GameInstructions.css";
 import { useContext } from "react";
 
 function GameInstructions() {
-
   //Importation du contexte
   const context = useContext(Context);
 
@@ -11,7 +10,7 @@ function GameInstructions() {
     return <div>Error: Context is not available</div>;
   }
 
-//Importation des variables du contexte utilisées sur la page
+  //Importation des variables du contexte utilisées sur la page
   const {
     challenge,
     currentIndex,

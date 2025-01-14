@@ -1,13 +1,15 @@
-import { Outlet } from "react-router-dom";
 import "./App.css";
+import LoginForm from "./components/forms/LoginForm";
+import SignupForm from "./components/forms/SignupForm";
 import { Provider } from "./services/Context";
 
 function App() {
   return (
     <>
-    <Provider>
-      <Outlet />
-    </Provider>
+      <Provider>
+        <LoginForm />
+        <SignupForm />
+      </Provider>
     </>
   );
 }
