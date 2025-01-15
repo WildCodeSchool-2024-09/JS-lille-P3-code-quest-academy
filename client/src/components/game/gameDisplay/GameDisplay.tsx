@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { GameContext } from "../../../services/GameContext";
 
 function GameBoard() {
-  //Importation du contexte
+  //Importation du game context
   const context = useContext(GameContext);
 
   if (!context) {
     return <div>Error: Context is not available</div>;
   }
 
-  //Importation des variables du contexte utilisées sur la page
+  //Importation des variables du game context utilisées sur la page
   const {
     room1Background,
     room2Background,

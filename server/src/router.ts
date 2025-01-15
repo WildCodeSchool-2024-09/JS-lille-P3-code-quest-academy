@@ -25,6 +25,14 @@ import progressActions from "./modules/progress/progressActions";
 
 router.get("/api/progress", progressActions.browse);
 router.get("/api/progress/:id", progressActions.read);
+router.put("/api/progress/:id", progressActions.edit);
+
+// Define room-related routes
+import roomActions from "./modules/room/roomActions";
+
+router.get("/api/room/:id", roomActions.read);
+
+
 
 /* ************************************************************************* */
 
