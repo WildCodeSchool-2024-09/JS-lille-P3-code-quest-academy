@@ -4,11 +4,14 @@ CREATE TABLE account (
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL
 );
+
 CREATE TABLE room (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   boss_name VARCHAR(50) NOT NULL,
-  img_url TEXT NOT NULL
+  img_src TEXT NOT NULL,
+  gif_src TEXT NOT NULL
 );
+
 CREATE TABLE challenge (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   title VARCHAR(50) NOT NULL,
@@ -22,6 +25,7 @@ CREATE TABLE challenge (
   rep3 VARCHAR(100),
   rep4 VARCHAR(100)
 );
+
 CREATE TABLE progress (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   level INT NOT NULL,
@@ -32,6 +36,7 @@ CREATE TABLE progress (
   CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id),
   CONSTRAINT fk_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
 );
+
 INSERT INTO account (username, email, password)
 VALUES
   ("admin", "admin@gmail.com", "admin"),
@@ -40,14 +45,16 @@ VALUES
   ("user3", "user3@gmail.com", "user3"),
   ("user4", "user4@gmail.com", "user4"),
   ("user5", "user5@gmail.com", "user5");
-INSERT INTO room (boss_name, img_url)
+
+INSERT INTO room (boss_name, img_src, gif_src)
 VALUES
-  ("Le seigneur des balises", "https://www.exemple.com"),
-  ("Gridzilla", "https://www.exemple.com"),
-  ("DOM-inator", "https://www.exemple.com"),
-  ("Captain Hook", "https://www.exemple.com"),
-  ("Nodeferatus", "https://www.exemple.com"),
-  ("Soufiane Maski", "https://www.exemple.com");
+  ("Le seigneur des balises", "../../src/assets/images/boss/boss-html.png", "../../src/assets/images/boss/boss-html.gif"),
+  ("Gridzilla", "../../src/assets/images/boss/boss-css.png", "../../src/assets/images/boss/boss-css.gif"),
+  ("DOM-inator", "../../src/assets/images/boss/boss-js.png", "../../src/assets/images/boss/boss-js.gif"),
+  ("Captain Hook", "../../src/assets/images/boss/boss-react.png", "../../src/assets/images/boss/boss-react.gif"),
+  ("Nodeferatus", "../../src/assets/images/boss/boss-node.png", "../../src/assets/images/boss/boss-node.gif"),
+  ("Soufiane Maski", "../../src/assets/images/boss/boss-sql.png", "../../src/assets/images/boss/boss-sql.gif");
+
 INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4)
 VALUES
   ("HTML", "Réponds à la question suivante en selectionnant la bonne réponse.", "astuce 1", "Blanc", "quizz", "Quelle est la couleur du cheval blanc d'Henri IV ?", "Noir", "Blanc", "C'est quoi un cheval ?", "La réponse D"),
