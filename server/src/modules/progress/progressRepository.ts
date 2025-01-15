@@ -7,7 +7,8 @@ type Progress = {
   username: string;
   email: string;
   password: string;
-};class ProgressRepository {
+};
+class ProgressRepository {
   async create(progress: Progress) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO progress (level, user_id, room_id, challenge_id) VALUE (?, ?, ?, ?)",

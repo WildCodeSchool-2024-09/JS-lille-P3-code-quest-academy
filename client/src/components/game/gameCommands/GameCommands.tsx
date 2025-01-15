@@ -3,14 +3,13 @@ import "./GameCommands.css";
 import { useContext } from "react";
 
 function GameCommands() {
-
   //Importation du contexte
   const context = useContext(Context);
 
   if (!context) {
     return <div>Error: Context is not available</div>;
   }
-//Importation des variables du contexte utilisées sur la page
+  //Importation des variables du contexte utilisées sur la page
   const {
     challenge,
     currentIndex,
