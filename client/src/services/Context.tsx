@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import type { ReactNode } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { useEffect } from "react";
 
 interface ContextValue {
@@ -25,6 +25,8 @@ interface ContextValue {
   setButtonStyles: React.Dispatch<
     React.SetStateAction<{ [key: number]: string }>
   >;
+  user: AccountProps | null;
+  setUser: Dispatch<SetStateAction<AccountProps | null>>;
 }
 
 interface ChallengeProps {
@@ -47,6 +49,8 @@ interface AccountProps {
   username: string;
   email: string;
   password: string;
+  teacher_1: string;
+  teacher_2: string;
 }
 
 interface ProgressProps {
@@ -72,6 +76,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [answerStyles, setAnswerStyles] = useState({});
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
+  const [user, setUser] = useState<AccountProps | null>(null);
 
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
@@ -124,6 +129,8 @@ export const Provider = ({ children }: ProviderProps) => {
         setFeedbackMessage,
         buttonStyles,
         setButtonStyles,
+        user,
+        setUser,
       }}
     >
       {children}

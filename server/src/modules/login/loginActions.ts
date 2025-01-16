@@ -1,12 +1,11 @@
 import type { RequestHandler } from "express";
-import loginRepository from "./loginRepository";
+import accountRepository from "../account/accountRepository";
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    const user = await loginRepository.getUser(email, password);
+    const user = await accountRepository.readByEmail(req.body.email);
 
-    if (user.email !== req.body.email) {
+    if (user == null) {
       res.status(404).json({ message: "Email non trouvé" });
     } else if (user.password !== req.body.password) {
       res.status(404).json({ message: "Mot de passe incorrect" });
