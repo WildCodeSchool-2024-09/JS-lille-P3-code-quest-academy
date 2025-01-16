@@ -15,8 +15,11 @@ router.get("/api/challenges/:id", challengeActions.read);
 // Define account-related routes
 import accountActions from "./modules/account/accountActions";
 
-router.get("/api/account", accountActions.browse);
-router.get("/api/account/:id", accountActions.read);
+router.get("/api/accounts", accountActions.browse);
+router.get("/api/accounts/:id", accountActions.read);
+router.put("/api/accounts/:id", accountActions.edit);
+router.post("/api/accounts", accountActions.add);
+router.delete("/api/accounts/:id", accountActions.destroy);
 
 /* ************************************************************************* */
 
@@ -32,7 +35,11 @@ import roomActions from "./modules/room/roomActions";
 
 router.get("/api/room/:id", roomActions.read);
 
+/* ************************************************************************* */
+// Define login-related routes
+import loginActions from "./modules/login/loginActions";
 
+router.post("/api/login", loginActions.login);
 
 /* ************************************************************************* */
 

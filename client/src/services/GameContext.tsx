@@ -21,14 +21,6 @@ interface ContextValue {
   setButtonStyles: React.Dispatch<
     React.SetStateAction<{ [key: number]: string }>
   >;
-  room1Background: string;
-  setRoom1Background: React.Dispatch<React.SetStateAction<string>>;
-  room2Background: string;
-  setRoom2Background: React.Dispatch<React.SetStateAction<string>>;
-  room: string;
-  setRoom: React.Dispatch<React.SetStateAction<string>>;
-  roomStyle: string;
-  setRoomStyle: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ChallengeProps {
@@ -53,7 +45,6 @@ interface ProviderProps {
 export const GameContext = createContext<ContextValue | null>(null);
 
 export const Provider = ({ children }: ProviderProps) => {
-
   const [challenge, setChallenge] = useState([] as ChallengeProps[]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentType, setCurrentType] = useState(0);
@@ -61,10 +52,6 @@ export const Provider = ({ children }: ProviderProps) => {
   const [answerStyles, setAnswerStyles] = useState({});
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
-  const [room1Background, setRoom1Background] = useState("");
-  const [room2Background, setRoom2Background] = useState("");
-  const [room, setRoom] = useState("./src/assets/images/game-background.jpeg");
-  const [roomStyle, setRoomStyle] = useState("");
 
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
@@ -75,8 +62,6 @@ export const Provider = ({ children }: ProviderProps) => {
         setChallenge(data);
       });
   }, []);
-
-  //----------------------------------------------------------
 
   return (
     <GameContext.Provider
@@ -95,14 +80,6 @@ export const Provider = ({ children }: ProviderProps) => {
         setFeedbackMessage,
         buttonStyles,
         setButtonStyles,
-        room1Background,
-        setRoom1Background,
-        room2Background,
-        setRoom2Background,
-        room,
-        setRoom,
-        roomStyle,
-        setRoomStyle,
       }}
     >
       {children}
@@ -115,5 +92,5 @@ export const useGameContext = () => {
   if (!gameContext) {
     throw new Error("useGameContext must be used within a Provider");
   }
-  return GameContext;
+  return gameContext;
 };

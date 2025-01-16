@@ -1,63 +1,35 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import type { ReactNode } from "react";
+import { createContext, useContext, useState } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
 
 interface ContextValue {
-    account: AccountProps[];
-  setAccount: React.Dispatch<React.SetStateAction<AccountProps[]>>;
-  progress: ProgressProps[];
-  setProgress: React.Dispatch<React.SetStateAction<ProgressProps[]>>;
-};
+  user: AccountProps | null;
+  setUser: Dispatch<SetStateAction<AccountProps | null>>;
+}
 
 interface AccountProps {
-    id: number;
-    username: string;
-    email: string;
-    password: string;
-  };
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  teacher_1: string;
+  teacher_2: string;
+}
 
-  interface ProgressProps {
-    level: number;
-    user_id: number;
-    room_id: number;
-    challenge_id: number;
-  }
+interface ProviderProps {
+  children: ReactNode;
+}
 
-  interface ProviderProps {
-    children: ReactNode;
-  }
+export const UserContext = createContext<ContextValue | null>(null);
 
-  export const UserContext = createContext<ContextValue | null>(null);
-
-  export const Provider = ({ children }: ProviderProps) => {
-    const [account, setAccount] = useState([] as AccountProps[]);
-    const [progress, setProgress] = useState([] as ProgressProps[]);
-    
-    // FETCH DE LA TABLE ACCOUNT
-    useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/account`)
-          .then((response) => response.json())
-          .then((data: AccountProps[]) => {
-            setAccount(data);
-          });
-      }, []);
-
-      // FETCH DE LA TABLE PROGRESS
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/progress`)
-      .then((response) => response.json())
-      .then((data: ProgressProps[]) => {
-        setProgress(data);
-      });
-  }, []);
+export const Provider = ({ children }: ProviderProps) => {
+  const [user, setUser] = useState<AccountProps | null>(null);
 
   return (
     <UserContext.Provider
-    value={{
-    account,
-        setAccount,
-        progress,
-        setProgress,
-    }}
+      value={{
+        user,
+        setUser,
+      }}
     >
       {children}
     </UserContext.Provider>
@@ -65,9 +37,9 @@ interface AccountProps {
 };
 
 export const useGameContext = () => {
-  const context = useContext(UserContext);
-  if (!context) {
+  const userContext = useContext(UserContext);
+  if (!userContext) {
     throw new Error("useGameContext must be used within a Provider");
   }
-  return context;
+  return userContext;
 };

@@ -20,10 +20,13 @@ class ProgressRepository {
     return rows[0] as Progress;
   }
 
-  async update( progress: Progress) {
+  async update(progress: Progress) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE progress SET level = ? WHERE id = ?", [progress.level, progress.id],);
-      return result.affectedRows;}
+      "UPDATE progress SET level = ? WHERE id = ?",
+      [progress.level, progress.id],
+    );
+    return result.affectedRows;
+  }
 }
 
 export default new ProgressRepository();

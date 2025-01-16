@@ -2,6 +2,7 @@ import "./HomePage.css";
 
 import ConnexionButton from "../../components/buttons/SignInButton";
 import SubscribeButton from "../../components/buttons/SubscribeButton";
+import LoginForm from "../../components/forms/LoginForm";
 
 function HomePage() {
   return (
@@ -37,6 +38,7 @@ function HomePage() {
           Wild Code School
         </a>
       </div>
+      <LoginForm />
     </div>
   );
 }

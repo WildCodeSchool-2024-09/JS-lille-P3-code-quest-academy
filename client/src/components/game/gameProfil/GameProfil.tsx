@@ -12,14 +12,12 @@ function GameProfil() {
     return <div>Error: Context is not available</div>;
   }
 
-  const { account, progress } = context;
-
   return (
     <>
       <div className="profil-container">
         <div className="profil-text">
-          <h2>{account[1]?.username}</h2>
-          <p>Level {progress[1]?.level}</p>
+          <h2>username</h2>
+          <p>Level</p>
           <button
             className="profil-button"
             type="button"

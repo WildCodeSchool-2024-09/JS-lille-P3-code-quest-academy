@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 function GameInstructions() {
   //Importation du contexte
-  const context = useContext(GameContext);
+  const gameContext = useContext(GameContext);
 
-  if (!context) {
+  if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
 
@@ -24,15 +24,12 @@ function GameInstructions() {
     setFeedbackMessage,
     buttonStyles,
     setButtonStyles,
-    setRoom1Background,
-    setRoom2Background,
-  } = context;
+  } = gameContext;
 
   const navigate = useNavigate();
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
-      setRoom1Background("unlocked");
       //Passe à la question suivante
       setCurrentIndex(currentIndex + 1);
       //Passe au type suivant
@@ -47,7 +44,6 @@ function GameInstructions() {
 
       if (challenge[currentIndex].id === 9) {
         navigate("/game");
-        setRoom2Background("unlocked");
       }
     } else {
       setCurrentIndex(0);

@@ -1,0 +1,38 @@
+.user-table-container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.user-table-container h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
