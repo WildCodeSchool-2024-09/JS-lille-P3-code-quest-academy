@@ -30,5 +30,11 @@ router.get("/api/progress", progressActions.browse);
 router.get("/api/progress/:id", progressActions.read);
 
 /* ************************************************************************* */
+// Define login-related routes
+import loginActions from "./modules/login/loginActions";
+
+router.post("/api/login", loginActions.login);
+
+/* ************************************************************************* */
 
 export default router;
