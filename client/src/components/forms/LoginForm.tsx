@@ -32,7 +32,7 @@ function LoginForm() {
       if (response.status === 200) {
         const user = await response.json();
         setUser?.(user);
-        navigate("/profile");
+        navigate("/start");
       }
     } catch (error) {
       console.error(error);

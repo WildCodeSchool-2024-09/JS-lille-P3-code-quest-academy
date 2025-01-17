@@ -22,7 +22,7 @@ function AdminManagement() {
   // ------------------------------------- //
   //   Appel API
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/users`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/accounts`)
       .then((response) => response.json())
       .then((data: User[]) => {
         setUsers(data);
@@ -120,7 +120,7 @@ function AdminManagement() {
       <h1>Liste des utilisateurs</h1>
       <input
         type="text"
-        placeholder="recheche par nom ou eamil..."
+        placeholder="rechercher"
         value={searchQuery}
         onChange={handleSearch}
         className="user-search-bar"

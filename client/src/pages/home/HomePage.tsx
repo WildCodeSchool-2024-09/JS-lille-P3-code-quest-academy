@@ -3,6 +3,7 @@ import "./HomePage.css";
 import ConnexionButton from "../../components/buttons/SignInButton";
 import SubscribeButton from "../../components/buttons/SubscribeButton";
 import LoginForm from "../../components/forms/LoginForm";
+import SignupForm from "../../components/forms/SignupForm";
 
 function HomePage() {
   return (
@@ -39,6 +40,7 @@ function HomePage() {
         </a>
       </div>
       <LoginForm />
+      <SignupForm />
     </div>
   );
 }

@@ -23,7 +23,7 @@ class ProgressRepository {
   }
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM progress WHERE id = ?",
+      "SELECT * FROM progress WHERE user_id = ?",
       [id],
     );
     return rows[0] as Progress;
