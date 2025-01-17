@@ -2,7 +2,9 @@ CREATE TABLE account (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(50) NOT NULL UNIQUE,
   email VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(100) NOT NULL
+  password VARCHAR(100) NOT NULL,
+  teacher_1 VARCHAR(50) DEFAULT "Fantine",
+  teacher_2 VARCHAR(50) DEFAULT "Soufiane"
 );
 
 CREATE TABLE room (

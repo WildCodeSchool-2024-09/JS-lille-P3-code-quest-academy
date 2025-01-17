@@ -179,6 +179,10 @@ h1 {
   font-size: 1.1em;
 }
 
+span {
+  -webkit-text-security: disc; /* Use a custom font to hide text */
+}
+
 .email {
   text-align: left;
   margin-top: 0px;
