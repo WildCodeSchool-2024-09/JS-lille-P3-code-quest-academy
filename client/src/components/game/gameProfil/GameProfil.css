@@ -1,0 +1,29 @@
+.profil-container {
+  background-color: rgba(229, 77, 46, 0.9);
+  color: white;
+  border: ridge 2px grey;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.profil-text {
+  margin-left: 1rem;
+}
+
+.profil-button {
+  margin-top: 2rem;
+  padding: 0.5rem;
+  background-color: white;
+  color: rgb(209, 41, 7);
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.profil-img {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 50%;
+}
