@@ -4,10 +4,10 @@ import GameCommands from "../../components/game/gameCommands/GameCommands";
 import GameInstructions from "../../components/game/gameInstructions/GameInstructions";
 import GameProfil from "../../components/game/gameProfil/GameProfil";
 
-function Game() {
+function GameBoard() {
   return (
     <>
-      <div className="game-page">
+      <div className="gameboard-page">
         <GameDisplay />
         <GameProfil />
         <GameInstructions />
@@ -17,4 +17,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default GameBoard;

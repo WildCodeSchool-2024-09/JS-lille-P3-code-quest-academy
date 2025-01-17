@@ -2,7 +2,7 @@ import "./GameDisplay.css";
 import { useContext } from "react";
 import { GameContext } from "../../../services/GameContext";
 
-function GameBoard() {
+function GameDisplay() {
   //Importation du gameContext
   const context = useContext(GameContext);
 
@@ -14,9 +14,9 @@ function GameBoard() {
 
   return (
     <>
-      <div className="gameboard-container">
+      <div className="gamedisplay-container">
         <img
-          className="game-img"
+          className="gamedisplay-img"
           src="./src/assets/images/game-background-level0.png"
           alt="plateau de jeu"
         />
@@ -25,4 +25,4 @@ function GameBoard() {
   );
 }
 
-export default GameBoard;
+export default GameDisplay;

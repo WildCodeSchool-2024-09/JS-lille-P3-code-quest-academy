@@ -1,11 +1,10 @@
 import { GameContext } from "../../../services/GameContext";
 import "./GameCommands.css";
 import { useContext } from "react";
-import Quizz from "./minigame/quizz/Quizz";
 import Prompt from "./minigame/prompt/Prompt";
+import Quizz from "./minigame/quizz/Quizz";
 
 function GameCommands() {
-
   //Importation du gameContext
   const context = useContext(GameContext);
 
@@ -22,7 +21,9 @@ function GameCommands() {
         <Quizz />
       ) : challenge[currentIndex]?.type === "prompt" ? (
         <Prompt />
-      ) : ( <div className="command-container"/> )}
+      ) : (
+        <div className="command-container" />
+      )}
     </>
   );
 }

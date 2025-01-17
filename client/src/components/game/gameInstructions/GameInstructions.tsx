@@ -19,6 +19,7 @@ function GameInstructions() {
       //Passe à la question suivante
       setCurrentIndex(currentIndex + 1);
     } else {
+      //Retourne à la première question si on est à la dernière
       setCurrentIndex(0);
       setCurrentType(0);
     }
