@@ -3,14 +3,12 @@ import { useContext } from "react";
 import { GameContext } from "../../../services/GameContext";
 
 function GameDisplay() {
-  //Importation du gameContext
-  const context = useContext(GameContext);
 
-  if (!context) {
+  const gameContext = useContext(GameContext);
+
+  if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
-
-  //Importation des variables du gameContext utilisées sur la page
 
   return (
     <>

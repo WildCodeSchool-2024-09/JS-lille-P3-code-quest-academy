@@ -5,15 +5,14 @@ import Prompt from "./minigame/prompt/Prompt";
 import Quizz from "./minigame/quizz/Quizz";
 
 function GameCommands() {
-  //Importation du gameContext
-  const context = useContext(GameContext);
 
-  if (!context) {
+  const gameContext = useContext(GameContext);
+
+  if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
 
-  //Importation des variables du gameContext utilisées sur la page
-  const { challenge, currentIndex } = context;
+  const { challenge, currentIndex } = gameContext;
 
   return (
     <>

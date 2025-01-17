@@ -3,23 +3,23 @@ import { GameContext } from "../../../services/GameContext";
 import "./GameInstructions.css";
 
 function GameInstructions() {
-  //Importation du gameContext
+
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
 
-  //Importation des variables du gameContext utilisées sur la page
+
   const { challenge, currentIndex, setCurrentIndex, setCurrentType } =
     gameContext;
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
-      //Passe à la question suivante
+      //Next row in db
       setCurrentIndex(currentIndex + 1);
     } else {
-      //Retourne à la première question si on est à la dernière
+      //Get back to the first row 
       setCurrentIndex(0);
       setCurrentType(0);
     }

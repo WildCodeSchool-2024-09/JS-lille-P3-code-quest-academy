@@ -3,14 +3,12 @@ import "./Prompt.css";
 import { useContext } from "react";
 
 function Prompt() {
-  //Importation du gameContext
-  const context = useContext(GameContext);
+  const gameContext = useContext(GameContext);
 
-  if (!context) {
+  if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
 
-  //Importation des variables du gameContext utilisées sur la page
   const {
     challenge,
     currentIndex,
@@ -18,7 +16,7 @@ function Prompt() {
     feedbackMessage,
     setFeedbackMessage,
     setButtonStyles,
-  } = context;
+  } = gameContext;
 
   const handlePrompt = () => {
     const answer = prompt("tapez le mot manquant");

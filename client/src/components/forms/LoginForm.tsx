@@ -5,11 +5,11 @@ import type { FormEventHandler } from "react";
 import { UserContext } from "../../services/UserContext";
 
 function LoginForm() {
-  const context = useContext(UserContext);
+  const usercontext = useContext(UserContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const setUser = context?.setUser;
+  const setUser = usercontext?.setUser;
 
   const navigate = useNavigate();
 

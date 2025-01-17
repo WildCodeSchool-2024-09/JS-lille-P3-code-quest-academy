@@ -3,8 +3,8 @@ import "./Quizz.css";
 import { useContext } from "react";
 
 function Quizz() {
-  const context = useContext(GameContext);
-  if (!context) {
+  const gameContext = useContext(GameContext);
+  if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
 
@@ -18,25 +18,24 @@ function Quizz() {
       (e.target as HTMLParagraphElement).innerText ===
       challenge[currentIndex]?.soluce;
 
-    //Ajoute la backgroundColor en fonction de la réponse
+    //Add background color to the answer if it's correct or wrong
     setAnswerStyles((prev) => ({
       ...prev,
       [index]: isCorrect ? "correct" : "wrong",
     }));
 
-    //Ajoute un message en fonction de la réponse en dessous du quizz
+    //Add message feedback if the answer is correct or wrong
     setFeedbackMessage(
       isCorrect ? "Bonne réponse ! 🎉" : "Mauvaise réponse. 😢",
     );
 
-    //Active le bouton suivant si la réponse est correcte et change son style
+    //Enable the button if the answer is correct
     if (isCorrect) {
       setIsButtonEnabled(true);
       setButtonStyles("button-enabled");
     }
   };
 
-  //Importation des variables du contexte utilisées sur la page
   const {
     challenge,
     currentIndex,
@@ -46,7 +45,7 @@ function Quizz() {
     feedbackMessage,
     setFeedbackMessage,
     setButtonStyles,
-  } = context;
+  } = gameContext;
 
   return (
     <>
