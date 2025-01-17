@@ -1,10 +1,9 @@
 import "./GameCommands.css";
-import Quizz from "./minigame/quizz/Quizz";
 
 function GameCommands() {
   return (
     <>
-      <Quizz />
+      <div className="command-container" />
     </>
   );
 }

@@ -21,16 +21,8 @@
 .instructions-button {
   margin-top: 2rem;
   padding: 0.5rem;
-  background-color: rgb(187, 187, 187);
-  color: grey;
-  font-weight: bold;
-  border-radius: 5px;
-}
-.button-enabled {
   background-color: white;
   color: rgb(209, 41, 7);
-}
-
-.button-invisible {
-  display: none;
+  font-weight: bold;
+  border-radius: 5px;
 }

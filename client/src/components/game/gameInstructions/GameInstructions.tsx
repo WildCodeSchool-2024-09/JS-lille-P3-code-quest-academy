@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { GameContext } from "../../../services/GameContext";
 import "./GameInstructions.css";
-import { useNavigate } from "react-router-dom";
 
 function GameInstructions() {
   //Importation du contexte
@@ -12,51 +11,18 @@ function GameInstructions() {
   }
 
   //Importation des variables du contexte utilisées sur la page
-  const {
-    challenge,
-    currentIndex,
-    setCurrentIndex,
-    currentType,
-    setCurrentType,
-    isButtonEnabled,
-    setIsButtonEnabled,
-    setAnswerStyles,
-    setFeedbackMessage,
-    buttonStyles,
-    setButtonStyles,
-  } = gameContext;
-
-  const navigate = useNavigate();
+  const { challenge, currentIndex, setCurrentIndex, setCurrentType } =
+    gameContext;
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
       //Passe à la question suivante
       setCurrentIndex(currentIndex + 1);
-      //Passe au type suivant
-      setCurrentType(currentType + 1);
-      //Réinitialise le style des réponses
-      setAnswerStyles("");
-      //Réinitialise le message de feedback
-      setFeedbackMessage("");
-      //Désactive le bouton suivant
-      setIsButtonEnabled(false);
-      //Réinitialise le style du bouton suivant
-
-      if (challenge[currentIndex].id === 9) {
-        navigate("/game");
-      }
     } else {
       setCurrentIndex(0);
       setCurrentType(0);
     }
   };
-
-  if (
-    challenge[currentIndex] &&
-    challenge[currentIndex].title === "RoomSelection"
-  ) {
-    setButtonStyles("button-invisible");
-  }
 
   return (
     <>
@@ -65,8 +31,7 @@ function GameInstructions() {
           {challenge[currentIndex]?.guideline}
         </p>
         <button
-          disabled={!isButtonEnabled}
-          className={`instructions-button ${buttonStyles}`}
+          className={"instructions-button"}
           onClick={handleChange}
           type="button"
         >
