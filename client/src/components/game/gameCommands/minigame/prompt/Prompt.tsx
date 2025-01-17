@@ -3,14 +3,14 @@ import "./Prompt.css";
 import { useContext } from "react";
 
 function Prompt() {
-  //Importation du contexte
+  //Importation du gameContext
   const context = useContext(GameContext);
 
   if (!context) {
     return <div>Error: Context is not available</div>;
   }
 
-  //Importation des variables du contexte utilisées sur la page
+  //Importation des variables du gameContext utilisées sur la page
   const {
     challenge,
     currentIndex,

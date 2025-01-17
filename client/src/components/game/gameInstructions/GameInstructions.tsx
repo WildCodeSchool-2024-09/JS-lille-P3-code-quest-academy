@@ -3,14 +3,14 @@ import { GameContext } from "../../../services/GameContext";
 import "./GameInstructions.css";
 
 function GameInstructions() {
-  //Importation du contexte
+  //Importation du gameContext
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
 
-  //Importation des variables du contexte utilisées sur la page
+  //Importation des variables du gameContext utilisées sur la page
   const { challenge, currentIndex, setCurrentIndex, setCurrentType } =
     gameContext;
 

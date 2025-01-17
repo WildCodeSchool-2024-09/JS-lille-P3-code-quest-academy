@@ -6,12 +6,14 @@ import { UserContext } from "../../../services/UserContext";
 function GameProfil() {
   const navigate = useNavigate();
 
+  //importation du userContext
   const userContext = useContext(UserContext);
 
   if (!userContext) {
     return <div>Error: Context is not available</div>;
   }
 
+  //importation des variables du userContext
   const { account, progress } = userContext;
 
   return (
