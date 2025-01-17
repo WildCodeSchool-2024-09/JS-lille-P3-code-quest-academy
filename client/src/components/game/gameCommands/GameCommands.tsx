@@ -5,7 +5,6 @@ import Prompt from "./minigame/prompt/Prompt";
 import Quizz from "./minigame/quizz/Quizz";
 
 function GameCommands() {
-
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {

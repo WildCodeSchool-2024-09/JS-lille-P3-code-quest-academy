@@ -12,8 +12,8 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const progressId = Number(req.params.id);
-    const progress = await progressRepository.read(progressId);
+    const userId = Number(req.params.id);
+    const progress = await progressRepository.read(userId);
 
     if (progress == null) {
       res.sendStatus(404);

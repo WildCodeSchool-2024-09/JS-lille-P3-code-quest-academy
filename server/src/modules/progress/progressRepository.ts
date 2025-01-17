@@ -12,10 +12,10 @@ class ProgressRepository {
     return rows as Progress[];
   }
 
-  async read(id: number) {
+  async read(userId: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM progress WHERE id = ?",
-      [id],
+      "SELECT * FROM progress WHERE user_id = ?",
+      [userId],
     );
     return rows[0] as Progress;
   }

@@ -1,7 +1,16 @@
+import { useContext } from "react";
+import { UserContext } from "../../services/UserContext";
 import "./ProfilPage.css";
 import { useNavigate } from "react-router-dom";
 
 function ProfilPage() {
+  const userContext = useContext(UserContext);
+
+  if (!userContext) {
+    throw new Error("UserContext is null");
+  }
+  const { user, progress } = userContext;
+
   const navigate = useNavigate();
 
   return (
@@ -16,7 +25,10 @@ function ProfilPage() {
       </div>
       <div className="left-and-right-side">
         <div className="left-side">
-          <h2 className="level-quest">Level 2 Quête 3</h2>
+          <h2 className="level-quest">
+            {" "}
+            ROOM : {progress[0]?.room_id} CHALLENGE : {progress[0]?.challenge_id}
+          </h2>
 
           <button
             type="button"
@@ -25,7 +37,7 @@ function ProfilPage() {
           >
             Mes informations
           </button>
-          <h1 className="first-pseudo">PSEUDO FORMATEUR 1 : XXXXXX</h1>
+          <h1 className="first-pseudo">PSEUDO FORMATEUR 1 : </h1>
           <h1 className="second-pseudo">PSEUDO FORMATEUR 2 : XXXXXX</h1>
           <button
             type="button"
@@ -45,7 +57,7 @@ function ProfilPage() {
           </button>
           <h1 className="pseudo">PSEUDO: XXXXXX</h1>
           <h1 className="password">MOT DE PASSE: XXXXX</h1>
-          <h1 className="email">EMAIL: XXXXXX</h1>
+          <h1 className="email">EMAIL: {user?.email}</h1>
           <button
             type="button"
             className="right-modification-button"

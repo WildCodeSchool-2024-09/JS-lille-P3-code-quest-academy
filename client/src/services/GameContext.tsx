@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
+// import { UserContext } from "./UserContext";
 
 interface ContextValue {
   challenge: ChallengeProps[];
@@ -53,10 +54,12 @@ export const Provider = ({ children }: ProviderProps) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
 
+  // récuperer le challenge et la room du user actuel
+  // const {user, progress} = useContext(UserContext);
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/challenges`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/room/:id/challenge/:id`)
       .then((response) => response.json())
       .then((data: ChallengeProps[]) => {
         setChallenge(data);
@@ -87,10 +90,10 @@ export const Provider = ({ children }: ProviderProps) => {
   );
 };
 
-export const useGameContext = () => {
-  const gameContext = useContext(GameContext);
-  if (!gameContext) {
-    throw new Error("useGameContext must be used within a Provider");
-  }
-  return gameContext;
-};
+// export const useGameContext = () => {
+//   const gameContext = useContext(GameContext);
+//   if (!gameContext) {
+//     throw new Error("useGameContext must be used within a Provider");
+//   }
+//   return gameContext;
+// };

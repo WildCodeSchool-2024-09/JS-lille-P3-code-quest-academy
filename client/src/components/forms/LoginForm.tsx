@@ -5,11 +5,14 @@ import type { FormEventHandler } from "react";
 import { UserContext } from "../../services/UserContext";
 
 function LoginForm() {
-  const usercontext = useContext(UserContext);
+  const userContext = useContext(UserContext);
+
+  if (!userContext) {
+    throw new Error("UserContext is null");
+  }
+  const { setUser } = userContext;
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-
-  const setUser = usercontext?.setUser;
 
   const navigate = useNavigate();
 
@@ -31,7 +34,7 @@ function LoginForm() {
       );
       if (response.status === 200) {
         const user = await response.json();
-        setUser?.(user);
+        setUser(user);
         navigate("/profile");
       }
     } catch (error) {

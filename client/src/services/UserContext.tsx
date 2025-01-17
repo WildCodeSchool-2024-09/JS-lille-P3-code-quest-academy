@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 
 interface ContextValue {
@@ -9,6 +9,15 @@ interface ContextValue {
   progress: ProgressProps[];
   setProgress: Dispatch<SetStateAction<ProgressProps[]>>;
 }
+
+const defaultUserContextValue: ContextValue = {
+  user: null,
+  setUser: () => null,
+  account: [],
+  setAccount: () => [],
+  progress: [],
+  setProgress: () => [],
+};
 
 interface AccountProps {
   id: number;
@@ -31,7 +40,9 @@ interface ProviderProps {
   children: ReactNode;
 }
 
-export const UserContext = createContext<ContextValue | null>(null);
+export const UserContext = createContext<ContextValue | null>(
+  defaultUserContextValue,
+);
 
 export const Provider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState<AccountProps | null>(null);
@@ -47,15 +58,20 @@ export const Provider = ({ children }: ProviderProps) => {
         setAccount(data);
       });
   }, []);
+
   //----------------------------------------------------------
-  // FETCH DE LA TABLE PROGRESS
+  // FETCH DE LA TABLE PROGRESS QUAND LE USER EST CONNECté
+
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/progress`)
+    if (!user) {
+      return;
+    }
+    fetch(`${import.meta.env.VITE_API_URL}/api/progress/${user.id}`)
       .then((response) => response.json())
       .then((data: ProgressProps[]) => {
         setProgress(data);
       });
-  }, []);
+  }, [user]);
   //----------------------------------------------------------
 
   return (
@@ -74,10 +90,10 @@ export const Provider = ({ children }: ProviderProps) => {
   );
 };
 
-export const useGameContext = () => {
-  const userContext = useContext(UserContext);
-  if (!userContext) {
-    throw new Error("useGameContext must be used within a Provider");
-  }
-  return userContext;
-};
+// export const useGameContext = () => {
+//   const userContext = useContext(UserContext);
+//   if (!userContext) {
+//     throw new Error("useGameContext must be used within a Provider");
+//   }
+//   return userContext;
+// };

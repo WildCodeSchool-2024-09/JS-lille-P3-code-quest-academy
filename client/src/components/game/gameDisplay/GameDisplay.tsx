@@ -1,13 +1,17 @@
 import "./GameDisplay.css";
 import { useContext } from "react";
-import { GameContext } from "../../../services/GameContext";
+import { UserContext } from "../../../services/UserContext";
 
 function GameDisplay() {
+  const context = useContext(UserContext);
+  const progress = context ? context.progress : null;
 
-  const gameContext = useContext(GameContext);
-
-  if (!gameContext) {
-    return <div>Error: Context is not available</div>;
+  if (!progress) {
+    return (
+      <div>
+        Error: Je ne sais pas le progess de mon joueur wesh is not available
+      </div>
+    );
   }
 
   return (

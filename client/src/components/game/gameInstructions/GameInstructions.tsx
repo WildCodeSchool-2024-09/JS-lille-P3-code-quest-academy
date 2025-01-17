@@ -3,13 +3,11 @@ import { GameContext } from "../../../services/GameContext";
 import "./GameInstructions.css";
 
 function GameInstructions() {
-
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
-
 
   const { challenge, currentIndex, setCurrentIndex, setCurrentType } =
     gameContext;
@@ -19,7 +17,7 @@ function GameInstructions() {
       //Next row in db
       setCurrentIndex(currentIndex + 1);
     } else {
-      //Get back to the first row 
+      //Get back to the first row
       setCurrentIndex(0);
       setCurrentType(0);
     }
