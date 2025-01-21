@@ -30,7 +30,7 @@ class AccountRepository {
     );
     return rows[0] as Account;
   }
-  async readByEmail(email: string) {
+  async readByEmailWithPassword(email: string) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM account WHERE email = ?",
       [email],

@@ -1,19 +1,32 @@
+import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import accountRepository from "../account/accountRepository";
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const user = await accountRepository.readByEmail(req.body.email);
+    const user = await accountRepository.readByEmailWithPassword(
+      req.body.email,
+    );
 
     if (user == null) {
-      res.status(404).json({ message: "Email non trouvé" });
-    } else if (user.hashed_password !== req.body.hashed_password) {
-      res.status(404).json({ message: "Mot de passe incorrect" });
-    } else {
-      res.json(user);
+      res.sendStatus(422);
+      return;
     }
-  } catch (error) {
-    next(error);
+
+    const verified = await argon2.verify(
+      user.hashed_password,
+      req.body.password,
+    );
+
+    if (verified) {
+      const { hashed_password, ...userWithoutHashedPassword } = user;
+
+      res.json(userWithoutHashedPassword);
+    } else {
+      res.sendStatus(422);
+    }
+  } catch (err) {
+    next(err);
   }
 };
 
