@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
-// import { UserContext } from "./UserContext";
+import { UserContext } from "./UserContext";
 
 interface ContextValue {
   challenge: ChallengeProps[];
@@ -22,6 +22,7 @@ interface ContextValue {
   setButtonStyles: React.Dispatch<
     React.SetStateAction<{ [key: number]: string }>
   >;
+  user: AccountProps | null;
 }
 
 interface ChallengeProps {
@@ -37,6 +38,15 @@ interface ChallengeProps {
   rep3: string;
   rep4: string;
   room_id: number;
+}
+
+interface AccountProps {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  teacher_1: string;
+  teacher_2: string;
 }
 
 interface ProviderProps {
@@ -55,16 +65,28 @@ export const Provider = ({ children }: ProviderProps) => {
   const [buttonStyles, setButtonStyles] = useState({});
 
   // récuperer le challenge et la room du user actuel
-  // const {user, progress} = useContext(UserContext);
+  const userContext = useContext(UserContext);
+
+  if (!userContext) {
+    return null;
+  }
+
+  const { user } = userContext;
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/room/:id/challenge/:id`)
-      .then((response) => response.json())
-      .then((data: ChallengeProps[]) => {
-        setChallenge(data);
-      });
-  }, []);
+    if (user) {
+      fetch(
+        `${import.meta.env.VITE_API_URL}/api/room/${user.id}/challenge/${
+          user.id
+        }`,
+      )
+        .then((response) => response.json())
+        .then((data: ChallengeProps[]) => {
+          setChallenge(data);
+        });
+    }
+  }, [user]);
 
   return (
     <GameContext.Provider
@@ -83,17 +105,10 @@ export const Provider = ({ children }: ProviderProps) => {
         setFeedbackMessage,
         buttonStyles,
         setButtonStyles,
+        user,
       }}
     >
       {children}
     </GameContext.Provider>
   );
 };
-
-// export const useGameContext = () => {
-//   const gameContext = useContext(GameContext);
-//   if (!gameContext) {
-//     throw new Error("useGameContext must be used within a Provider");
-//   }
-//   return gameContext;
-// };

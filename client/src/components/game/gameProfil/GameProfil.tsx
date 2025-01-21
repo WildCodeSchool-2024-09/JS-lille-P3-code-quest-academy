@@ -12,14 +12,14 @@ function GameProfil() {
     return <div>Error: Context is not available</div>;
   }
 
-  const { account, progress } = userContext;
+  const { user, progress } = userContext;
 
   return (
     <>
       <div className="profil-container">
         <div className="profil-text">
-          <h2>{account?.[0]?.username}</h2>
-          <p>Niveau {progress?.[0]?.level}</p>
+          <h2>{user?.username}</h2>
+          <p>Niveau {progress?.level}</p>
           <button
             className="profil-button"
             type="button"
@@ -30,7 +30,7 @@ function GameProfil() {
         </div>
         <img
           className="profil-img"
-          src="./src/assets/images/profil.png"
+          src="../src/assets/images/profil.png"
           alt="avatar boy"
         />
       </div>

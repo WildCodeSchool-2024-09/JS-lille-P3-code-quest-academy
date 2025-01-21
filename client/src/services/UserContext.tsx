@@ -4,19 +4,19 @@ import type { Dispatch, ReactNode, SetStateAction } from "react";
 interface ContextValue {
   user: AccountProps | null;
   setUser: Dispatch<SetStateAction<AccountProps | null>>;
-  account: AccountProps[];
-  setAccount: Dispatch<SetStateAction<AccountProps[]>>;
-  progress: ProgressProps[];
-  setProgress: Dispatch<SetStateAction<ProgressProps[]>>;
+  account: AccountProps | null;
+  setAccount: Dispatch<SetStateAction<AccountProps | null>>;
+  progress: ProgressProps | null;
+  setProgress: Dispatch<SetStateAction<ProgressProps | null>>;
 }
 
 const defaultUserContextValue: ContextValue = {
   user: null,
   setUser: () => null,
-  account: [],
-  setAccount: () => [],
-  progress: [],
-  setProgress: () => [],
+  account: null,
+  setAccount: () => null,
+  progress: null,
+  setProgress: () => null,
 };
 
 interface AccountProps {
@@ -46,15 +46,15 @@ export const UserContext = createContext<ContextValue | null>(
 
 export const Provider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState<AccountProps | null>(null);
-  const [account, setAccount] = useState<AccountProps[]>([]);
-  const [progress, setProgress] = useState<ProgressProps[]>([]);
+  const [account, setAccount] = useState<AccountProps | null>(null);
+  const [progress, setProgress] = useState<ProgressProps | null>(null);
 
   //----------------------------------------------------------
   // FETCH DE LA TABLE ACCOUNT
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/accounts`)
       .then((response) => response.json())
-      .then((data: AccountProps[]) => {
+      .then((data: AccountProps | null) => {
         setAccount(data);
       });
   }, []);
@@ -68,7 +68,7 @@ export const Provider = ({ children }: ProviderProps) => {
     }
     fetch(`${import.meta.env.VITE_API_URL}/api/progress/${user.id}`)
       .then((response) => response.json())
-      .then((data: ProgressProps[]) => {
+      .then((data: ProgressProps | null) => {
         setProgress(data);
       });
   }, [user]);
@@ -89,11 +89,3 @@ export const Provider = ({ children }: ProviderProps) => {
     </UserContext.Provider>
   );
 };
-
-// export const useGameContext = () => {
-//   const userContext = useContext(UserContext);
-//   if (!userContext) {
-//     throw new Error("useGameContext must be used within a Provider");
-//   }
-//   return userContext;
-// };

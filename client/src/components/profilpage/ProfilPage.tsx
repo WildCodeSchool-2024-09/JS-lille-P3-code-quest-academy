@@ -27,7 +27,7 @@ function ProfilPage() {
         <div className="left-side">
           <h2 className="level-quest">
             {" "}
-            ROOM : {progress[0]?.room_id} CHALLENGE : {progress[0]?.challenge_id}
+            ROOM : {progress?.room_id} CHALLENGE : {progress?.challenge_id}
           </h2>
 
           <button
@@ -37,8 +37,15 @@ function ProfilPage() {
           >
             Mes informations
           </button>
-          <h1 className="first-pseudo">PSEUDO FORMATEUR 1 : </h1>
-          <h1 className="second-pseudo">PSEUDO FORMATEUR 2 : XXXXXX</h1>
+          <button type="button" onClick={() => navigate("/game")}>
+            game
+          </button>
+          <h1 className="first-pseudo">
+            PSEUDO FORMATEUR 1 : {user?.teacher_1}{" "}
+          </h1>
+          <h1 className="second-pseudo">
+            PSEUDO FORMATEUR 2 : {user?.teacher_2}
+          </h1>
           <button
             type="button"
             className="left-modification-button"
@@ -55,7 +62,7 @@ function ProfilPage() {
           >
             MODIFIER MA PHOTO DE PROFIL
           </button>
-          <h1 className="pseudo">PSEUDO: XXXXXX</h1>
+          <h1 className="pseudo">PSEUDO: {user?.username}</h1>
           <h1 className="password">MOT DE PASSE: XXXXX</h1>
           <h1 className="email">EMAIL: {user?.email}</h1>
           <button
