@@ -7,7 +7,7 @@ const login: RequestHandler = async (req, res, next) => {
 
     if (user == null) {
       res.status(404).json({ message: "Email non trouvé" });
-    } else if (user.password !== req.body.password) {
+    } else if (user.hashed_password !== req.body.hashed_password) {
       res.status(404).json({ message: "Mot de passe incorrect" });
     } else {
       res.json(user);

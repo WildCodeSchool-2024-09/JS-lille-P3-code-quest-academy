@@ -9,14 +9,6 @@ type Progress = {
   password: string;
 };
 class ProgressRepository {
-  async create(progress: Progress) {
-    const [result] = await databaseClient.query<Result>(
-      "INSERT INTO progress (level, user_id, room_id, challenge_id) VALUE (?, ?, ?, ?)",
-      [progress.username, progress.email, progress.password],
-    );
-    return result.insertId;
-  }
-
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("select * from progress");
     return rows as Progress[];

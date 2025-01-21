@@ -6,14 +6,14 @@ type Account = {
   id: number;
   username: string;
   email: string;
-  password: string;
+  hashed_password: string;
 };
 
 class AccountRepository {
-  async create(account: Account) {
+  async create(account: Omit<Account, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO account (username, email, password) VALUE (?, ?, ?)",
-      [account.username, account.email, account.password],
+      "INSERT INTO account (username, email, hashed_password) VALUE (?, ?, ?)",
+      [account.username, account.email, account.hashed_password],
     );
     return result.insertId;
   }
@@ -40,8 +40,8 @@ class AccountRepository {
 
   async update(account: Account) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE account SET username = ?, email = ?, password = ? WHERE id = ?",
-      [account.username, account.email, account.password, account.id],
+      "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
+      [account.username, account.email, account.hashed_password, account.id],
     );
     return result.affectedRows;
   }

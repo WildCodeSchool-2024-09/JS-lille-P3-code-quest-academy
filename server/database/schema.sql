@@ -2,7 +2,7 @@ CREATE TABLE account (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(50) NOT NULL UNIQUE,
   email VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(100) NOT NULL,
+  hashed_password VARCHAR(255) NOT NULL,
   teacher_1 VARCHAR(50) DEFAULT "Fantine",
   teacher_2 VARCHAR(50) DEFAULT "Soufiane"
 );
@@ -39,9 +39,9 @@ CREATE TABLE progress (
   CONSTRAINT fk_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
 );
 
-INSERT INTO account (username, email, password)
+INSERT INTO account (username, email, hashed_password)
 VALUES
-  ("admin", "admin@gmail.com", "admin"),
+  ("adminhard", "adminhard@gmail.com", "adminhard"),
   ("user1", "user1@gmail.com", "user1"),
   ("user2", "user2@gmail.com", "user2"),
   ("user3", "user3@gmail.com", "user3"),
