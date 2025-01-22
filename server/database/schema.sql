@@ -3,7 +3,7 @@ CREATE TABLE account (
   username VARCHAR(50) NOT NULL UNIQUE,
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL,
-  isAdmin BOOLEAN DEFAULT false,
+  is_admin BOOLEAN DEFAULT false,
   teacher_1 VARCHAR(50) DEFAULT "Fantine",
   teacher_2 VARCHAR(50) DEFAULT "Soufiane"
 );
