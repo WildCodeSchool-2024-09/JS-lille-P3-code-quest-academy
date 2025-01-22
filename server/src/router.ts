@@ -22,7 +22,6 @@ router.post("/api/accounts", accountActions.add);
 router.delete("/api/accounts/:id", accountActions.destroy);
 
 /* ************************************************************************* */
-
 // Define progress-related routes
 import progressActions from "./modules/progress/progressActions";
 
@@ -30,17 +29,25 @@ router.get("/api/progress", progressActions.browse);
 router.get("/api/progress/:id", progressActions.read);
 router.put("/api/progress/:id", progressActions.edit);
 
+/* ************************************************************************* */
 // Define room-related routes
 import roomActions from "./modules/room/roomActions";
 
 router.get("/api/room/:id", roomActions.read);
 
 /* ************************************************************************* */
+// Define game-related routes
+import gameActions from "./modules/game/gameActions";
+
+router.get(
+  "/api/progress/:userId/:roomId/:challengeId",
+  gameActions.getProgressByUserId,
+);
+
+/* ************************************************************************* */
 // Define login-related routes
 import loginActions from "./modules/login/loginActions";
 
 router.post("/api/login", loginActions.login);
-
-/* ************************************************************************* */
 
 export default router;

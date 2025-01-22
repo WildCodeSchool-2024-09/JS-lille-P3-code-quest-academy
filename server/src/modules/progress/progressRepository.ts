@@ -27,6 +27,18 @@ class ProgressRepository {
     );
     return result.affectedRows;
   }
+
+  async getPlayerProgress(userId: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT *
+      FROM progress p
+      JOIN challenge c ON p.challenge_id = c.id
+      JOIN room r ON p.room_id = r.id
+      WHERE p.user_id = ?`,
+      [userId],
+    );
+    return rows;
+  }
 }
 
 export default new ProgressRepository();

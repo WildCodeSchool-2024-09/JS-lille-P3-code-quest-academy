@@ -9,8 +9,7 @@ function GameInstructions() {
     return <div>Error: Context is not available</div>;
   }
 
-  const { challenge, currentIndex, setCurrentIndex, setCurrentType } =
-    gameContext;
+  const { currentIndex, challenge, setCurrentIndex } = gameContext;
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
@@ -19,7 +18,6 @@ function GameInstructions() {
     } else {
       //Get back to the first row
       setCurrentIndex(0);
-      setCurrentType(0);
     }
   };
 
@@ -27,7 +25,9 @@ function GameInstructions() {
     <>
       <div className="instructions-container">
         <p className="instructions-text">
-          {challenge[currentIndex]?.guideline}
+          {challenge.length > 0
+            ? challenge[0].guideline
+            : "No guidelines available"}
         </p>
         <button
           className={"instructions-button"}

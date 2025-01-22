@@ -13,7 +13,7 @@ const browse: RequestHandler = async (req, res, next) => {
 const read: RequestHandler = async (req, res, next) => {
   try {
     const userId = Number(req.params.id);
-    const progress = await progressRepository.read(userId);
+    const progress = await progressRepository.read(Number(userId));
 
     if (progress == null) {
       res.sendStatus(404);
@@ -43,4 +43,5 @@ const edit: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
 export default { browse, read, edit };

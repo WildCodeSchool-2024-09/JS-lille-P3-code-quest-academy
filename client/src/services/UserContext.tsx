@@ -26,6 +26,8 @@ interface AccountProps {
   password: string;
   teacher_1: string;
   teacher_2: string;
+  room_id: number;
+  challenge_id: number;
 }
 
 interface ProgressProps {
@@ -60,13 +62,17 @@ export const Provider = ({ children }: ProviderProps) => {
   }, []);
 
   //----------------------------------------------------------
-  // FETCH DE LA TABLE PROGRESS QUAND LE USER EST CONNECté
+  // FETCH DE LA TABLE PROGRESS QUAND LE USER EST CONNECTé
 
   useEffect(() => {
     if (!user) {
       return;
     }
-    fetch(`${import.meta.env.VITE_API_URL}/api/progress/${user.id}`)
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/progress/${user.id}/${
+        user.room_id
+      }/${user.challenge_id}`,
+    )
       .then((response) => response.json())
       .then((data: ProgressProps | null) => {
         setProgress(data);

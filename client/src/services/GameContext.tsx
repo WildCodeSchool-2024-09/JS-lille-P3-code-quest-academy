@@ -76,11 +76,7 @@ export const Provider = ({ children }: ProviderProps) => {
   // FETCH DE LA TABLE CHALLENGE
   useEffect(() => {
     if (user) {
-      fetch(
-        `${import.meta.env.VITE_API_URL}/api/room/${user.id}/challenge/${
-          user.id
-        }`,
-      )
+      fetch(`${import.meta.env.VITE_API_URL}/api/${user.id}/challenge/`)
         .then((response) => response.json())
         .then((data: ChallengeProps[]) => {
           setChallenge(data);
