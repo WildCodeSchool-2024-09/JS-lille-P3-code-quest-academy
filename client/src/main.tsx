@@ -11,7 +11,7 @@ import App from "./App";
 import AdminPage from "./components/adminpage/AdminPage";
 import ProfilPage from "./components/profilpage/ProfilPage";
 
-import Game from "./pages/game/Game";
+import GameBoard from "./pages/game/GameBoard";
 import HomePage from "./pages/home/HomePage";
 import AdminManagement from "./pages/profil/admin/AdminManagement";
 
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/game",
-        element: <Game />,
+        element: <GameBoard />,
       },
       {
         path: "/profile", // The profile path
