@@ -82,7 +82,7 @@ const hashPassword: RequestHandler = async (req, res, next) => {
     if (!password) {
       res
         .status(400)
-        .json({ success: false, message: "Le mot de passe est requi" });
+        .json({ success: false, message: "Le mot de passe est requis" });
     }
     // hash password with hashing option determined sooner
     const hashedPassword = await argon2.hash(password, hashingOptions);
