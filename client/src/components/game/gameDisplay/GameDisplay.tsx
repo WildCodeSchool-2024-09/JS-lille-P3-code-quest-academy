@@ -3,13 +3,12 @@ import { useContext } from "react";
 import { GameContext } from "../../../services/GameContext";
 
 function GameDisplay() {
-  const context = useContext(GameContext);
-  // const progress = context ? context.progress : null;
+  const gameContext = useContext(GameContext);
 
-  if (!context) {
+  if (!gameContext) {
     return (
       <div>
-        Error: Je ne sais pas le progess de mon joueur wesh is not available
+        Error: gameContext is not available
       </div>
     );
   }
