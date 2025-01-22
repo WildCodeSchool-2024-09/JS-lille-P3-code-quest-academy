@@ -103,7 +103,7 @@ const add: RequestHandler = async (req, res, next) => {
     if (!username || !email || !hashed_password) {
       res.status(400).json({
         success: false,
-        message: "Tous les champs doivent sont requis",
+        message: "Tous les champs sont requis",
       });
     }
 
