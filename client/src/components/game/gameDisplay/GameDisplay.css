@@ -1,4 +1,4 @@
-.gameboard-container {
+.gamedisplay-container {
   position: relative;
   width: 100%;
   min-width: 850px;
@@ -12,7 +12,7 @@
   padding: 0.5rem;
 }
 
-.game-img {
+.gamedisplay-img {
   width: 100%;
   height: 100%;
 }
@@ -25,6 +25,7 @@
 }
 
 .item1 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 31.5%;
   left: 5%;
   width: 185px;
@@ -32,12 +33,8 @@
   z-index: 1;
 }
 
-.item1:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item2 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 31.5%;
   left: 27%;
   width: 185px;
@@ -45,12 +42,8 @@
   z-index: 1;
 }
 
-.item2:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item3 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 31.5%;
   left: 49%;
   width: 200px;
@@ -58,12 +51,8 @@
   z-index: 1;
 }
 
-.item3:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item4 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 31.5%;
   left: 72.5%;
   width: 190px;
@@ -71,12 +60,8 @@
   z-index: 1;
 }
 
-.item4:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item5 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 52%;
   left: 4.5%;
   width: 190px;
@@ -84,12 +69,8 @@
   z-index: 1;
 }
 
-.item5:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item6 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 52%;
   left: 27%;
   width: 400px;
@@ -97,12 +78,8 @@
   z-index: 1;
 }
 
-.item6:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item7 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 52%;
   left: 72%;
   width: 190px;
@@ -110,12 +87,8 @@
   z-index: 1;
 }
 
-.item7:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item8 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 73%;
   left: 4%;
   width: 195px;
@@ -123,12 +96,8 @@
   z-index: 1;
 }
 
-.item8:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
-}
-
 .item9 {
+  background-color: rgba(253, 54, 32, 0.3);
   top: 73%;
   left: 72%;
   width: 195px;
@@ -136,7 +105,6 @@
   z-index: 1;
 }
 
-.item9:hover {
-  display: initial;
-  background-color: rgba(253, 54, 32, 0.3);
+.unlocked {
+  background-color: rgba(253, 54, 32, 0);
 }

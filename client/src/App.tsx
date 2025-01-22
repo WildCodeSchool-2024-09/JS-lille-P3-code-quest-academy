@@ -1,14 +1,15 @@
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import { Provider } from "./services/Context";
+import { Provider as GameProvider } from "../src/services/GameContext";
+import { Provider as UserProvider } from "../src/services/UserContext";
 
 function App() {
   return (
-    <>
-      <Provider>
+    <GameProvider>
+      <UserProvider>
         <Outlet />
-      </Provider>
-    </>
+      </UserProvider>
+    </GameProvider>
   );
 }
 
