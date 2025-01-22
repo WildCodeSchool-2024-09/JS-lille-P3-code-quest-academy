@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     element: <App />, // Renders the App component for the home page
     children: [
       {
-        path: "/welcome",
+        path: "/",
         element: <HomePage />,
       },
       {
