@@ -11,7 +11,7 @@ import App from "./App";
 import AdminPage from "./pages/adminpage/AdminPage";
 import ProfilPage from "./pages/profilpage/ProfilPage";
 
-import Game from "./pages/game/Game";
+import GameBoard from "./pages/game/GameBoard";
 import HomePage from "./pages/home/HomePage";
 import AdminManagement from "./pages/profil/admin/AdminManagement";
 
@@ -31,12 +31,12 @@ const router = createBrowserRouter([
     element: <App />, // Renders the App component for the home page
     children: [
       {
-        path: "/welcome",
+        path: "/",
         element: <HomePage />,
       },
       {
         path: "/game",
-        element: <Game />,
+        element: <GameBoard />,
       },
       {
         path: "/profile", // The profile path

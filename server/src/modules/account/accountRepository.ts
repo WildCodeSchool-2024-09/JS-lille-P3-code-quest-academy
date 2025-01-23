@@ -6,16 +6,16 @@ type Account = {
   id: number;
   username: string;
   email: string;
-  password: string;
+  hashed_password: string;
   teacher_1: string;
   teacher_2: string;
 };
 
 class AccountRepository {
-  async create(account: Account) {
+  async create(account: Omit<Account, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO account (username, email, password) VALUE (?, ?, ?)",
-      [account.username, account.email, account.password],
+      "INSERT INTO account (username, email, hashed_password) VALUE (?, ?, ?)",
+      [account.username, account.email, account.hashed_password],
     );
     return result.insertId;
   }
@@ -32,7 +32,7 @@ class AccountRepository {
     );
     return rows[0] as Account;
   }
-  async readByEmail(email: string) {
+  async readByEmailWithPassword(email: string) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM account WHERE email = ?",
       [email],
