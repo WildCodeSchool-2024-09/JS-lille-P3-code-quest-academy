@@ -4,29 +4,28 @@ import type { Result, Rows } from "../../../database/client";
 
 type Progress = {
   id: number;
-  username: string;
-  email: string;
-  password: string;
+  level: number;
 };
 class ProgressRepository {
-  async create(progress: Progress) {
-    const [result] = await databaseClient.query<Result>(
-      "INSERT INTO progress (level, user_id, room_id, challenge_id) VALUE (?, ?, ?, ?)",
-      [progress.username, progress.email, progress.password],
-    );
-    return result.insertId;
-  }
-
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("select * from progress");
     return rows as Progress[];
   }
-  async read(id: number) {
+
+  async read(userId: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM progress WHERE user_id = ?",
-      [user_id],
+      [userId],
     );
     return rows[0] as Progress;
+  }
+
+  async update(progress: Progress) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE progress SET level = ? WHERE id = ?",
+      [progress.level, progress.id],
+    );
+    return result.affectedRows;
   }
 }
 

@@ -1,45 +1,23 @@
-import { Context } from "../../../services/Context";
-import "./GameInstructions.css";
 import { useContext } from "react";
+import { GameContext } from "../../../services/GameContext";
+import "./GameInstructions.css";
 
 function GameInstructions() {
-  //Importation du contexte
-  const context = useContext(Context);
+  const gameContext = useContext(GameContext);
 
-  if (!context) {
+  if (!gameContext) {
     return <div>Error: Context is not available</div>;
   }
 
-  //Importation des variables du contexte utilisées sur la page
-  const {
-    challenge,
-    currentIndex,
-    setCurrentIndex,
-    currentType,
-    setCurrentType,
-    isButtonEnabled,
-    setIsButtonEnabled,
-    setAnswerStyles,
-    setFeedbackMessage,
-    buttonStyles,
-    setButtonStyles,
-  } = context;
+  const { challenge, currentIndex, setCurrentIndex, setCurrentType } =
+    gameContext;
 
   const handleChange = () => {
     if (currentIndex < challenge.length - 1) {
-      //Passe à la question suivante
+      //Next row in db
       setCurrentIndex(currentIndex + 1);
-      //Passe au type suivant
-      setCurrentType(currentType + 1);
-      //Réinitialise le style des réponses
-      setAnswerStyles("");
-      //Réinitialise le message de feedback
-      setFeedbackMessage("");
-      //Désactive le bouton suivant
-      setIsButtonEnabled(false);
-      //Réinitialise le style du bouton suivant
-      setButtonStyles("");
     } else {
+      //Get back to the first row
       setCurrentIndex(0);
       setCurrentType(0);
     }
@@ -52,8 +30,7 @@ function GameInstructions() {
           {challenge[currentIndex]?.guideline}
         </p>
         <button
-          disabled={!isButtonEnabled}
-          className={`instructions-button ${buttonStyles}`}
+          className={"instructions-button"}
           onClick={handleChange}
           type="button"
         >

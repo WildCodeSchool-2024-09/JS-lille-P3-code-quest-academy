@@ -1,14 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import type { Dispatch, ReactNode, SetStateAction } from "react";
+import type { ReactNode } from "react";
 import { useEffect } from "react";
+import { UserContext } from "./UserContext";
 
 interface ContextValue {
   challenge: ChallengeProps[];
   setChallenge: React.Dispatch<React.SetStateAction<ChallengeProps[]>>;
-  account: AccountProps[];
-  setAccount: React.Dispatch<React.SetStateAction<AccountProps[]>>;
-  progress: ProgressProps[];
-  setProgress: React.Dispatch<React.SetStateAction<ProgressProps[]>>;
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
   currentType: number;
@@ -26,7 +23,6 @@ interface ContextValue {
     React.SetStateAction<{ [key: number]: string }>
   >;
   user: AccountProps | null;
-  setUser: Dispatch<SetStateAction<AccountProps | null>>;
 }
 
 interface ChallengeProps {
@@ -53,70 +49,50 @@ interface AccountProps {
   teacher_2: string;
 }
 
-interface ProgressProps {
-  level: number;
-  user_id: number;
-  room_id: number;
-  challenge_id: number;
-}
-
 interface ProviderProps {
   children: ReactNode;
 }
 
-export const Context = createContext<ContextValue | null>(null);
+export const GameContext = createContext<ContextValue | null>(null);
 
 export const Provider = ({ children }: ProviderProps) => {
   const [challenge, setChallenge] = useState([] as ChallengeProps[]);
-  const [account, setAccount] = useState([] as AccountProps[]);
-  const [progress, setProgress] = useState([] as ProgressProps[]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentType, setCurrentType] = useState(0);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [answerStyles, setAnswerStyles] = useState({});
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
-  const [user, setUser] = useState<AccountProps | null>(null);
 
+  // récuperer le challenge et la room du user actuel
+  const userContext = useContext(UserContext);
+
+  if (!userContext) {
+    return null;
+  }
+
+  const { user } = userContext;
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/challenges`)
-      .then((response) => response.json())
-      .then((data: ChallengeProps[]) => {
-        setChallenge(data);
-      });
-  }, []);
-
-  //----------------------------------------------------------
-  // FETCH DE LA TABLE ACCOUNT
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/accounts`)
-      .then((response) => response.json())
-      .then((data: AccountProps[]) => {
-        setAccount(data);
-      });
-  }, []);
-
-  //----------------------------------------------------------
-  // FETCH DE LA TABLE PROGRESS
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/progress`)
-      .then((response) => response.json())
-      .then((data: ProgressProps[]) => {
-        setProgress(data);
-      });
-  }, []);
+    if (user) {
+      fetch(
+        `${import.meta.env.VITE_API_URL}/api/room/${user.id}/challenge/${
+          user.id
+        }`,
+      )
+        .then((response) => response.json())
+        .then((data: ChallengeProps[]) => {
+          setChallenge(data);
+        });
+    }
+  }, [user]);
 
   return (
-    <Context.Provider
+    <GameContext.Provider
       value={{
         challenge,
         setChallenge,
-        account,
-        setAccount,
-        progress,
-        setProgress,
         currentIndex,
         setCurrentIndex,
         currentType,
@@ -130,18 +106,9 @@ export const Provider = ({ children }: ProviderProps) => {
         buttonStyles,
         setButtonStyles,
         user,
-        setUser,
       }}
     >
       {children}
-    </Context.Provider>
+    </GameContext.Provider>
   );
-};
-
-export const useGameContext = () => {
-  const context = useContext(Context);
-  if (!context) {
-    throw new Error("useGameContext must be used within a Provider");
-  }
-  return context;
 };
