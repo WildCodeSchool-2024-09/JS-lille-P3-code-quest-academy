@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
+import type { AccountProps, ChallengeProps } from "../types/user";
 import { UserContext } from "./UserContext";
 
 interface ContextValue {
@@ -25,30 +26,6 @@ interface ContextValue {
   user: AccountProps | null;
 }
 
-interface ChallengeProps {
-  id: number;
-  title: string;
-  guideline: string;
-  hint: string;
-  soluce: string;
-  type: string;
-  question: string;
-  rep1: string;
-  rep2: string;
-  rep3: string;
-  rep4: string;
-  room_id: number;
-}
-
-interface AccountProps {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  teacher_1: string;
-  teacher_2: string;
-}
-
 interface ProviderProps {
   children: ReactNode;
 }
@@ -71,18 +48,22 @@ export const Provider = ({ children }: ProviderProps) => {
     return null;
   }
 
-  const { user } = userContext;
+  const { user, progress } = userContext;
   //----------------------------------------------------------
   // FETCH DE LA TABLE CHALLENGE
   useEffect(() => {
     if (user) {
-      fetch(`${import.meta.env.VITE_API_URL}/api/${user.id}/challenge/`)
+      fetch(
+        `${import.meta.env.VITE_API_URL}/api/progress/${user.id}/${
+          progress?.room_id
+        }/${progress?.challenge_id}`,
+      )
         .then((response) => response.json())
         .then((data: ChallengeProps[]) => {
           setChallenge(data);
         });
     }
-  }, [user]);
+  }, [user, progress]);
 
   return (
     <GameContext.Provider

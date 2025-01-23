@@ -19,7 +19,7 @@ function GameProfil() {
       <div className="profil-container">
         <div className="profil-text">
           <h2>{user?.username}</h2>
-          <p>Niveau {progress?.level}</p>
+          <p>Niveau {progress?.room_id}</p>
           <button
             className="profil-button"
             type="button"
