@@ -87,7 +87,6 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
             className="second-input-teacher"
             id="second-input-teacher"
             value={teacher_2}
-            t
             onChange={(e) => setTeacher_2(e.target.value)}
           />
         </label>

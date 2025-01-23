@@ -129,8 +129,8 @@ input:focus {
   cursor: pointer;
   width: 100%;
   font-family: "Press Start 2P", cursive; /* Police rétro */
-  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    -1px -1px 0 #000; /* Ombre pour l'effet 16 bits */
+  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0
+    #000; /* Ombre pour l'effet 16 bits */
 }
 
 .button-sumbmit-teacher:hover {

@@ -45,12 +45,10 @@ const editInfos: RequestHandler = async (req, res, next) => {
     }
 
     if (!username || !email || !password) {
-      res
-        .status(400)
-        .json({
-          success: false,
-          message: "Tous les champs doivent être remplis",
-        });
+      res.status(400).json({
+        success: false,
+        message: "Tous les champs doivent être remplis",
+      });
       return;
     }
 
@@ -84,12 +82,10 @@ const editTrainers: RequestHandler = async (req, res, next) => {
     const { teacher_1, teacher_2 } = req.body;
 
     if (!teacher_1 || !teacher_2) {
-      res
-        .status(400)
-        .json({
-          success: false,
-          message: "Tous les champs doivent être remplis",
-        });
+      res.status(400).json({
+        success: false,
+        message: "Tous les champs doivent être remplis",
+      });
       return;
     }
 
@@ -127,8 +123,8 @@ const add: RequestHandler = async (req, res, next) => {
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
-      teacher_1: req.body.teacher_1 || '',
-      teacher_2: req.body.teacher_2 || '',
+      teacher_1: req.body.teacher_1 || "",
+      teacher_2: req.body.teacher_2 || "",
     };
 
     const insertId = await accountRepository.create(newAccount);
@@ -150,4 +146,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, editTrainers, editInfos,add, destroy };
+export default { browse, read, editTrainers, editInfos, add, destroy };
