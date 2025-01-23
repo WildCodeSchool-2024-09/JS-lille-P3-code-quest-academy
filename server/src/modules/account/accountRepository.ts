@@ -7,6 +7,8 @@ type Account = {
   username: string;
   email: string;
   password: string;
+  teacher_1: string;
+  teacher_2: string;
 };
 
 class AccountRepository {
@@ -37,13 +39,20 @@ class AccountRepository {
     );
     return rows[0] as Account;
   }
-
-  async update(account: Account) {
+  async updateInfos(account: Account) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE account SET username = ?, email = ?, password = ? WHERE id = ?",
       [account.username, account.email, account.password, account.id],
     );
-    return result.affectedRows;
+    return result.affectedRows; // Retourne le nombre de lignes affectées
+  }
+
+  async updateTrainers(account: Account) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE account SET teacher_1 = ?, teacher_2 = ? WHERE id = ?",
+      [account.teacher_1, account.teacher_2, account.id], // Utilisation correcte des propriétés
+    );
+    return result.affectedRows; // Retourne le nombre de lignes affectées
   }
 
   async delete(id: number) {

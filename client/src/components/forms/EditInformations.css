@@ -62,7 +62,7 @@
 }
 
 /* Form Styles */
-form {
+form-edit-informations {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -70,35 +70,69 @@ form {
   margin: auto;
 }
 
-label {
+.label-edit-informations {
   font-size: 14px;
   color: #333;
 }
 
-input {
+/* Styles pour les labels */
+.label-pseudo,
+.label-password,
+.label-email {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+/* Styles pour les champs d'entrée */
+.input-pseudo,
+.input-password,
+.input-email {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-input:focus {
+/* Effet au survol des champs */
+.input-pseudo:hover,
+.input-password:hover,
+.input-email:hover {
+  border-color: #888;
+}
+
+/* Effet au focus sur les champs */
+.input-pseudo:focus,
+.input-password:focus,
+.input-email:focus {
   border-color: #007bff;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-button {
+.button-edit-informations {
   padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  background-color: #ff7f50; /* Corail pour un fond plus vif */
+  color: #ffffff; /* Blanc pour le texte */
+  border: 2px solid #ff6347; /* Tomate pour la bordure */
+  border-radius: 6px; /* Bordure arrondie */
   cursor: pointer;
+  width: 100%;
+  font-family: "Press Start 2P", cursive; /* Police rétro */
+  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    -1px -1px 0 #000; /* Ombre pour l'effet 16 bits */
 }
 
-button:disabled {
+.button-edit-informations:hover {
+  background-color: #ff6347; /* Change de couleur au survol pour effet interactif */
+}
+
+.button-edit-informations:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+  color: #666666; /* Couleur grise pour le texte désactivé */
 }
 
 /* Error Messages */
