@@ -13,6 +13,7 @@ router.get("/api/challenges", challengeActions.browse);
 router.get("/api/challenges/:id", challengeActions.read);
 
 // Define account-related routes
+
 import accountActions from "./modules/account/accountActions";
 
 router.get("/api/accounts", accountActions.browse);

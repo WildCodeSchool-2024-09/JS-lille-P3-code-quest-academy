@@ -39,10 +39,18 @@ class AccountRepository {
     );
     return rows[0] as Account;
   }
+  async update(account: Account) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
+      [account.username, account.email, account.hashed_password, account.id],
+    );
+    return result.affectedRows;
+  }
+
   async updateInfos(account: Account) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE account SET username = ?, email = ?, password = ? WHERE id = ?",
-      [account.username, account.email, account.password, account.id],
+      "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
+      [account.username, account.email, account.hashed_password, account.id],
     );
     return result.affectedRows; // Retourne le nombre de lignes affectées
   }

@@ -35,6 +35,50 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const accountId = Number(req.params.id);
+    const { username, email, hashed_password } = req.body;
+
+    if (!username || !email || !hashed_password) {
+      res.status(400).json({
+        success: false,
+        message: "Tous les champs doivent être remplis",
+      });
+      return;
+    }
+
+    const account = await accountRepository.read(accountId);
+    const affectedRows = await accountRepository.update({
+      id: accountId,
+      username,
+      email,
+      hashed_password,
+      teacher_1: account.teacher_1,
+      teacher_2: account.teacher_2,
+    });
+
+    if (affectedRows === 0) {
+      res
+        .status(404)
+        .json({ success: false, message: "Utilisateur non trouvé" });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Utilisateur mis à jour avec succès",
+      account: {
+        id: accountId,
+        username,
+        email,
+        hashed_password,
+      },
+    });
+  } catch (err) {
+    console.error("Erreur lors de la mise à jour de l'utilisateur", err);
+    next(err);
+  }
+};
+
 const editInfos: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
@@ -48,6 +92,7 @@ const editInfos: RequestHandler = async (req, res, next) => {
       return;
     }
 
+    const account = await accountRepository.read(accountId);
     const affectedRows = await accountRepository.updateInfos({
       id: accountId,
       username,
@@ -144,10 +189,11 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newAccount = {
-      id: Number(req.params.id),
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      hashed_password: req.body.hashed_password,
+      teacher_1: req.body.teacher_1,
+      teacher_2: req.body.teacher_2,
     };
 
     const insertId = await accountRepository.create(newAccount);
@@ -169,4 +215,13 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add, destroy };
+export default {
+  browse,
+  read,
+  editTrainers,
+  edit,
+  editInfos,
+  add,
+  destroy,
+  hashPassword,
+};
