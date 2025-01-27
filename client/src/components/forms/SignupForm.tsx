@@ -1,6 +1,7 @@
 import "./Register.css";
 import { useState } from "react";
 
+// Claimed by TypeScript
 interface SignupFormProps {
   closeForm: () => void;
 }
