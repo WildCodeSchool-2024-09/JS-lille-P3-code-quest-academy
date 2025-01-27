@@ -9,10 +9,25 @@ function GameInstructions() {
     return <div>Error: Context is not available</div>;
   }
 
-  const { actualChallenge, setActualChallenge, user, progress, setProgress } =
-    gameContext;
+  const {
+    actualChallenge,
+    setActualChallenge,
+    user,
+    progress,
+    setProgress,
+    isButtonEnabled,
+    setIsButtonEnabled,
+    buttonStyles,
+    setButtonStyles,
+    setFeedbackMessage,
+    setAnswerStyles,
+  } = gameContext;
 
   const handleProgressUpdate = async () => {
+    setFeedbackMessage("");
+    setIsButtonEnabled(false);
+    setButtonStyles("");
+    setAnswerStyles("");
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}/${
@@ -65,16 +80,18 @@ function GameInstructions() {
       {/* remplace le if (!actualChallenge) */}
       {actualChallenge && (
         <div className="instructions-container">
-          challenge id :{actualChallenge.id}
+          challenge id :{actualChallenge.id} <br />
+          room id : {actualChallenge.room_id}
           <p className="instructions-text">
             {actualChallenge.guideline
               ? actualChallenge.guideline
               : "No guidelines available"}
           </p>
           <button
-            className={"instructions-button"}
+            className={`instructions-button ${buttonStyles}`}
             onClick={handleProgressUpdate}
             type="button"
+            disabled={!isButtonEnabled}
           >
             Suivant
           </button>
