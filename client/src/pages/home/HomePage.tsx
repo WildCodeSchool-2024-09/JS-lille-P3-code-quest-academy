@@ -7,7 +7,7 @@ import SignupForm from "../../components/forms/SignupForm";
 type activeForm = "login" | "signup" | null;
 
 function HomePage() {
-  // Manage the active from to display login, signup or nothing and the close button
+  // Manage the active form to display login, signup or nothing and the close button
   const [activeForm, setActiveForm] = useState<activeForm>(null);
   const closeForm = () => setActiveForm(null);
 
