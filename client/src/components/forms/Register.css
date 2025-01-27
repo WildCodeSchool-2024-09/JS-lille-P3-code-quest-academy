@@ -9,7 +9,6 @@
   max-width: 400px;
   text-align: center;
   font-family: Arial, sans-serif;
-  /* Animation d'apparition */
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -62,7 +61,6 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Animation d'apparition */
 @keyframes fadeIn {
   from {
     opacity: 0;
