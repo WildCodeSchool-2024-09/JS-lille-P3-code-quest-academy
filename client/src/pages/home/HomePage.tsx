@@ -1,10 +1,16 @@
+import { useState } from "react";
 import "./HomePage.css";
-
-import ConnexionButton from "../../components/buttons/SignInButton";
-import SubscribeButton from "../../components/buttons/SubscribeButton";
 import LoginForm from "../../components/forms/LoginForm";
+import SignupForm from "../../components/forms/SignupForm";
+
+// Type for the active form
+type activeForm = "login" | "signup" | null;
 
 function HomePage() {
+  // Manage the active from to display login, signup or nothing and the close button
+  const [activeForm, setActiveForm] = useState<activeForm>(null);
+  const closeForm = () => setActiveForm(null);
+
   return (
     <div className="home-page">
       <div className="logo-container">
@@ -17,16 +23,40 @@ function HomePage() {
       <div className="home-page-text">
         <p>
           Code Quest Academy est un jeu où vous progressez en résolvant des
-          énigmes de programmation, avec des requêtes SQL, pour débloquer des
-          compétences et affronter des défis de plus en plus complexes.
+          énigmes de programmation. Vous serez testé sur plusieurs langage tout
+          au long de l'aventure avec des questions à la compléxité variable.
           Transformez l’apprentissage du code en une aventure épique et devenez
           un maître du développement !
         </p>
       </div>
       <div className="home-page-buttons-container">
-        <ConnexionButton />
-        <SubscribeButton />
+        <button
+          type="button"
+          className="sign-in-button"
+          onClick={() => setActiveForm("login")}
+        >
+          Connexion
+        </button>
+        <button
+          type="button"
+          className="subscribe-button"
+          onClick={() => setActiveForm("signup")}
+        >
+          Inscription
+        </button>
       </div>
+
+      {activeForm === "login" && (
+        <div className="form-container">
+          <LoginForm closeForm={closeForm} />
+        </div>
+      )}
+      {activeForm === "signup" && (
+        <div className="form-container">
+          <SignupForm closeForm={closeForm} />
+        </div>
+      )}
+
       <div className="home-page-footer">
         Développé par les dev's de la {/**/}
         <a
@@ -38,7 +68,6 @@ function HomePage() {
           Wild Code School
         </a>
       </div>
-      <LoginForm />
     </div>
   );
 }

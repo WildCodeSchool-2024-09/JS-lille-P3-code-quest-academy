@@ -1,7 +1,11 @@
 import "./Register.css";
 import { useState } from "react";
 
-const SignupForm = () => {
+interface SignupFormProps {
+  closeForm: () => void;
+}
+
+const SignupForm = ({ closeForm }: SignupFormProps) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +45,7 @@ const SignupForm = () => {
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
       <div className="close-button-container">
-        <button type="button" className="close-form-button">
+        <button type="button" className="close-form-button" onClick={closeForm}>
           +
         </button>
       </div>
