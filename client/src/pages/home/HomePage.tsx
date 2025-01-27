@@ -23,8 +23,8 @@ function HomePage() {
       <div className="home-page-text">
         <p>
           Code Quest Academy est un jeu où vous progressez en résolvant des
-          énigmes de programmation. Vous serez testé sur plusieurs langage tout
-          au long de l'aventure avec des questions à la compléxité variable.
+          énigmes de programmation. Vous serez testé sur plusieurs langages tout
+          au long de l'aventure avec des questions à la complexité variable.
           Transformez l’apprentissage du code en une aventure épique et devenez
           un maître du développement !
         </p>
