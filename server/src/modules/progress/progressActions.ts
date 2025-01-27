@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import challengeRepository from "../challenge/challengeRepository";
 import progressRepository from "./progressRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -27,17 +28,18 @@ const read: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const progressId = Number(req.params.id);
-    const level = Number(req.body.level);
+    const userId = Number(req.params.userId);
+    const challengeId = Number(req.params.challengeId) + 1;
     const affectedRows = await progressRepository.update({
-      id: progressId,
-      level,
+      user_id: userId,
+      challenge_id: challengeId,
     });
 
     if (affectedRows === 0) {
       res.sendStatus(404);
     } else {
-      res.sendStatus(204);
+      const challenge = await challengeRepository.read(challengeId);
+      res.json(challenge);
     }
   } catch (error) {
     next(error);

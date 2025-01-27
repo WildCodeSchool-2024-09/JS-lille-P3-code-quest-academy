@@ -10,8 +10,7 @@ function Prompt() {
   }
 
   const {
-    challenge,
-    currentIndex,
+    actualChallenge,
     setIsButtonEnabled,
     feedbackMessage,
     setFeedbackMessage,
@@ -20,7 +19,8 @@ function Prompt() {
 
   const handlePrompt = () => {
     const answer = prompt("tapez le mot manquant");
-    if (answer === challenge[currentIndex]?.soluce) {
+
+    if (answer === actualChallenge?.soluce) {
       setIsButtonEnabled(true);
       setButtonStyles("button-enabled");
       setFeedbackMessage("Bonne réponse ! 🎉");
@@ -32,7 +32,7 @@ function Prompt() {
   return (
     <>
       <div className="command-container prompt">
-        <h2>{challenge[currentIndex]?.question}</h2>
+        <h2>{actualChallenge?.question}</h2>
         <button type="button" className="prompt-button" onClick={handlePrompt}>
           Clique ici pour taper la réponse
         </button>

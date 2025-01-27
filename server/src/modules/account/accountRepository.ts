@@ -12,9 +12,24 @@ type Account = {
 class AccountRepository {
   async create(account: Omit<Account, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO account (username, email, hashed_password) VALUE (?, ?, ?)",
+      `INSERT INTO account (username, email, hashed_password)
+      VALUES (?, ?, ?);`,
       [account.username, account.email, account.hashed_password],
     );
+
+    // on recupère le dernier id inséré
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT LAST_INSERT_ID() AS user_id",
+    );
+    const userId = rows[0].user_id;
+
+    // on ajoute un progress de base pour l'utilisateur qui viens de s'inscrire
+    await databaseClient.query(
+      `INSERT INTO progress (user_id, room_id, challenge_id),
+      VALUES (?, ?, ?);`,
+      [userId, 1, 1],
+    );
+
     return result.insertId;
   }
 

@@ -25,7 +25,7 @@ function GameProfil() {
             type="button"
             onClick={() => navigate("/profile")}
           >
-            Accueil
+            Profil
           </button>
         </div>
         <img

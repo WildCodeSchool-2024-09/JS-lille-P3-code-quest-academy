@@ -18,7 +18,6 @@ export type AccountProps = {
 
 export type ProgressProps = {
   id: number;
-  level: number;
   user_id: number;
   room_id: number;
   challenge_id: number;

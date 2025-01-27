@@ -15,8 +15,7 @@ function Quizz() {
     index: number,
   ) => {
     const isCorrect =
-      (e.target as HTMLParagraphElement).innerText ===
-      challenge[currentIndex]?.soluce;
+      (e.target as HTMLParagraphElement).innerText === actualChallenge?.soluce;
 
     //Add background color to the answer if it's correct or wrong
     setAnswerStyles((prev) => ({
@@ -37,26 +36,25 @@ function Quizz() {
   };
 
   const {
-    challenge,
-    currentIndex,
+    actualChallenge,
     setIsButtonEnabled,
-    answerStyles,
-    setAnswerStyles,
     feedbackMessage,
     setFeedbackMessage,
     setButtonStyles,
+    answerStyles,
+    setAnswerStyles,
   } = gameContext;
 
   return (
     <>
       <div className="command-container quizz">
-        <h2>{challenge[currentIndex]?.question}</h2>
+        <h2>{actualChallenge?.question}</h2>
         <div className="answer-container">
           {[
-            challenge[currentIndex]?.rep1,
-            challenge[currentIndex]?.rep2,
-            challenge[currentIndex]?.rep3,
-            challenge[currentIndex]?.rep4,
+            actualChallenge?.rep1,
+            actualChallenge?.rep2,
+            actualChallenge?.rep3,
+            actualChallenge?.rep4,
           ].map((answer, index) => (
             <p
               key={answer}

@@ -26,16 +26,16 @@ export const UserContext = createContext<ContextValue | null>(
 
 export const Provider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState<AccountProps | null>(null);
-
   const [progress, setProgress] = useState<ProgressProps | null>(null);
 
   //----------------------------------------------------------
-  // FETCH DE LA TABLE PROGRESS QUAND LE USER EST CONNECTé
+  // FETCH DE LA TABLE PROGRESS QUAND L'UTILISATEUR EST CONNECTE
 
   useEffect(() => {
     if (!user) {
       return;
     }
+
     fetch(`${import.meta.env.VITE_API_URL}/api/progress/${user.id}`)
       .then((response) => response.json())
       .then((data: ProgressProps | null) => {

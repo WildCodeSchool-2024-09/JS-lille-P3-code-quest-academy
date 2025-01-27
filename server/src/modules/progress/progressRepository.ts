@@ -4,14 +4,16 @@ import type { Result, Rows } from "../../../database/client";
 
 type Progress = {
   id: number;
-  level: number;
+  challenge_id: number;
+  user_id: number;
 };
+
 class ProgressRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("select * from progress");
     return rows as Progress[];
   }
-
+  //sert à recuperer les infos de l'utilisateur connecté pour les stocker dans userContext
   async read(userId: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM progress WHERE user_id = ?",
@@ -20,14 +22,15 @@ class ProgressRepository {
     return rows[0] as Progress;
   }
 
-  async update(progress: Progress) {
+  async update(progress: Omit<Progress, "id">) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE progress SET challenge_id = ? WHERE user_id = ?",
-      [progress.level, progress.id],
+      [progress.challenge_id, progress.user_id],
     );
     return result.affectedRows;
   }
 
+  // on recupère toutes les infos du jeu pour un utilisateur donné par rapport à sa progression
   async getPlayerProgress(userId: number, roomId: number, challengeId: number) {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT *

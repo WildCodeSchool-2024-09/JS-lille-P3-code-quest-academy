@@ -1,16 +1,18 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
-import type { AccountProps, ChallengeProps } from "../types/user";
+import type {
+  AccountProps,
+  ChallengeProps,
+  ProgressProps,
+} from "../types/user";
 import { UserContext } from "./UserContext";
 
 interface ContextValue {
-  challenge: ChallengeProps[];
-  setChallenge: React.Dispatch<React.SetStateAction<ChallengeProps[]>>;
-  currentIndex: number;
-  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-  currentType: number;
-  setCurrentType: React.Dispatch<React.SetStateAction<number>>;
+  actualChallenge: ChallengeProps | null;
+  setActualChallenge: React.Dispatch<
+    React.SetStateAction<ChallengeProps | null>
+  >;
   isButtonEnabled: boolean;
   setIsButtonEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   answerStyles: { [key: number]: string };
@@ -24,6 +26,8 @@ interface ContextValue {
     React.SetStateAction<{ [key: number]: string }>
   >;
   user: AccountProps | null;
+  progress: ProgressProps | null;
+  setProgress: React.Dispatch<React.SetStateAction<ProgressProps | null>>;
 }
 
 interface ProviderProps {
@@ -33,9 +37,9 @@ interface ProviderProps {
 export const GameContext = createContext<ContextValue | null>(null);
 
 export const Provider = ({ children }: ProviderProps) => {
-  const [challenge, setChallenge] = useState([] as ChallengeProps[]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentType, setCurrentType] = useState(0);
+  const [actualChallenge, setActualChallenge] = useState<ChallengeProps | null>(
+    null,
+  );
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [answerStyles, setAnswerStyles] = useState({});
   const [feedbackMessage, setFeedbackMessage] = useState("");
@@ -48,19 +52,19 @@ export const Provider = ({ children }: ProviderProps) => {
     return null;
   }
 
-  const { user, progress } = userContext;
+  const { user, progress, setProgress } = userContext;
   //----------------------------------------------------------
-  // FETCH DE LA TABLE CHALLENGE
+  // FETCH DU PROGRESS DE L'UTILISATEUR CONNECTE SELON SON ID, LA ROOM ET LE CHALLENGE
   useEffect(() => {
-    if (user) {
+    if (progress && user) {
       fetch(
-        `${import.meta.env.VITE_API_URL}/api/progress/${user.id}/${
-          progress?.room_id
-        }/${progress?.challenge_id}`,
+        `${import.meta.env.VITE_API_URL}/api/challenge/${
+          progress?.challenge_id
+        }`,
       )
         .then((response) => response.json())
-        .then((data: ChallengeProps[]) => {
-          setChallenge(data);
+        .then((data: ChallengeProps) => {
+          setActualChallenge(data);
         });
     }
   }, [user, progress]);
@@ -68,12 +72,8 @@ export const Provider = ({ children }: ProviderProps) => {
   return (
     <GameContext.Provider
       value={{
-        challenge,
-        setChallenge,
-        currentIndex,
-        setCurrentIndex,
-        currentType,
-        setCurrentType,
+        actualChallenge,
+        setActualChallenge,
         isButtonEnabled,
         setIsButtonEnabled,
         answerStyles,
@@ -83,6 +83,8 @@ export const Provider = ({ children }: ProviderProps) => {
         buttonStyles,
         setButtonStyles,
         user,
+        progress,
+        setProgress,
       }}
     >
       {children}

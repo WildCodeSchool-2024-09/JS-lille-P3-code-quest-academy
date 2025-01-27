@@ -9,19 +9,21 @@ function GameDisplay() {
     return <div>Error: gameContext is not available</div>;
   }
 
-  const { challenge, currentIndex } = gameContext;
+  const { actualChallenge } = gameContext;
 
   const [imgSrc, setImgSrc] = useState(
     "./src/assets/images/game-background-level0.png",
   );
 
   useEffect(() => {
-    if (challenge[currentIndex]?.title === "HTML") {
-      setImgSrc("./src/assets/images/html-room.png");
-    } else {
-      setImgSrc("./src/assets/images/game-background-level0.png");
+    if (actualChallenge) {
+      if (actualChallenge?.title === "HTML") {
+        setImgSrc("./src/assets/images/html-room.png");
+      } else {
+        setImgSrc("./src/assets/images/game-background-level0.png");
+      }
     }
-  }, [challenge, currentIndex]);
+  }, [actualChallenge]);
 
   return (
     <>

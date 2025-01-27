@@ -9,40 +9,82 @@ function GameInstructions() {
     return <div>Error: Context is not available</div>;
   }
 
-  const { currentIndex, challenge, setCurrentIndex } = gameContext;
+  const { actualChallenge, setActualChallenge, user, progress, setProgress } =
+    gameContext;
 
-  const handleChange = () => {
-    if (currentIndex < challenge.length - 1) {
-      //Next row in db
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      //Get back to the first row
-      setCurrentIndex(0);
+  const handleProgressUpdate = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}/${
+          progress?.room_id
+        }/${progress?.challenge_id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Échec de la mise à jour du progrès");
+      }
+
+      const newChallenge = await response.json();
+
+      // Forcer le rechargement via une réinitialisation du contexte ou des dépendances
+      setActualChallenge(newChallenge);
+
+      // Recharge le contexte utilisateur
+      await fetchUserProgress();
+    } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour ou récupération du progrès :",
+        error,
+      );
+    }
+  };
+
+  const fetchUserProgress = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}`,
+      );
+
+      const progressData = await response.json();
+      setProgress(progressData);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération de la progression :",
+        error,
+      );
     }
   };
 
   return (
     <>
-      <div className="instructions-container">
-        <p className="instructions-text">
-          {challenge.length > 0
-            ? challenge[0].guideline
-            : "No guidelines available"}
-        </p>
-        <button
-          className={"instructions-button"}
-          onClick={handleChange}
-          type="button"
-        >
-          Suivant
-        </button>
-
-        <img
-          className="help-img"
-          src="./src/assets/images/fantine.png"
-          alt="Fantine la formatrice"
-        />
-      </div>
+      {/* verifie si actualChallenge existe pour afficher le reste */}
+      {/* remplace le if (!actualChallenge) */}
+      {actualChallenge && (
+        <div className="instructions-container">
+          challenge id :{actualChallenge.id}
+          <p className="instructions-text">
+            {actualChallenge.guideline
+              ? actualChallenge.guideline
+              : "No guidelines available"}
+          </p>
+          <button
+            className={"instructions-button"}
+            onClick={handleProgressUpdate}
+            type="button"
+          >
+            Suivant
+          </button>
+          <img
+            className="help-img"
+            src="./src/assets/images/fantine.png"
+            alt="Fantine la formatrice"
+          />
+        </div>
+      )}
     </>
   );
 }
