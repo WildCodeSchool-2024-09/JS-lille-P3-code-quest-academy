@@ -4,7 +4,12 @@ import { useContext, useRef } from "react";
 import type { FormEventHandler } from "react";
 import { UserContext } from "../../services/UserContext";
 
-function LoginForm() {
+// Claimed by TypeScript
+interface LoginFormProps {
+  closeForm: () => void;
+}
+
+function LoginForm({ closeForm }: LoginFormProps) {
   const userContext = useContext(UserContext);
 
   if (!userContext) {
@@ -45,7 +50,7 @@ function LoginForm() {
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <div className="close-button-container">
-        <button type="button" className="close-form-button">
+        <button type="button" className="close-form-button" onClick={closeForm}>
           +
         </button>
       </div>
