@@ -4,6 +4,7 @@ import { useContext, useRef } from "react";
 import type { FormEventHandler } from "react";
 import { UserContext } from "../../services/UserContext";
 
+// Claim by TypeScript
 interface LoginFormProps {
   closeForm: () => void;
 }
