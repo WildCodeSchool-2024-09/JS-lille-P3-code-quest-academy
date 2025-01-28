@@ -67,7 +67,7 @@
   color: #000;
 }
 
-form-edit-informations {
+.form-edit-informations {
   display: flex;
   flex-direction: column;
   gap: 10px;
