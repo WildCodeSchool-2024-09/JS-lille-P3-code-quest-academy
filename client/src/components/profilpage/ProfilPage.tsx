@@ -1,17 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../services/UserContext";
 import "./ProfilPage.css";
 import { useNavigate } from "react-router-dom";
+import Logout from "../logout/Logout";
 
 function ProfilPage() {
   const userContext = useContext(UserContext);
+  const [popupLogout, setPopupLogout] = useState(false);
+  const closePopupLogout = () => setPopupLogout(false);
+  const navigate = useNavigate();
 
   if (!userContext) {
     throw new Error("UserContext is null");
   }
-  const { user, progress } = userContext;
 
-  const navigate = useNavigate();
+  const { user, progress } = userContext;
 
   return (
     <div className="profil-page">
@@ -22,6 +25,19 @@ function ProfilPage() {
           alt="sprite-admin-page"
           className="sprite-admin-page"
         />
+        <button
+          type="button"
+          className="logout-button"
+          onClick={() => setPopupLogout(true)}
+        >
+          Déconnexion
+        </button>
+
+        {popupLogout && (
+          <section className="logout-popup-container">
+            <Logout closePopupLogout={closePopupLogout} />
+          </section>
+        )}
       </div>
       <div className="left-and-right-side">
         <div className="left-side">
@@ -37,7 +53,11 @@ function ProfilPage() {
           >
             Mes informations
           </button>
-          <button type="button" onClick={() => navigate("/game")}>
+          <button
+            type="button"
+            className="game-start-button"
+            onClick={() => navigate("/game")}
+          >
             game
           </button>
           <h1 className="first-pseudo">

@@ -43,11 +43,11 @@ const router = createBrowserRouter([
         element: <ProfilPage />,
       },
       {
-        path: "/profile/admin", // The profile path
+        path: "/admin", // The profile path
         element: <AdminPage />, // Renders the AdminPage component for the profile page
       },
       {
-        path: "/profile/admin/manage",
+        path: "/admin/manage",
         element: <AdminManagement />,
       },
     ],
