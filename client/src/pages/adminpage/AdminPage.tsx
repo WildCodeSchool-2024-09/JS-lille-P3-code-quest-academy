@@ -17,17 +17,16 @@ type User = {
 };
 
 function AdminPage() {
-  const navigate = useNavigate(); // Permet la navigation vers d'autres pages
-  const [username, setUsername] = useState("Chargement..."); // État pour le pseudo
-  const [email, setEmail] = useState("Chargement..."); // État pour l'email
-  const [password, setPassword] = useState("********"); // État pour le mot de passe
-  const [teacher_1, setTeacher_1] = useState("Chargement..."); // État pour le formateur 1
-  const [teacher_2, setTeacher_2] = useState("Chargement..."); // État pour le formateur 2
-  const [showTeacherPopup, setShowTeacherPopup] = useState(false); // État pour afficher ou masquer la popup des formateurs
-  const [showInfoPopup, setShowInfoPopup] = useState(false); // État pour afficher ou masquer la popup des informations
-  const userId = 1; // Identifiant de l'utilisateur (statique ici)
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("Chargement...");
+  const [email, setEmail] = useState("Chargement...");
+  const [password, setPassword] = useState("********");
+  const [teacher_1, setTeacher_1] = useState("Chargement...");
+  const [teacher_2, setTeacher_2] = useState("Chargement...");
+  const [showTeacherPopup, setShowTeacherPopup] = useState(false);
+  const [showInfoPopup, setShowInfoPopup] = useState(false);
+  const userId = 1;
 
-  // Chargement des informations utilisateur lors du montage du composant
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/accounts/${userId}`)
       .then((response) => {
@@ -37,7 +36,6 @@ function AdminPage() {
         return response.json();
       })
       .then((data: User) => {
-        // Mise à jour des états avec les données récupérées
         setUsername(data.username);
         setEmail(data.email);
         setPassword(data.password);
@@ -50,26 +48,23 @@ function AdminPage() {
       });
   }, []);
 
-  // Fonction pour mettre à jour les informations utilisateur
   const updateUserInfo = (
     newUsername: string,
     newEmail: string,
     newPassword: string,
   ) => {
-    setUsername(newUsername); // Met à jour le pseudo
-    setEmail(newEmail); // Met à jour l'email
-    setPassword(newPassword); // Met à jour le mot de passe
-    setShowInfoPopup(false); // Ferme la popup des informations
+    setUsername(newUsername);
+    setEmail(newEmail);
+    setPassword(newPassword);
+    setShowInfoPopup(false);
   };
 
-  // Fonction pour mettre à jour les formateurs
   const updateTeachers = (newTeacher1: string, newTeacher2: string) => {
-    setTeacher_1(newTeacher1); // Met à jour le formateur 1
-    setTeacher_2(newTeacher2); // Met à jour le formateur 2
-    setShowTeacherPopup(false); // Ferme la popup des formateurs
+    setTeacher_1(newTeacher1);
+    setTeacher_2(newTeacher2);
+    setShowTeacherPopup(false);
   };
 
-  // Fonction pour fermer les popups
   const handleClosePopup = () => {
     setShowTeacherPopup(false);
     setShowInfoPopup(false);
@@ -77,7 +72,6 @@ function AdminPage() {
 
   return (
     <div className="admin-page">
-      {/* En-tête de la page avec le logo et le sprite */}
       <div className="admin-header">
         <img src={logo} alt="Logo" className="logo" />
         <img
@@ -87,9 +81,7 @@ function AdminPage() {
         />
       </div>
 
-      {/* Contenu principal divisé en deux colonnes */}
       <div className="left-and-right-side">
-        {/* Colonne gauche */}
         <div className="left-side">
           <h2 className="level-quest">Level 2 Quête 3</h2>
           <button
@@ -102,7 +94,7 @@ function AdminPage() {
           <button
             type="button"
             className="information-button"
-            onClick={() => navigate("/profile/information")} // Navigation vers une autre page
+            onClick={() => navigate("/profile/information")}
           >
             Mes informations
           </button>
@@ -115,18 +107,17 @@ function AdminPage() {
           <button
             type="button"
             className="left-modification-button"
-            onClick={() => setShowTeacherPopup(true)} // Affiche la popup des formateurs
+            onClick={() => setShowTeacherPopup(true)}
           >
             Modifier mes formateurs
           </button>
         </div>
 
-        {/* Colonne droite */}
         <div className="right-side">
           <button
             type="button"
             className="button-modification-photo"
-            onClick={() => navigate("/profile/modification-photo")} // Navigation vers la page de modification de photo
+            onClick={() => navigate("/profile/modification-photo")}
           >
             MODIFIER MA PHOTO DE PROFIL
           </button>
@@ -141,21 +132,20 @@ function AdminPage() {
           <button
             type="button"
             className="right-modification-button"
-            onClick={() => setShowInfoPopup(true)} // Affiche la popup des informations
+            onClick={() => setShowInfoPopup(true)}
           >
             Modifier mes informations
           </button>
           <button
             type="button"
             className="game-button"
-            onClick={() => navigate("/game")} // Navigation vers la page du jeu
+            onClick={() => navigate("/game")}
           >
             Jouer
           </button>
         </div>
       </div>
 
-      {/* Popup pour modifier les formateurs */}
       {showTeacherPopup && (
         <div
           className="popup-overlay"
@@ -170,7 +160,7 @@ function AdminPage() {
             <button
               type="button"
               className="close-button"
-              onClick={handleClosePopup} // Bouton pour fermer la popup
+              onClick={handleClosePopup}
             >
               ×
             </button>
@@ -179,7 +169,6 @@ function AdminPage() {
         </div>
       )}
 
-      {/* Popup pour modifier les informations utilisateur */}
       {showInfoPopup && (
         <div
           className="popup-overlay"
