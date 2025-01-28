@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./EditInformations.css";
 
-// Définition du type des props pour le composant
 type EditInformationsProps = {
   updateUserInformation: (
     username: string,
@@ -11,19 +10,17 @@ type EditInformationsProps = {
 };
 
 function EditInformations({ updateUserInformation }: EditInformationsProps) {
-  const [username, setUsername] = useState(""); // État pour le pseudo
-  const [email, setEmail] = useState(""); // État pour l'email
-  const [password, setPassword] = useState(""); // État pour le mot de passe
-  const [message, setMessage] = useState(""); // État pour afficher un message de feedback (succès ou erreur)
-  const [isLoading, setIsLoading] = useState(false); // État pour gérer l'indicateur de chargement
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const userId = 1;
 
-  // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Validation des champs : tous doivent être remplis
     if (!email || !password || !username) {
       setMessage("Veuillez remplir les trois champs.");
       return;
@@ -67,7 +64,6 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
   return (
     <div>
       <form onSubmit={handleSubmit} className="form-edit-informations">
-        {/* Champ pour le pseudo */}
         <label htmlFor="Pseudo" className="label-edit-informations">
           Pseudo :
           <input
@@ -80,7 +76,6 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
         </label>
         <br />
 
-        {/* Champ pour le mot de passe */}
         <label htmlFor="Password">
           Password :
           <input
@@ -93,7 +88,6 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
         </label>
         <br />
 
-        {/* Champ pour l'email */}
         <label htmlFor="Email">
           Email :
           <input
@@ -105,8 +99,6 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
           />
         </label>
         <br />
-
-        {/* Bouton de soumission */}
         <button
           type="submit"
           disabled={isLoading}

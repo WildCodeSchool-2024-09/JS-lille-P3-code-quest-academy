@@ -1,4 +1,12 @@
-/* Overlay */
+:root {
+  --primary-color: #e54d2e;
+  --primary-color-dark: #853a2d;
+  --bg-color: #fff8f7;
+  --bg-color-dark: #1f1513;
+  --text-color: #d13415;
+  --text-color-dark: #ff977d;
+}
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -22,7 +30,6 @@
   }
 }
 
-/* Popup Content */
 .popup-content {
   background: #fff;
   border-radius: 8px;
@@ -45,7 +52,6 @@
   }
 }
 
-/* Close Button */
 .close-button {
   position: absolute;
   top: 10px;
@@ -61,7 +67,6 @@
   color: #000;
 }
 
-/* Form Styles */
 .form-editteacher {
   display: flex;
   flex-direction: column;
@@ -70,7 +75,6 @@
   margin: auto;
 }
 
-/* Styles pour les labels */
 .first-label-teacher,
 .second-label-teacher {
   font-size: 14px;
@@ -88,13 +92,11 @@
   border-radius: 4px;
 }
 
-/* Effet au survol des champs */
 .first-input-teacher:hover,
 .second-input-teacher:hover {
   border-color: #888;
 }
 
-/* Effet au focus sur les champs */
 .first-input-teacher:focus,
 .second-input-teacher:focus {
   border-color: #007bff;
@@ -122,34 +124,32 @@ input:focus {
 }
 .button-sumbmit-teacher {
   padding: 10px;
-  background-color: #ff7f50; /* Corail pour un fond plus vif */
-  color: #ffffff; /* Blanc pour le texte */
-  border: 2px solid #ff6347; /* Tomate pour la bordure */
-  border-radius: 6px; /* Bordure arrondie */
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: 2px solid var(--primary-color-dark);
+  border-radius: 6px;
   cursor: pointer;
   width: 100%;
-  font-family: "Press Start 2P", cursive; /* Police rétro */
+  font-family: "Press Start 2P", cursive;
   text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0
-    #000; /* Ombre pour l'effet 16 bits */
+    #000;
 }
 
 .button-sumbmit-teacher:hover {
-  background-color: #ff6347; /* Change de couleur au survol pour effet interactif */
+  background-color: var(--primary-color-dark);
 }
 
 .button-sumbmit-teacher:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
-  color: #666666; /* Couleur grise pour le texte désactivé */
+  color: #666666;
 }
 
-/* Error Messages */
 .error-message {
   color: red;
   font-size: 12px;
 }
 
-/* Success and Error Feedback */
 .message-teacher {
   padding: 10px;
   margin-top: 20px;
@@ -160,7 +160,7 @@ input:focus {
 
 .message-teacher.success {
   color: #155724;
-  background-color: #d4edda;
+  background-color: var(--bg-color);
   border-color: #c3e6cb;
 }
 
