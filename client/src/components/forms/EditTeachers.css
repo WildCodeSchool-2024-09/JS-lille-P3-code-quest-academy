@@ -58,7 +58,7 @@
   color: #000;
 }
 
-.form-editteacher {
+.form-edit-teacher {
   display: flex;
   flex-direction: column;
   gap: 10px;
