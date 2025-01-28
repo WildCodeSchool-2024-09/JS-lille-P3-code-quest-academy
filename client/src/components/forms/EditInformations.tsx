@@ -108,7 +108,7 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
         </button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && <p className="message-success-info">{message}</p>}
     </div>
   );
 }

@@ -1,12 +1,3 @@
-:root {
-  --primary-color: #e54d2e;
-  --primary-color-dark: #853a2d;
-  --bg-color: #fff8f7;
-  --bg-color-dark: #1f1513;
-  --text-color: #d13415;
-  --text-color-dark: #ff977d;
-}
-
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -131,8 +122,8 @@ input:focus {
   cursor: pointer;
   width: 100%;
   font-family: "Press Start 2P", cursive;
-  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0
-    #000;
+  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .button-sumbmit-teacher:hover {
