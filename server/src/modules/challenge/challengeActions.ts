@@ -37,24 +37,4 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
-// The A of BREAD - Add (Create) operation
-// const add: RequestHandler = async (req, res, next) => {
-//   try {
-//     // Extract the challenge data from the request body
-//     const newChallenge = {
-//       title: req.body.title,
-//       user_id: req.body.user_id,
-//     };
-
-//     // Create the challenge
-//     const insertId = await challengeRepository.create(newChallenge);
-
-//     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
-//     res.status(201).json({ insertId });
-//   } catch (err) {
-//     // Pass any errors to the error-handling middleware
-//     next(err);
-//   }
-// };
-
 export default { browse, read };

@@ -1,15 +1,7 @@
 import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
-
-type Account = {
-  id: number;
-  username: string;
-  email: string;
-  hashed_password: string;
-  firstTeacher: string;
-  secondTeacher: string;
-};
+import type { Account } from "../../types/types";
 
 class AccountRepository {
   async create(account: Omit<Account, "id">) {

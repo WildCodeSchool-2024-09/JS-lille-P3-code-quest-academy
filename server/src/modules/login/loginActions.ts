@@ -9,7 +9,7 @@ const login: RequestHandler = async (req, res, next) => {
     );
 
     if (user == null) {
-      res.sendStatus(422);
+      res.status(422).json({ message: "Adresse e-mail inconnue." });
       return;
     }
 
@@ -21,9 +21,9 @@ const login: RequestHandler = async (req, res, next) => {
     if (verified) {
       const { hashed_password, ...userWithoutHashedPassword } = user;
 
-      res.json(userWithoutHashedPassword);
+      res.json({ message: "Connexion réussie", userWithoutHashedPassword });
     } else {
-      res.sendStatus(422);
+      res.status(422).json({ message: "Mot de passe incorrect." });
     }
   } catch (err) {
     next(err);
