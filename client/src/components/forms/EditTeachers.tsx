@@ -2,12 +2,15 @@ import { useState } from "react";
 import "./EditTeachers.css";
 
 type EditTeacherProps = {
-  updateTeacherInformation: (teacher_1: string, teacher_2: string) => void;
+  updateTeacherInformation: (
+    firstTeacher: string,
+    secondTeacher: string,
+  ) => void;
 };
 
 function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
-  const [teacher_1, setTeacher_1] = useState("");
-  const [teacher_2, setTeacher_2] = useState("");
+  const [firstTeacher, setfirstTeacher] = useState("");
+  const [secondTeacher, setsecondTeacher] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,7 +19,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!teacher_1 || !teacher_2) {
+    if (!firstTeacher || !secondTeacher) {
       setMessage("Veuillez remplir les deux champs.");
       return;
     }
@@ -32,7 +35,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ teacher_1, teacher_2 }),
+          body: JSON.stringify({ firstTeacher, secondTeacher }),
         },
       );
 
@@ -40,13 +43,13 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
 
       if (response.ok) {
         setMessage(
-          `${teacher_1} et ${teacher_2} sont désormais vos enseignants !`,
+          `${firstTeacher} et ${secondTeacher} sont désormais vos enseignants !`,
         );
 
-        updateTeacherInformation(teacher_1, teacher_2);
+        updateTeacherInformation(firstTeacher, secondTeacher);
 
-        setTeacher_1("");
-        setTeacher_2("");
+        setfirstTeacher("");
+        setsecondTeacher("");
       } else {
         setMessage(data.message || "Une erreur est survenue.");
       }
@@ -61,25 +64,25 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
   return (
     <div>
       <form onSubmit={handleSubmit} className="form-edit-teacher">
-        <label htmlFor="teacher_1" className="first-label-teacher">
+        <label htmlFor="firstTeacher" className="first-label-teacher">
           Enseignant 1 :
           <input
             type="text"
             className="first-input-teacher"
-            id="teacher_1"
-            value={teacher_1}
-            onChange={(e) => setTeacher_1(e.target.value)}
+            id="firstTeacher"
+            value={firstTeacher}
+            onChange={(e) => setfirstTeacher(e.target.value)}
           />
         </label>
         <br />
-        <label htmlFor="teacher_2" className="second-label-teacher">
+        <label htmlFor="secondTeacher" className="second-label-teacher">
           Enseignant 2 :
           <input
             type="text"
             className="second-input-teacher"
             id="second-input-teacher"
-            value={teacher_2}
-            onChange={(e) => setTeacher_2(e.target.value)}
+            value={secondTeacher}
+            onChange={(e) => setsecondTeacher(e.target.value)}
           />
         </label>
         <br />

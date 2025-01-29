@@ -7,8 +7,8 @@ type Account = {
   username: string;
   email: string;
   password: string;
-  teacher_1: string;
-  teacher_2: string;
+  firstTeacher: string;
+  secondTeacher: string;
 };
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -54,8 +54,8 @@ const edit: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
-      teacher_1: account.teacher_1,
-      teacher_2: account.teacher_2,
+      firstTeacher: account.firstTeacher,
+      secondTeacher: account.secondTeacher,
     });
 
     if (affectedRows === 0) {
@@ -98,8 +98,8 @@ const editInfos: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
-      teacher_1: account.teacher_1,
-      teacher_2: account.teacher_2,
+      firstTeacher: account.firstTeacher,
+      secondTeacher: account.secondTeacher,
     });
 
     if (affectedRows === 0) {
@@ -120,9 +120,9 @@ const editInfos: RequestHandler = async (req, res, next) => {
 const editTrainers: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
-    const { teacher_1, teacher_2 } = req.body;
+    const { firstTeacher, secondTeacher } = req.body;
 
-    if (!teacher_1 || !teacher_2) {
+    if (!firstTeacher || !secondTeacher) {
       res.status(400).json({
         success: false,
         message: "Tous les champs doivent être remplis",
@@ -138,8 +138,8 @@ const editTrainers: RequestHandler = async (req, res, next) => {
 
     const affectedRows = await accountRepository.updateTrainers({
       ...account,
-      teacher_1,
-      teacher_2,
+      firstTeacher,
+      secondTeacher,
     });
 
     if (affectedRows === 0) {
@@ -150,7 +150,7 @@ const editTrainers: RequestHandler = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Formateurs mis à jour avec succès",
-      data: { id: accountId, teacher_1, teacher_2 },
+      data: { id: accountId, firstTeacher, secondTeacher },
     });
   } catch (err) {
     next(err);
@@ -192,8 +192,8 @@ const add: RequestHandler = async (req, res, next) => {
       username: req.body.username,
       email: req.body.email,
       hashed_password: req.body.hashed_password,
-      teacher_1: req.body.teacher_1,
-      teacher_2: req.body.teacher_2,
+      firstTeacher: req.body.firstTeacher,
+      secondTeacher: req.body.secondTeacher,
     };
 
     const insertId = await accountRepository.create(newAccount);

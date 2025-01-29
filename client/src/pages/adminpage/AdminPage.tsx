@@ -12,8 +12,8 @@ type User = {
   username: string;
   email: string;
   password: string;
-  teacher_1: string;
-  teacher_2: string;
+  firstTeacher: string;
+  secondTeacher: string;
 };
 
 function AdminPage() {
@@ -21,8 +21,8 @@ function AdminPage() {
   const [username, setUsername] = useState("Chargement...");
   const [email, setEmail] = useState("Chargement...");
   const [password, setPassword] = useState("********");
-  const [teacher_1, setTeacher_1] = useState("Chargement...");
-  const [teacher_2, setTeacher_2] = useState("Chargement...");
+  const [firstTeacher, setfirstTeacher] = useState("Chargement...");
+  const [secondTeacher, setsecondTeacher] = useState("Chargement...");
   const [showTeacherPopup, setShowTeacherPopup] = useState(false);
   const [showInfoPopup, setShowInfoPopup] = useState(false);
   const userId = 1;
@@ -39,8 +39,8 @@ function AdminPage() {
         setUsername(data.username);
         setEmail(data.email);
         setPassword(data.password);
-        setTeacher_1(data.teacher_1);
-        setTeacher_2(data.teacher_2);
+        setfirstTeacher(data.firstTeacher);
+        setsecondTeacher(data.secondTeacher);
       })
       .catch((error) => {
         console.error("Erreur :", error);
@@ -60,8 +60,8 @@ function AdminPage() {
   };
 
   const updateTeachers = (newTeacher1: string, newTeacher2: string) => {
-    setTeacher_1(newTeacher1);
-    setTeacher_2(newTeacher2);
+    setfirstTeacher(newTeacher1);
+    setsecondTeacher(newTeacher2);
     setShowTeacherPopup(false);
   };
 
@@ -99,10 +99,10 @@ function AdminPage() {
             Mes informations
           </button>
           <h2 className="first-pseudo">
-            PSEUDO FORMATEUR 1 : <h3>{teacher_1}</h3>
+            PSEUDO FORMATEUR 1 : <h3>{firstTeacher}</h3>
           </h2>
           <h2 className="second-pseudo">
-            PSEUDO FORMATEUR 2 : <h3>{teacher_2}</h3>
+            PSEUDO FORMATEUR 2 : <h3>{secondTeacher}</h3>
           </h2>
           <button
             type="button"
