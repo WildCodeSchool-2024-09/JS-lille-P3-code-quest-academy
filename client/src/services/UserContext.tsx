@@ -24,6 +24,7 @@ interface AccountProps {
   username: string;
   email: string;
   password: string;
+  is_admin: boolean;
   teacher_1: string;
   teacher_2: string;
 }

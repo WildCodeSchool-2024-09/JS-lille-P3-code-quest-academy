@@ -40,7 +40,7 @@ CREATE TABLE progress (
 );
 INSERT INTO account (username, email, hashed_password, is_admin)
 VALUES
-  ("admin", "admin@gmail.com", "admin", 1),
+  ("admin", "admin@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$plUwfAAwGqdtJgSlYyA/yQ$gEmsZmb+wa8RMvEnRHvJhnYP7mZM96PscaAc4tbou7Y", 1),
   ("user1", "user1@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$OMtvcBoC8Sw1yJRMqeEMBA$+c8sAtpJZ8VcbN52geHzSegdpFIkZunbfT2HH9okLPw", 0);
 INSERT INTO room (boss_name, boss_img_src, fight_gif_src, room_img_src)
 VALUES

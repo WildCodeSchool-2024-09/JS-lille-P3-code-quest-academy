@@ -21,7 +21,7 @@ function AdminPage() {
           <button
             type="button"
             className="gestion-button"
-            onClick={() => navigate("/profile/admin/manage")}
+            onClick={() => navigate("/admin/manage")}
           >
             Gestion des Utilisateurs
           </button>
