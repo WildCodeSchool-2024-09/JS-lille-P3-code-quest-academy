@@ -38,6 +38,7 @@ const read: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
+    const account = await accountRepository.read(accountId);
     const { username, email, hashed_password } = req.body;
 
     if (!username || !email || !hashed_password) {
