@@ -60,7 +60,7 @@ class AccountRepository {
       "UPDATE account SET firstTeacher = ?, secondTeacher = ? WHERE id = ?",
       [account.firstTeacher, account.secondTeacher, account.id],
     );
-    return result.affectedRows; 
+    return result.affectedRows;
   }
 
   async delete(id: number) {
