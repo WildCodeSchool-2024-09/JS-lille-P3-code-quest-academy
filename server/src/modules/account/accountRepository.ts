@@ -7,6 +7,8 @@ type Account = {
   username: string;
   email: string;
   hashed_password: string;
+  firstTeacher: string;
+  secondTeacher: string;
 };
 
 class AccountRepository {
@@ -42,6 +44,22 @@ class AccountRepository {
     const [result] = await databaseClient.query<Result>(
       "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
       [account.username, account.email, account.hashed_password, account.id],
+    );
+    return result.affectedRows;
+  }
+
+  async updateInfos(account: Account) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
+      [account.username, account.email, account.hashed_password, account.id],
+    );
+    return result.affectedRows;
+  }
+
+  async updateTrainers(account: Account) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE account SET firstTeacher = ?, secondTeacher = ? WHERE id = ?",
+      [account.firstTeacher, account.secondTeacher, account.id],
     );
     return result.affectedRows;
   }

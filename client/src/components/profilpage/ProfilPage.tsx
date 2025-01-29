@@ -61,10 +61,10 @@ function ProfilPage() {
             game
           </button>
           <h1 className="first-pseudo">
-            PSEUDO FORMATEUR 1 : {user?.teacher_1}{" "}
+            PSEUDO FORMATEUR 1 : {user?.firstTeacher}{" "}
           </h1>
           <h1 className="second-pseudo">
-            PSEUDO FORMATEUR 2 : {user?.teacher_2}
+            PSEUDO FORMATEUR 2 : {user?.secondTeacher}
           </h1>
           <button
             type="button"
