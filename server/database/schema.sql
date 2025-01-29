@@ -46,12 +46,12 @@ VALUES
 
 INSERT INTO room (boss_name, boss_img_src, fight_video_src, room_img_src)
 VALUES
-  ("Le seigneur des balises", "boss/boss-html.png", "../../src/assets/videos/html-boss-fight.mp4", "html-room.png"),
-  ("Gridzilla", "boss/boss-css.png", "../src/assets/videos/css-boss-fight.mp4", "css-room.png"),
-  ("DOM-inator", "boss/boss-js.png", "../src/assets/videos/js-boss-fight.mp4", "js-room.png"),
-  ("Captain Hook", "boss/boss-react.png", "../src/assets/videos/react-boss-fight.mp4", "react-room.png"),
-  ("Nodeferatus", "boss/boss-node.png", "../src/assets/videos/node-boss-fight.mp4", "node-room.png"),
-  ("Soufiane Maski", "boss/boss-sql.png", "../src/assets/videos/sql-boss-fight.mp4", "sql-room.png");
+  ("Le seigneur des balises", "../../src/assets/images/boss/boss-html.png", "./src/assets/videos/html-boss-fight.mp4", "../../src/assets/images/html-room.png"),
+  ("Gridzilla", "../../src/assets/images/boss/boss-css.png", "../src/assets/videos/css-boss-fight.mp4", "../../src/assets/images/css-room.png"),
+  ("DOM-inator", "../../src/assets/images/boss/boss-js.png", "../src/assets/videos/js-boss-fight.mp4", "../../src/assets/images/js-room.png"),
+  ("Captain Hook", "../../src/assets/images/boss/boss-react.png", "../src/assets/videos/react-boss-fight.mp4", "../../src/assets/images/react-room.png"),
+  ("Nodeferatus", "../../src/assets/images/boss/boss-node.png", "../src/assets/videos/node-boss-fight.mp4", "../../src/assets/images/node-room.png"),
+  ("Soufiane Maski", "../../src/assets/images/boss/boss-sql.png", "../src/assets/videos/sql-boss-fight.mp4", "../../src/assets/images/sql-room.png");
 
 INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4, room_id)
 VALUES
@@ -59,7 +59,7 @@ VALUES
   ("HTML", "guideline", "Cette balise est comme une porte vers une autre page. Elle utilise une lettre simple, souvent associée à 'adresse' ou 'ancre' en anglais.", "<a>", "quizz", "Quelle est la balise correcte pour créer un lien hypertexte", "<link>", "<href>", "<a>", "<anchor>", 1),
   ("HTML", "guideline", "Cet attribut est composé de deux lettres simples et est souvent utilisé pour dire 'identité'.", "id", "prompt", "Quel attribut est utilisé pour spécifier un identifiant unique à un élément HTML ?", "null", "null", "null", "null", 1),
   ("HTML", "guideline", "Cet attribut sert à 'parler' de l'image quand elle ne peut pas être vue. Pensez au mot 'alternative'.", "Fournir une description alternative pour l’image si elle ne peut pas être affichée.", "prompt",  "Quelle est la signification de l’attribut alt dans la balise <img> ?", "description", "alternative", "null", "null", 1),
-  ("HTML", "Est-tu prêt à combattre le boss HTML ?", "hint", "soluce", "boss", "question", null, null, null, null, 1),
+  ("Transition", "Est-tu prêt à combattre le boss HTML ?", "hint", "soluce", "boss", "question", null, null, null, null, 1),
   ("CSS", "guideline", "Cette propriété est aussi simple que son nom. Elle correspond au mot anglais pour 'couleur'.", "color", "quizz", "Quelle propriété CSS est utilisée pour changer la couleur du texte ?", "background-color", "text-color", "font-color", "color", 2),
   ("CSS", "guideline", "Cette propriété commence par la dernière lettre de l'alphabet et indique un 'niveau' ou un 'index' pour gérer la superposition des éléments.", "z-index", "quizz", "Quelle propriété CSS permet de contrôler l’ordre d’affichage des éléments empilés les uns sur les autres ?", "stack-order", "z-index", "order", "visibility", 2),
   ("CSS", "guideline", "Cette syntaxe utilise le mot 'var' pour indiquer qu'il s'agit d'une variable, suivi d'un nom entre parenthèses qui commence toujours par deux tirets '--'.", "var(--nom-de-la-variable)", "quizz", "Quelle syntaxe est correcte pour utiliser une variable CSS ?", "$nom-de-la-variable", "var(--nom-de-la-variable)", "variable(--nom-de-la-variable)", "%nom-de-la-variable", 2),
@@ -73,4 +73,4 @@ VALUES
 INSERT INTO progress (user_id, room_id, challenge_id)
 VALUES
   (1, 1, 1),
-  (2, 1, 5);
+  (2, 2, 5);

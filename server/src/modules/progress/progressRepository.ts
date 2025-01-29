@@ -13,7 +13,7 @@ class ProgressRepository {
     const [rows] = await databaseClient.query<Rows>("select * from progress");
     return rows as Progress[];
   }
-  //sert à recuperer les infos de l'utilisateur connecté pour les stocker dans userContext
+  //we get infos from connected user and store it into userContext
   async read(userId: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM progress WHERE user_id = ?",
@@ -30,7 +30,7 @@ class ProgressRepository {
     return result.affectedRows;
   }
 
-  // on recupère toutes les infos du jeu pour un utilisateur donné par rapport à sa progression
+  // we get all game infos for a user by his progression
   async getPlayerProgress(userId: number, roomId: number, challengeId: number) {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT *

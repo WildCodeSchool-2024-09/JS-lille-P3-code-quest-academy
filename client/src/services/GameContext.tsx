@@ -47,7 +47,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [buttonStyles, setButtonStyles] = useState({});
   const videoRef = useRef(null);
 
-  // récuperer le challenge et la room du user actuel
+  // get challenge and room from actual user
   const userContext = useContext(UserContext);
 
   if (!userContext) {
@@ -56,7 +56,7 @@ export const Provider = ({ children }: ProviderProps) => {
 
   const { user, progress, setProgress } = userContext;
   //----------------------------------------------------------
-  // FETCH DU PROGRESS DE L'UTILISATEUR CONNECTE SELON SON ID, LA ROOM ET LE CHALLENGE
+  // FETCH CONNECTED USER'S PROGRESS BY IS ID, ROOM AND CHALLENGE
   useEffect(() => {
     if (progress && user) {
       fetch(

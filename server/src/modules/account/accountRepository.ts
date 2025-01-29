@@ -17,13 +17,13 @@ class AccountRepository {
       [account.username, account.email, account.hashed_password],
     );
 
-    // on recupère le dernier id inséré
+    // Get the last inserted id
     const [rows] = await databaseClient.query<Rows>(
       "SELECT LAST_INSERT_ID() AS user_id",
     );
     const userId = rows[0].user_id;
 
-    // on ajoute un progress de base pour l'utilisateur qui viens de s'inscrire
+    // we add a base progress for new users
     await databaseClient.query(
       `INSERT INTO progress (user_id, room_id, challenge_id),
       VALUES (?, ?, ?);`,

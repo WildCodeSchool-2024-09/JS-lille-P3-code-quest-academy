@@ -29,7 +29,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [progress, setProgress] = useState<ProgressProps | null>(null);
 
   //----------------------------------------------------------
-  // FETCH DE LA TABLE PROGRESS QUAND L'UTILISATEUR EST CONNECTE
+  // FETCH PROGRESS TABLE WHEN USER IS CONNECTED
 
   useEffect(() => {
     if (!user) {

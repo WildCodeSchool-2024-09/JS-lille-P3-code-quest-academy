@@ -96,8 +96,8 @@ function GameInstructions() {
 
   return (
     <>
-      {/* verifie si actualChallenge existe pour afficher le reste */}
-      {/* remplace le if (!actualChallenge) */}
+      {/* check if actualChallenge exist to display the content */}
+      {/* replace "if (!actualChallenge)" */}
       {actualChallenge && (
         <div className="instructions-container">
           challenge id :{actualChallenge.id} <br />
