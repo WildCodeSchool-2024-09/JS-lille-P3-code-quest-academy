@@ -39,6 +39,7 @@ class AccountRepository {
     );
     return rows[0] as Account;
   }
+
   async update(account: Account) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",

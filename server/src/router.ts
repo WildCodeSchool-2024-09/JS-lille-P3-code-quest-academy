@@ -13,14 +13,10 @@ router.get("/api/challenges", challengeActions.browse);
 router.get("/api/challenges/:id", challengeActions.read);
 
 // Define account-related routes
-
 import accountActions from "./modules/account/accountActions";
 
 router.get("/api/accounts", accountActions.browse);
 router.get("/api/accounts/:id", accountActions.read);
-router.put("/api/accounts/:id/trainers", accountActions.editTrainers);
-router.put("/api/accounts/:id/infos", accountActions.editInfos);
-router.post("/api/accounts", accountActions.add);
 router.put("/api/accounts/:id", accountActions.edit);
 router.post("/api/accounts", accountActions.hashPassword, accountActions.add);
 router.delete("/api/accounts/:id", accountActions.destroy);

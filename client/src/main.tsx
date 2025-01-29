@@ -8,8 +8,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 
-import AdminPage from "./pages/adminpage/AdminPage";
-import ProfilPage from "./pages/profilpage/ProfilPage";
+import AdminPage from "./components/adminpage/AdminPage";
+import ProfilPage from "./components/profilpage/ProfilPage";
 
 import GameBoard from "./pages/game/GameBoard";
 import HomePage from "./pages/home/HomePage";

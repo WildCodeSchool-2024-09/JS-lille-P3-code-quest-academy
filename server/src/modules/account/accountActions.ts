@@ -48,7 +48,6 @@ const edit: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    const account = await accountRepository.read(accountId);
     const affectedRows = await accountRepository.update({
       id: accountId,
       username,
@@ -215,13 +214,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default {
-  browse,
-  read,
-  editTrainers,
-  edit,
-  editInfos,
-  add,
-  destroy,
-  hashPassword,
-};
+export default { browse, read, edit, add, destroy, hashPassword };

@@ -6,7 +6,11 @@ function GameDisplay() {
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {
-    return <div>Error: gameContext is not available</div>;
+    return (
+      <div>
+        Error: gameContext is not available
+      </div>
+    );
   }
 
   return (
