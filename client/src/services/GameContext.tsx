@@ -45,8 +45,8 @@ interface AccountProps {
   username: string;
   email: string;
   password: string;
-  teacher_1: string;
-  teacher_2: string;
+  firstTeacher: string;
+  secondTeacher: string;
 }
 
 interface ProviderProps {

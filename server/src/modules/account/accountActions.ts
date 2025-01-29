@@ -2,6 +2,15 @@ import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import accountRepository from "./accountRepository";
 
+type Account = {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  firstTeacher: string;
+  secondTeacher: string;
+};
+
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const accounts = await accountRepository.readAll();
@@ -29,6 +38,7 @@ const read: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
+    const account = await accountRepository.read(accountId);
     const { username, email, hashed_password } = req.body;
 
     if (!username || !email || !hashed_password) {
@@ -44,6 +54,8 @@ const edit: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
+      firstTeacher: account.firstTeacher,
+      secondTeacher: account.secondTeacher,
     });
 
     if (affectedRows === 0) {
@@ -63,6 +75,84 @@ const edit: RequestHandler = async (req, res, next) => {
     });
   } catch (err) {
     console.error("Erreur lors de la mise à jour de l'utilisateur", err);
+    next(err);
+  }
+};
+
+const editInfos: RequestHandler = async (req, res, next) => {
+  try {
+    const accountId = Number(req.params.id);
+    const { username, email, hashed_password } = req.body;
+
+    if (!username || !email || !hashed_password) {
+      res.status(400).json({
+        success: false,
+        message: "Tous les champs doivent être remplis",
+      });
+      return;
+    }
+
+    const account = await accountRepository.read(accountId);
+    const affectedRows = await accountRepository.updateInfos({
+      id: accountId,
+      username,
+      email,
+      hashed_password,
+      firstTeacher: account.firstTeacher,
+      secondTeacher: account.secondTeacher,
+    });
+
+    if (affectedRows === 0) {
+      res.status(404).json({ success: false, message: "Compte non trouvé" });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Informations mises à jour avec succès",
+      data: { id: accountId, username, email, hashed_password },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const editTrainers: RequestHandler = async (req, res, next) => {
+  try {
+    const accountId = Number(req.params.id);
+    const { firstTeacher, secondTeacher } = req.body;
+
+    if (!firstTeacher || !secondTeacher) {
+      res.status(400).json({
+        success: false,
+        message: "Tous les champs doivent être remplis",
+      });
+      return;
+    }
+
+    const account = await accountRepository.read(accountId);
+    if (!account) {
+      res.status(404).json({ success: false, message: "Compte non trouvé" });
+      return;
+    }
+
+    const affectedRows = await accountRepository.updateTrainers({
+      ...account,
+      firstTeacher,
+      secondTeacher,
+    });
+
+    if (affectedRows === 0) {
+      res.status(404).json({ success: false, message: "Compte non trouvé" });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Formateurs mis à jour avec succès",
+      data: { id: accountId, firstTeacher, secondTeacher },
+    });
+  } catch (err) {
     next(err);
   }
 };
@@ -98,16 +188,13 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const { username, email, hashed_password } = req.body;
-
-    if (!username || !email || !hashed_password) {
-      res.status(400).json({
-        success: false,
-        message: "Tous les champs sont requis",
-      });
-    }
-
-    const newAccount = { username, email, hashed_password };
+    const newAccount = {
+      username: req.body.username,
+      email: req.body.email,
+      hashed_password: req.body.hashed_password,
+      firstTeacher: req.body.firstTeacher,
+      secondTeacher: req.body.secondTeacher,
+    };
 
     const insertId = await accountRepository.create(newAccount);
     res.status(201).json({ success: true, insertId });

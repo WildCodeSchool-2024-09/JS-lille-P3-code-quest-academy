@@ -25,8 +25,8 @@ interface AccountProps {
   email: string;
   password: string;
   is_admin: boolean;
-  teacher_1: string;
-  teacher_2: string;
+  firstTeacher: string;
+  secondTeacher: string;
 }
 
 interface ProgressProps {
