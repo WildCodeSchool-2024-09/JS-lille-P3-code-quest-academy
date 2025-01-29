@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type {
   AccountProps,
   ChallengeProps,
@@ -28,6 +28,7 @@ interface ContextValue {
   user: AccountProps | null;
   progress: ProgressProps | null;
   setProgress: React.Dispatch<React.SetStateAction<ProgressProps | null>>;
+  videoRef: React.RefObject<HTMLVideoElement>;
 }
 
 interface ProviderProps {
@@ -44,6 +45,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [answerStyles, setAnswerStyles] = useState({});
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [buttonStyles, setButtonStyles] = useState({});
+  const videoRef = useRef(null);
 
   // récuperer le challenge et la room du user actuel
   const userContext = useContext(UserContext);
@@ -85,6 +87,7 @@ export const Provider = ({ children }: ProviderProps) => {
         user,
         progress,
         setProgress,
+        videoRef,
       }}
     >
       {children}

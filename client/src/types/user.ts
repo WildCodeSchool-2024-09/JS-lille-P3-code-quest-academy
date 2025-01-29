@@ -36,4 +36,5 @@ export type ChallengeProps = {
   rep3: string;
   rep4: string;
   room_id: number;
+  room_img_src: string;
 };

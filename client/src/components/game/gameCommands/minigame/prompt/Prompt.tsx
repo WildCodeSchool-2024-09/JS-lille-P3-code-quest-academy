@@ -6,7 +6,7 @@ function Prompt() {
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {
-    return <div>Error: Context is not available</div>;
+    return <div>Error: gameContext is not available</div>;
   }
 
   const {

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
 import "./GameInstructions.css";
 
@@ -21,7 +21,27 @@ function GameInstructions() {
     setButtonStyles,
     setFeedbackMessage,
     setAnswerStyles,
+    videoRef,
   } = gameContext;
+
+  const [buttonVisible, setButtonVisible] = useState("");
+
+  useEffect(() => {
+    if (actualChallenge?.type === "boss") {
+      setButtonVisible("visible");
+    } else {
+      setButtonVisible("");
+    }
+  }, [actualChallenge]);
+
+  const handleLaunchBoss = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+    setButtonVisible("");
+    setIsButtonEnabled(true);
+    setButtonStyles("button-enabled");
+  };
 
   const handleProgressUpdate = async () => {
     setFeedbackMessage("");
@@ -94,6 +114,13 @@ function GameInstructions() {
             disabled={!isButtonEnabled}
           >
             Suivant
+          </button>
+          <button
+            className={`boss-button ${buttonVisible}`}
+            type="button"
+            onClick={handleLaunchBoss}
+          >
+            Lancer le combat
           </button>
           <img
             className="help-img"

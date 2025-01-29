@@ -40,7 +40,7 @@ class ProgressRepository {
       WHERE p.user_id = ? AND p.room_id = ? AND p.challenge_id = ?`,
       [userId, roomId, challengeId],
     );
-    return rows;
+    return rows[0];
   }
 }
 
