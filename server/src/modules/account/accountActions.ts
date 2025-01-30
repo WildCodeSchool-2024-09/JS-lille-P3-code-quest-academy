@@ -2,15 +2,6 @@ import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import accountRepository from "./accountRepository";
 
-type Account = {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  firstTeacher: string;
-  secondTeacher: string;
-};
-
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const accounts = await accountRepository.readAll();

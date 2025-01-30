@@ -24,21 +24,28 @@ function GameInstructions() {
     videoRef,
   } = gameContext;
 
-  const [buttonVisible, setButtonVisible] = useState("");
+  const [bossButtonVisible, setBossButtonVisible] = useState("");
 
   useEffect(() => {
     if (actualChallenge?.type === "boss") {
-      setButtonVisible("visible");
+      setBossButtonVisible("visible");
     } else {
-      setButtonVisible("");
+      setBossButtonVisible("");
     }
   }, [actualChallenge]);
+
+  useEffect(() => {
+    if (actualChallenge?.id === 1) {
+      setIsButtonEnabled(true);
+      setButtonStyles("button-enabled");
+    }
+  }, [actualChallenge, setIsButtonEnabled, setButtonStyles]);
 
   const handleLaunchBoss = () => {
     if (videoRef) {
       videoRef.current?.play(); //We use useRef in the context to access the video element
     }
-    setButtonVisible("");
+    setBossButtonVisible("");
     setIsButtonEnabled(true);
     setButtonStyles("button-enabled");
   };
@@ -65,10 +72,9 @@ function GameInstructions() {
 
       const newChallenge = await response.json();
 
-      // Forcer le rechargement via une réinitialisation du contexte ou des dépendances
+      // Force reloading actualChallenge with the incrementation of challenge (put)
       setActualChallenge(newChallenge);
 
-      // Recharge le contexte utilisateur
       await fetchUserProgress();
     } catch (error) {
       console.error(
@@ -100,7 +106,7 @@ function GameInstructions() {
             Suivant
           </button>
           <button
-            className={`boss-button ${buttonVisible}`}
+            className={`boss-button ${bossButtonVisible}`}
             type="button"
             onClick={handleLaunchBoss}
           >
