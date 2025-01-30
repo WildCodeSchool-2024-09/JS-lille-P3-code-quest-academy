@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { GameContext } from "../../../services/GameContext";
+import { GameContext } from "../../../../services/GameContext";
 
 function ImageDisplay() {
   const gameContext = useContext(GameContext);
@@ -40,7 +40,12 @@ function ImageDisplay() {
 
   return (
     <>
-      <video className="gamedisplay-video" ref={videoRef} src={videoSrc}>
+      <video
+        className="gamedisplay-video"
+        ref={videoRef}
+        src={videoSrc}
+        key={videoSrc}
+      >
         <track kind="captions" />
       </video>
     </>

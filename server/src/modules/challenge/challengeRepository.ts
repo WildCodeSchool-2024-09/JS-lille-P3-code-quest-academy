@@ -1,12 +1,6 @@
 import databaseClient from "../../../database/client";
-
 import type { Result, Rows } from "../../../database/client";
-
-type Challenge = {
-  id: number;
-  title: string;
-  user_id: number;
-};
+import type { Challenge } from "../../types/express";
 
 class ChallengeRepository {
   async read(id: number) {

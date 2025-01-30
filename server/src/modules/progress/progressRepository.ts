@@ -1,12 +1,6 @@
 import databaseClient from "../../../database/client";
-
 import type { Result, Rows } from "../../../database/client";
-
-type Progress = {
-  id: number;
-  challenge_id: number;
-  user_id: number;
-};
+import type { Progress } from "../../types/express";
 
 class ProgressRepository {
   async readAll() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { GameContext } from "../../../services/GameContext";
+import { GameContext } from "../../../../services/GameContext";
 
 function ImageDisplay() {
   const gameContext = useContext(GameContext);

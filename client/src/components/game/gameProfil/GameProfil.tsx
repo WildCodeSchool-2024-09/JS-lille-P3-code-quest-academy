@@ -26,7 +26,7 @@ function GameProfil() {
       <div className="profil-container">
         <div className="profil-text">
           <h2>{user?.username}</h2>
-          <p>Niveau {actualChallenge?.room_id}</p>
+          <p>Challenge {actualChallenge?.id}</p>
           <button
             className="profil-button"
             type="button"
