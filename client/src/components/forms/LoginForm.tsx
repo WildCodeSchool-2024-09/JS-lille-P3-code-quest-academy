@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import type { FormEventHandler } from "react";
 import { UserContext } from "../../services/UserContext";
 
@@ -19,10 +19,13 @@ function LoginForm({ closeForm }: LoginFormProps) {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  const [error, setError] = useState<string | null>(null);
+
   const navigate = useNavigate();
 
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
+    setError(null);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/login`,
@@ -37,6 +40,7 @@ function LoginForm({ closeForm }: LoginFormProps) {
           }),
         },
       );
+
       if (response.status === 200) {
         const user = await response.json();
         setUser(user);
@@ -59,6 +63,9 @@ function LoginForm({ closeForm }: LoginFormProps) {
         </button>
       </div>
       <h3 className="form-title">Connexion</h3>
+
+      {error && <p className="form-error">{error}</p>}
+
       <label htmlFor="email-login" className="form-label">
         Email
       </label>

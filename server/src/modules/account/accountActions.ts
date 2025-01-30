@@ -2,15 +2,6 @@ import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import accountRepository from "./accountRepository";
 
-type Account = {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  firstTeacher: string;
-  secondTeacher: string;
-};
-
 const browse: RequestHandler = async (req, res, next) => {
   try {
     const accounts = await accountRepository.readAll();
@@ -39,7 +30,14 @@ const edit: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
     const account = await accountRepository.read(accountId);
-    const { username, email, hashed_password } = req.body;
+    const {
+      username,
+      email,
+      hashed_password,
+      is_admin,
+      firstTeacher,
+      secondTeacher,
+    } = req.body;
 
     if (!username || !email || !hashed_password) {
       res.status(400).json({
@@ -54,8 +52,6 @@ const edit: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
-      firstTeacher: account.firstTeacher,
-      secondTeacher: account.secondTeacher,
     });
 
     if (affectedRows === 0) {
@@ -98,8 +94,6 @@ const editInfos: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
-      firstTeacher: account.firstTeacher,
-      secondTeacher: account.secondTeacher,
     });
 
     if (affectedRows === 0) {
@@ -192,6 +186,7 @@ const add: RequestHandler = async (req, res, next) => {
       username: req.body.username,
       email: req.body.email,
       hashed_password: req.body.hashed_password,
+      is_admin: req.body.is_admin,
       firstTeacher: req.body.firstTeacher,
       secondTeacher: req.body.secondTeacher,
     };
