@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { GameContext } from "../../services/GameContext";
 import { UserContext } from "../../services/UserContext";
 import "./ProfilPage.css";
 import { useNavigate } from "react-router-dom";
@@ -6,15 +7,21 @@ import Logout from "../logout/Logout";
 
 function ProfilPage() {
   const userContext = useContext(UserContext);
-  const [popupLogout, setPopupLogout] = useState(false);
-  const closePopupLogout = () => setPopupLogout(false);
-  const navigate = useNavigate();
+  const gameContext = useContext(GameContext);
+
+  if (!gameContext) {
+    throw new Error("GameContext is null");
+  }
 
   if (!userContext) {
     throw new Error("UserContext is null");
   }
 
   const { user, progress } = userContext;
+  const { actualChallenge } = gameContext;
+  const [popupLogout, setPopupLogout] = useState(false);
+  const closePopupLogout = () => setPopupLogout(false);
+  const navigate = useNavigate();
 
   return (
     <div className="profil-page">
@@ -43,7 +50,8 @@ function ProfilPage() {
         <div className="left-side">
           <h2 className="level-quest">
             {" "}
-            ROOM : {progress?.room_id} CHALLENGE : {progress?.challenge_id}
+            ROOM : {actualChallenge?.room_id} CHALLENGE :{" "}
+            {progress?.challenge_id}
           </h2>
 
           <button

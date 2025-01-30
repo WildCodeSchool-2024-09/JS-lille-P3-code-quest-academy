@@ -8,16 +8,16 @@ function GameCommands() {
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {
-    return <div>Error: Context is not available</div>;
+    return <div>Error: gameContext is not available</div>;
   }
 
-  const { challenge, currentIndex } = gameContext;
+  const { actualChallenge } = gameContext;
 
   return (
     <>
-      {challenge[currentIndex]?.type === "quizz" ? (
+      {actualChallenge?.type === "quizz" ? (
         <Quizz />
-      ) : challenge[currentIndex]?.type === "prompt" ? (
+      ) : actualChallenge?.type === "prompt" ? (
         <Prompt />
       ) : (
         <div className="command-container" />

@@ -1,18 +1,12 @@
 import databaseClient from "../../../database/client";
-
 import type { Result, Rows } from "../../../database/client";
-
-type Challenge = {
-  id: number;
-  title: string;
-  user_id: number;
-};
+import type { Challenge } from "../../types/express";
 
 class ChallengeRepository {
   async read(id: number) {
     // Execute the SQL SELECT query to retrieve a specific challenge by its ID
     const [rows] = await databaseClient.query<Rows>(
-      "select * from challenge where id = ?",
+      "select * from challenge where id = ? order by id asc limit 1",
       [id],
     );
 
