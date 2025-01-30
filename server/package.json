@@ -10,7 +10,6 @@
     "test": "jest --verbose"
   },
   "dependencies": {
-    "argon2": "^0.41.1",
     "@js-monorepo/server": "file:",
     "argon2": "^0.41.1",
     "cors": "^2.8.5",
