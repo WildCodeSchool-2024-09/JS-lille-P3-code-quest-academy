@@ -192,13 +192,12 @@ const add: RequestHandler = async (req, res, next) => {
       username: req.body.username,
       email: req.body.email,
       hashed_password: req.body.hashed_password,
-      firstTeacher: req.body.firstTeacher,
-      secondTeacher: req.body.secondTeacher,
     };
 
     const insertId = await accountRepository.create(newAccount);
     res.status(201).json({ success: true, insertId });
   } catch (err) {
+    console.error("Erreur lors de la création du compte", err);
     next(err);
   }
 };

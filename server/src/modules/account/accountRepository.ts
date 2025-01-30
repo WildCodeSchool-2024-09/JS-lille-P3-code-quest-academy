@@ -3,7 +3,9 @@ import type { Result, Rows } from "../../../database/client";
 import type { Account } from "../../types/express";
 
 class AccountRepository {
-  async create(account: Omit<Account, "id">) {
+  async create(
+    account: Omit<Account, "id" | "firstTeacher" | "secondTeacher">,
+  ) {
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO account (username, email, hashed_password)
       VALUES (?, ?, ?);`,
@@ -18,7 +20,7 @@ class AccountRepository {
 
     // we add a base progress for new users
     await databaseClient.query(
-      `INSERT INTO progress (user_id, room_id, challenge_id),
+      `INSERT INTO progress (user_id, room_id, challenge_id)
       VALUES (?, ?, ?);`,
       [userId, 1, 1],
     );

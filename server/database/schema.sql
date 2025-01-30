@@ -34,9 +34,9 @@ CREATE TABLE challenge (
 
 CREATE TABLE progress (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  user_id INT,
-  room_id INT,
-  challenge_id INT,
+  user_id INT NOT NULL,
+  room_id INT NOT NULL,
+  challenge_id INT NOT NULL,
   CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE,
   CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id),
   CONSTRAINT fk_progress_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
@@ -47,7 +47,7 @@ VALUES
   ("admin", "admin@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$plUwfAAwGqdtJgSlYyA/yQ$gEmsZmb+wa8RMvEnRHvJhnYP7mZM96PscaAc4tbou7Y", 1),
   ("user1", "user1@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$OMtvcBoC8Sw1yJRMqeEMBA$+c8sAtpJZ8VcbN52geHzSegdpFIkZunbfT2HH9okLPw", 0);
 
-INSERT INTO room (boss_name, boss_img_src, fight_gif_src, room_img_src)
+INSERT INTO room (boss_name, boss_img_src, fight_video_src, room_img_src)
 VALUES
   ("Le seigneur des balises", "../../src/assets/images/boss/boss-html.png", "../../src/assets/images/boss/boss-html.gif", "../../src/assets/images/room-html.png"),
   ("Gridzilla", "../../src/assets/images/boss/boss-css.png", "../../src/assets/images/boss/boss-css.gif", null),
