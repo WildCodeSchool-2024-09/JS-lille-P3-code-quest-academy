@@ -22,7 +22,7 @@ function AdminManagement() {
   // ------------------------------------- //
   //   Appel API
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/users`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/accounts`)
       .then((response) => response.json())
       .then((data: User[]) => {
         setUsers(data);
@@ -120,7 +120,7 @@ function AdminManagement() {
       <h1>Liste des utilisateurs</h1>
       <input
         type="text"
-        placeholder="recheche par nom ou eamil..."
+        placeholder="recherche par nom ou email..."
         value={searchQuery}
         onChange={handleSearch}
         className="user-search-bar"
@@ -145,7 +145,6 @@ function AdminManagement() {
                 Trier {isAsc ? "↓" : "↑"}
               </button>
             </th>
-            <th>Mot de passe</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -157,7 +156,6 @@ function AdminManagement() {
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
-              <td>{"*".repeat(user.password.length)}</td>
               <td>
                 <button type="button" onClick={() => startEditingUser(user)}>
                   Modifier

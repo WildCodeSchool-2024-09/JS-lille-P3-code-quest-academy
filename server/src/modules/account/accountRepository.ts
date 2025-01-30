@@ -38,7 +38,7 @@ class AccountRepository {
     );
     return rows[0] as Account;
   }
-  async readByEmailWithPassword(email: string) {
+  async readByEmail(email: string) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM account WHERE email = ?",
       [email],
@@ -46,7 +46,9 @@ class AccountRepository {
     return rows[0] as Account;
   }
 
-  async update(account: Account) {
+  async update(
+    account: Omit<Account, "is_admin" | "firstTeacher" | "secondTeacher">,
+  ) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
       [account.username, account.email, account.hashed_password, account.id],
@@ -54,7 +56,9 @@ class AccountRepository {
     return result.affectedRows;
   }
 
-  async updateInfos(account: Account) {
+  async updateInfos(
+    account: Omit<Account, "is_admin" | "firstTeacher" | "secondTeacher">,
+  ) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
       [account.username, account.email, account.hashed_password, account.id],
