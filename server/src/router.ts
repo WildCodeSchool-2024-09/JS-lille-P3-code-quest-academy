@@ -18,7 +18,12 @@ import accountActions from "./modules/account/accountActions";
 router.get("/api/accounts", accountActions.browse);
 router.get("/api/accounts/:id", accountActions.read);
 router.put("/api/accounts/:id", accountActions.edit);
-router.post("/api/accounts", accountActions.hashPassword, accountActions.add);
+router.post(
+  "/api/accounts",
+  newUserValidation.validateNewUser,
+  accountActions.hashPassword,
+  accountActions.add,
+);
 router.delete("/api/accounts/:id", accountActions.destroy);
 
 import gameActions from "./modules/game/gameActions";
@@ -43,6 +48,7 @@ router.get("/api/room/:id", roomActions.read);
 /* ************************************************************************* */
 // Define login-related routes
 import loginActions from "./modules/login/loginActions";
+import newUserValidation from "./modules/validation/newUserValidation";
 
 router.post("/api/login", loginActions.login);
 
