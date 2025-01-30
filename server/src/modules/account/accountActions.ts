@@ -30,7 +30,14 @@ const edit: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
     const account = await accountRepository.read(accountId);
-    const { username, email, hashed_password } = req.body;
+    const {
+      username,
+      email,
+      hashed_password,
+      is_admin,
+      firstTeacher,
+      secondTeacher,
+    } = req.body;
 
     if (!username || !email || !hashed_password) {
       res.status(400).json({
@@ -45,9 +52,9 @@ const edit: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
-      is_admin: account.is_admin,
-      firstTeacher: account.firstTeacher,
-      secondTeacher: account.secondTeacher,
+      is_admin: is_admin,
+      firstTeacher: firstTeacher,
+      secondTeacher: secondTeacher,
     });
 
     if (affectedRows === 0) {
