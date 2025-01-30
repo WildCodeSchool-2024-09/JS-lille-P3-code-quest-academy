@@ -40,7 +40,11 @@ function LoginForm({ closeForm }: LoginFormProps) {
       if (response.status === 200) {
         const user = await response.json();
         setUser(user);
-        navigate("/profile");
+        if (user.is_admin) {
+          navigate("/admin");
+        } else {
+          navigate("/profile");
+        }
       }
     } catch (error) {
       console.error(error);

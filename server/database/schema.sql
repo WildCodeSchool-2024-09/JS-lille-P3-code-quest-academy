@@ -10,13 +10,6 @@ CREATE TABLE account (
 
 CREATE TABLE room (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  boss_name VARCHAR(50) NOT NULL,
-  img_src TEXT NOT NULL,
-  gif_src TEXT NOT NULL
-);
-
-CREATE TABLE room (
-  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   boss_name VARCHAR(50),
   boss_img_src TEXT,
   fight_video_src TEXT,
@@ -45,55 +38,23 @@ CREATE TABLE progress (
   room_id INT,
   challenge_id INT,
   CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE,
-
   CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id),
   CONSTRAINT fk_progress_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
 );
 
 INSERT INTO account (username, email, hashed_password, is_admin)
 VALUES
-  ('admin', 'admin@gmail.com', 'admin', 1),
-  ('user1', 'user1@gmail.com', 'user1', 0);
-
-INSERT INTO room (boss_name, img_src, gif_src)
-VALUES
-  ('Le seigneur des balises', '../../src/assets/images/boss/boss-html.png', '../../src/assets/images/boss/boss-html.gif'),
-  ('Gridzilla', '../../src/assets/images/boss/boss-css.png', '../../src/assets/images/boss/boss-css.gif'),
-  ('DOM-inator', '../../src/assets/images/boss/boss-js.png', '../../src/assets/images/boss/boss-js.gif'),
-  ('Captain Hook', '../../src/assets/images/boss/boss-react.png', '../../src/assets/images/boss/boss-react.gif'),
-  ('Nodeferatus', '../../src/assets/images/boss/boss-node.png', '../../src/assets/images/boss/boss-node.gif'),
-  ('Soufiane Maski', '../../src/assets/images/boss/boss-sql.png', '../../src/assets/images/boss/boss-sql.gif');
-
-INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4, room_id)
-VALUES
-  ('HTML', 'guideline', 'C\'est un raccourci pour "image" en anglais.', '<img>', 'quizz', 'Quel est l’élément HTML utilisé pour insérer une image dans une page web ?', '<img>', '<image>', '<picture>', '<media>', 1),
-  ('HTML', 'guideline', 'Cette balise est comme une porte vers une autre page.', '<a>', 'quizz', 'Quelle est la balise correcte pour créer un lien hypertexte ?', '<link>', '<href>', '<a>', '<anchor>', 1),
-  ('HTML', 'guideline', 'Cet attribut est composé de deux lettres simples.', 'id', 'prompt', 'Quel attribut est utilisé pour spécifier un identifiant unique à un élément HTML ?', NULL, NULL, NULL, NULL, 1),
-  ('HTML', 'guideline', 'Cet attribut sert à "parler" de l\'image quand elle ne peut pas être vue.', 'alt', 'prompt', 'Quelle est la signification de l’attribut alt dans la balise <img> ?', 'description', 'alternative', NULL, NULL, 1),
-  ('CSS', 'guideline', 'Cette propriété est aussi simple que son nom.', 'color', 'quizz', 'Quelle propriété CSS est utilisée pour changer la couleur du texte ?', 'background-color', 'text-color', 'font-color', 'color', 2),
-  ('CSS', 'guideline', 'Cette propriété commence par la dernière lettre de l\'alphabet.', 'z-index', 'quizz', 'Quelle propriété CSS permet de contrôler l’ordre d’affichage des éléments ?', 'stack-order', 'z-index', 'order', 'visibility', 2), 
-  ('CSS', 'guideline', 'Cette syntaxe utilise le mot "var" pour indiquer une variable.', 'var(--nom-de-la-variable)', 'quizz', 'Quelle syntaxe est correcte pour utiliser une variable CSS ?', '$nom-de-la-variable', 'var(--nom-de-la-variable)', 'variable(--nom-de-la-variable)', '%nom-de-la-variable', 2),
-  ('CSS', 'guideline', 'Cette valeur garde l\'élément "fixé" à un endroit précis.', 'fixed', 'prompt', 'Quelle valeur de la propriété position permet de fixer un élément ?', NULL, NULL, NULL, NULL, 2),
-  ('Javascript', 'guideline', 'Utilise "console.log" pour afficher un message.', 'console.log("hello")', 'quizz', 'Quelle est la syntaxe correcte pour afficher un message dans la console ?', 'print("hello")', 'console.log("hello")', 'echo("hello")', 'console.log(hello)', 3),
-  ('Javascript', 'guideline', 'Cette méthode commence par "parse" et est utilisée pour transformer une chaîne.', 'parseInt()', 'quizz', 'Quelle méthode est utilisée pour transformer une chaîne en nombre entier ?', 'TransformToNumber()', 'Number()', 'String()', 'parseInt()', 3),
-  ('Javascript', 'guideline', 'Une variable en JavaScript sert à "stocker" des données.', 'stocker donnée', 'prompt', 'Qu\'est-ce qu\'une variable en JavaScript ?', NULL, NULL, NULL, NULL, 3),
-  ('Javascript', 'guideline', 'Pour déclarer une variable, tu peux utiliser "let", "const" ou "var".', 'const let var', 'prompt', 'Quels mots-clés peuvent être utilisés pour déclarer une variable ?', NULL, NULL, NULL, NULL, 3),
-  ('Javascript', 'guideline', 'Le DOM signifie "Document Object Model".', 'document object model', 'prompt', 'Que signifie DOM ?', NULL, NULL, NULL, NULL, 3),
-  ('Javascript', 'guideline', 'Si une variable n\'est pas initialisée, elle n\'a pas encore été définie.', 'undefined', 'prompt', 'Quel est le type par défaut d\'une variable non initialisée ?', NULL, NULL, NULL, NULL, 3);
-
-INSERT INTO account (username, email, hashed_password, is_admin)
-VALUES
-  ("admin", "admin@gmail.com", "admin", 1),
+  ("admin", "admin@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$plUwfAAwGqdtJgSlYyA/yQ$gEmsZmb+wa8RMvEnRHvJhnYP7mZM96PscaAc4tbou7Y", 1),
   ("user1", "user1@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$OMtvcBoC8Sw1yJRMqeEMBA$+c8sAtpJZ8VcbN52geHzSegdpFIkZunbfT2HH9okLPw", 0);
 
-INSERT INTO room (boss_name, boss_img_src, fight_video_src, room_img_src)
+INSERT INTO room (boss_name, boss_img_src, fight_gif_src, room_img_src)
 VALUES
-  ("Le seigneur des balises", "../../src/assets/images/boss/boss-html.png", "./src/assets/videos/html-boss-fight.mp4", "../../src/assets/images/html-room.png"),
-  ("Gridzilla", "../../src/assets/images/boss/boss-css.png", "../src/assets/videos/css-boss-fight.mp4", "../../src/assets/images/css-room.png"),
-  ("DOM-inator", "../../src/assets/images/boss/boss-js.png", "../src/assets/videos/js-boss-fight.mp4", "../../src/assets/images/js-room.png"),
-  ("Captain Hook", "../../src/assets/images/boss/boss-react.png", "../src/assets/videos/react-boss-fight.mp4", "../../src/assets/images/react-room.png"),
-  ("Nodeferatus", "../../src/assets/images/boss/boss-node.png", "../src/assets/videos/node-boss-fight.mp4", "../../src/assets/images/node-room.png"),
-  ("Soufiane Maski", "../../src/assets/images/boss/boss-sql.png", "../src/assets/videos/sql-boss-fight.mp4", "../../src/assets/images/sql-room.png"),
+  ("Le seigneur des balises", "../../src/assets/images/boss/boss-html.png", "../../src/assets/images/boss/boss-html.gif", "../../src/assets/images/room-html.png"),
+  ("Gridzilla", "../../src/assets/images/boss/boss-css.png", "../../src/assets/images/boss/boss-css.gif", null),
+  ("DOM-inator", "../../src/assets/images/boss/boss-js.png", "../../src/assets/images/boss/boss-js.gif", null),
+  ("Captain Hook", "../../src/assets/images/boss/boss-react.png", "../../src/assets/images/boss/boss-react.gif", null),
+  ("Nodeferatus", "../../src/assets/images/boss/boss-node.png", "../../src/assets/images/boss/boss-node.gif", null),
+  ("Soufiane Maski", "../../src/assets/images/boss/boss-sql.png", "../../src/assets/images/boss/boss-sql.gif", null),
   (null, null, null, "../src/assets/images/game-background-level0.png"),
   (null, null, null, "../src/assets/images/game-background-level1.png"),
   (null, null, null, "../src/assets/images/game-background-level2.png"),
