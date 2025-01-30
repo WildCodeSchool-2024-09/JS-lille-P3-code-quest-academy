@@ -38,3 +38,10 @@ export type ChallengeProps = {
   room_id: number;
   room_img_src: string;
 };
+
+export type RoomProps = {
+  boss_name: string;
+  boss_img_src: string;
+  fight_video_src: string;
+  room_img_src: string;
+};

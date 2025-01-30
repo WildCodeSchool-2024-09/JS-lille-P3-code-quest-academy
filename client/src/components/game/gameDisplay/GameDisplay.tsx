@@ -21,7 +21,7 @@ function GameDisplay() {
     videoRef,
     user,
     progress,
-    setProgress,
+    fetchUserProgress,
     setActualChallenge,
   } = gameContext;
   const [roomInfos, setRoomInfos] = useState<RoomProps | null>(null);
@@ -65,22 +65,6 @@ function GameDisplay() {
           error,
         );
       }
-    }
-  };
-
-  const fetchUserProgress = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}`,
-      );
-
-      const progressData = await response.json();
-      setProgress(progressData);
-    } catch (error) {
-      console.error(
-        "Erreur lors de la récupération de la progression :",
-        error,
-      );
     }
   };
 

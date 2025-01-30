@@ -29,6 +29,7 @@ interface ContextValue {
   progress: ProgressProps | null;
   setProgress: React.Dispatch<React.SetStateAction<ProgressProps | null>>;
   videoRef: React.RefObject<HTMLVideoElement>;
+  fetchUserProgress: () => void;
 }
 
 interface ProviderProps {
@@ -41,11 +42,11 @@ export const Provider = ({ children }: ProviderProps) => {
   const [actualChallenge, setActualChallenge] = useState<ChallengeProps | null>(
     null,
   );
-  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
-  const [answerStyles, setAnswerStyles] = useState({});
-  const [feedbackMessage, setFeedbackMessage] = useState("");
-  const [buttonStyles, setButtonStyles] = useState({});
-  const videoRef = useRef(null);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false); //boolean for game button activation
+  const [answerStyles, setAnswerStyles] = useState({}); //set the color green or red for the quizz answers
+  const [feedbackMessage, setFeedbackMessage] = useState(""); //set message if the reponse is correct or not
+  const [buttonStyles, setButtonStyles] = useState({}); // set the color to the game button if enabled
+  const videoRef = useRef(null); //reference to the video element
 
   // get challenge and room from actual user
   const userContext = useContext(UserContext);
@@ -71,6 +72,25 @@ export const Provider = ({ children }: ProviderProps) => {
     }
   }, [user, progress]);
 
+  //----GameDisplay --- GameInstructions --------------------------
+  // Fetch user progress after challenge incrementation with the button in game
+  const fetchUserProgress = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}`,
+      );
+
+      const progressData = await response.json();
+      setProgress(progressData);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération de la progression :",
+        error,
+      );
+    }
+  };
+  //----------------------------------------------------------------
+
   return (
     <GameContext.Provider
       value={{
@@ -88,6 +108,7 @@ export const Provider = ({ children }: ProviderProps) => {
         progress,
         setProgress,
         videoRef,
+        fetchUserProgress,
       }}
     >
       {children}
