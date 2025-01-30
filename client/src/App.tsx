@@ -5,11 +5,11 @@ import { Provider as UserProvider } from "../src/services/UserContext";
 
 function App() {
   return (
-    <GameProvider>
-      <UserProvider>
+    <UserProvider>
+      <GameProvider>
         <Outlet />
-      </UserProvider>
-    </GameProvider>
+      </GameProvider>
+    </UserProvider>
   );
 }
 

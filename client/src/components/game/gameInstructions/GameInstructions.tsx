@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
 import "./GameInstructions.css";
 
@@ -9,40 +9,126 @@ function GameInstructions() {
     return <div>Error: Context is not available</div>;
   }
 
-  const { challenge, currentIndex, setCurrentIndex, setCurrentType } =
-    gameContext;
+  const {
+    actualChallenge,
+    setActualChallenge,
+    user,
+    progress,
+    setProgress,
+    isButtonEnabled,
+    setIsButtonEnabled,
+    buttonStyles,
+    setButtonStyles,
+    setFeedbackMessage,
+    setAnswerStyles,
+    videoRef,
+  } = gameContext;
 
-  const handleChange = () => {
-    if (currentIndex < challenge.length - 1) {
-      //Next row in db
-      setCurrentIndex(currentIndex + 1);
+  const [buttonVisible, setButtonVisible] = useState("");
+
+  useEffect(() => {
+    if (actualChallenge?.type === "boss") {
+      setButtonVisible("visible");
     } else {
-      //Get back to the first row
-      setCurrentIndex(0);
-      setCurrentType(0);
+      setButtonVisible("");
+    }
+  }, [actualChallenge]);
+
+  const handleLaunchBoss = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+    setButtonVisible("");
+    setIsButtonEnabled(true);
+    setButtonStyles("button-enabled");
+  };
+
+  const handleProgressUpdate = async () => {
+    setFeedbackMessage("");
+    setIsButtonEnabled(false);
+    setButtonStyles("");
+    setAnswerStyles("");
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}/${
+          progress?.room_id
+        }/${progress?.challenge_id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Échec de la mise à jour du progrès");
+      }
+
+      const newChallenge = await response.json();
+
+      // Forcer le rechargement via une réinitialisation du contexte ou des dépendances
+      setActualChallenge(newChallenge);
+
+      // Recharge le contexte utilisateur
+      await fetchUserProgress();
+    } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour ou récupération du progrès :",
+        error,
+      );
+    }
+  };
+
+  const fetchUserProgress = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}`,
+      );
+
+      const progressData = await response.json();
+      setProgress(progressData);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération de la progression :",
+        error,
+      );
     }
   };
 
   return (
     <>
-      <div className="instructions-container">
-        <p className="instructions-text">
-          {challenge[currentIndex]?.guideline}
-        </p>
-        <button
-          className={"instructions-button"}
-          onClick={handleChange}
-          type="button"
-        >
-          Suivant
-        </button>
-
-        <img
-          className="help-img"
-          src="./src/assets/images/fantine.png"
-          alt="Fantine la formatrice"
-        />
-      </div>
+      {/* check if actualChallenge exist to display the content */}
+      {/* replace "if (!actualChallenge)" */}
+      {actualChallenge && (
+        <div className="instructions-container">
+          challenge id :{actualChallenge.id} <br />
+          room id : {actualChallenge.room_id}
+          <p className="instructions-text">
+            {actualChallenge.guideline
+              ? actualChallenge.guideline
+              : "No guidelines available"}
+          </p>
+          <button
+            className={`instructions-button ${buttonStyles}`}
+            onClick={handleProgressUpdate}
+            type="button"
+            disabled={!isButtonEnabled}
+          >
+            Suivant
+          </button>
+          <button
+            className={`boss-button ${buttonVisible}`}
+            type="button"
+            onClick={handleLaunchBoss}
+          >
+            Lancer le combat
+          </button>
+          <img
+            className="help-img"
+            src="./src/assets/images/fantine.png"
+            alt="Fantine la formatrice"
+          />
+        </div>
+      )}
     </>
   );
 }
