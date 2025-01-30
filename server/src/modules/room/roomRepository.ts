@@ -1,12 +1,6 @@
 import databaseClient from "../../../database/client";
-
 import type { Result, Rows } from "../../../database/client";
-
-type Room = {
-  id: number;
-  boss: string;
-  img_url: string;
-};
+import type { Room } from "../../types/express/index.d.ts";
 
 class RoomRepository {
   async read(id: number) {

@@ -1,31 +1,38 @@
 import "./GameProfil.css";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { GameContext } from "../../../services/GameContext";
 import { UserContext } from "../../../services/UserContext";
 
 function GameProfil() {
   const navigate = useNavigate();
 
   const userContext = useContext(UserContext);
+  const gameContext = useContext(GameContext);
 
   if (!userContext) {
-    return <div>Error: Context is not available</div>;
+    return <div>Error: userContext is not available</div>;
   }
 
-  const { user, progress } = userContext;
+  if (!gameContext) {
+    return <div>Error: gameContext is not available</div>;
+  }
+
+  const { user } = userContext;
+  const { actualChallenge } = gameContext;
 
   return (
     <>
       <div className="profil-container">
         <div className="profil-text">
           <h2>{user?.username}</h2>
-          <p>Niveau {progress?.level}</p>
+          <p>Challenge {actualChallenge?.id}</p>
           <button
             className="profil-button"
             type="button"
             onClick={() => navigate("/profile")}
           >
-            Accueil
+            Profil
           </button>
         </div>
         <img

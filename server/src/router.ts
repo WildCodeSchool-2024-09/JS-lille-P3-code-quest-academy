@@ -10,7 +10,7 @@ const router = express.Router();
 import challengeActions from "./modules/challenge/challengeActions";
 
 router.get("/api/challenges", challengeActions.browse);
-router.get("/api/challenges/:id", challengeActions.read);
+router.get("/api/challenge/:id", challengeActions.read);
 
 // Define account-related routes
 import accountActions from "./modules/account/accountActions";
@@ -21,15 +21,20 @@ router.put("/api/accounts/:id", accountActions.edit);
 router.post("/api/accounts", accountActions.hashPassword, accountActions.add);
 router.delete("/api/accounts/:id", accountActions.destroy);
 
+import gameActions from "./modules/game/gameActions";
 /* ************************************************************************* */
-
 // Define progress-related routes
 import progressActions from "./modules/progress/progressActions";
 
 router.get("/api/progress", progressActions.browse);
 router.get("/api/progress/:id", progressActions.read);
-router.put("/api/progress/:id", progressActions.edit);
+router.put("/api/progress/:userId/:roomId/:challengeId", progressActions.edit);
+router.get(
+  "/api/progress/:userId/:roomId/:challengeId",
+  gameActions.getProgressByUserId,
+);
 
+/* ************************************************************************* */
 // Define room-related routes
 import roomActions from "./modules/room/roomActions";
 
@@ -40,7 +45,5 @@ router.get("/api/room/:id", roomActions.read);
 import loginActions from "./modules/login/loginActions";
 
 router.post("/api/login", loginActions.login);
-
-/* ************************************************************************* */
 
 export default router;
