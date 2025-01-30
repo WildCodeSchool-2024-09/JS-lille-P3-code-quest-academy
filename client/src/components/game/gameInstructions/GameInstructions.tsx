@@ -14,7 +14,7 @@ function GameInstructions() {
     setActualChallenge,
     user,
     progress,
-    setProgress,
+    fetchUserProgress,
     isButtonEnabled,
     setIsButtonEnabled,
     buttonStyles,
@@ -35,8 +35,8 @@ function GameInstructions() {
   }, [actualChallenge]);
 
   const handleLaunchBoss = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
+    if (videoRef) {
+      videoRef.current?.play(); //We use useRef in the context to access the video element
     }
     setButtonVisible("");
     setIsButtonEnabled(true);
@@ -73,22 +73,6 @@ function GameInstructions() {
     } catch (error) {
       console.error(
         "Erreur lors de la mise à jour ou récupération du progrès :",
-        error,
-      );
-    }
-  };
-
-  const fetchUserProgress = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}`,
-      );
-
-      const progressData = await response.json();
-      setProgress(progressData);
-    } catch (error) {
-      console.error(
-        "Erreur lors de la récupération de la progression :",
         error,
       );
     }
