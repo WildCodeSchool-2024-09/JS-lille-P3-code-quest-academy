@@ -54,6 +54,22 @@ class AccountRepository {
     return result.affectedRows;
   }
 
+  async updateInfos(account: Account) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE account SET username = ?, email = ?, hashed_password = ? WHERE id = ?",
+      [account.username, account.email, account.hashed_password, account.id],
+    );
+    return result.affectedRows;
+  }
+
+  async updateTrainers(account: Account) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE account SET firstTeacher = ?, secondTeacher = ? WHERE id = ?",
+      [account.firstTeacher, account.secondTeacher, account.id],
+    );
+    return result.affectedRows;
+  }
+
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
       "DELETE FROM account WHERE id = ?",

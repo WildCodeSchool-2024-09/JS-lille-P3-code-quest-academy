@@ -36,4 +36,6 @@ type Account = {
   username: string;
   email: string;
   hashed_password: string;
+  firstTeacher: string;
+  secondTeacher: string;
 };
