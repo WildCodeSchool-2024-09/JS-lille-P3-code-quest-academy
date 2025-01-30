@@ -1,0 +1,72 @@
+.logout-form {
+  background: #ffffff;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.logout-form h2 {
+  padding: 2rem;
+}
+
+.logout-buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  border-radius: 20px;
+  width: 200px;
+  height: 40px;
+  font-weight: bold;
+  border-bottom: 5px solid var(--primary-color);
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  transition: 0.3s;
+  background-color: var(--primary-color);
+}
+
+.logout-button:hover {
+  border-bottom-width: 0;
+  transform: translateY(5px);
+}
+
+.cancel-logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 18px;
+  border-radius: 20px;
+  width: 200px;
+  height: 40px;
+  font-weight: bold;
+  border-top: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+  border-left: 2px solid var(--primary-color);
+  border-bottom: 5px solid var(--primary-color);
+  transition: 0.3s;
+  background-color: #ffffff;
+}
+
+.cancel-logout-button:hover {
+  border-bottom: 2px solid var(--primary-color);
+  transform: translateY(5px);
+}

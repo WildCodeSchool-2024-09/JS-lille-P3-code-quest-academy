@@ -29,6 +29,7 @@ interface ContextValue {
   progress: ProgressProps | null;
   setProgress: React.Dispatch<React.SetStateAction<ProgressProps | null>>;
   videoRef: React.RefObject<HTMLVideoElement>;
+    
 }
 
 interface ProviderProps {

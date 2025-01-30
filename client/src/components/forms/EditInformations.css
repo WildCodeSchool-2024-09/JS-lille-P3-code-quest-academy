@@ -1,0 +1,153 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popup-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.form-edit-informations {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.label-edit-informations {
+  font-size: 14px;
+  color: #333;
+}
+
+.label-pseudo,
+.label-password,
+.label-email {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.input-pseudo,
+.input-password,
+.input-email {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-pseudo:hover,
+.input-password:hover,
+.input-email:hover {
+  border-color: #888;
+}
+
+.input-pseudo:focus,
+.input-password:focus,
+.input-email:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.button-edit-informations {
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: 2px solid var(--primary-color);
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-family: "Press Start 2P", cursive;
+  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0
+    #000;
+}
+
+.button-edit-informations:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.button-edit-informations:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  color: #666666; /* Couleur grise pour le texte désactivé */
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+.message-success-info {
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
