@@ -52,9 +52,6 @@ const edit: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
-      is_admin: is_admin,
-      firstTeacher: firstTeacher,
-      secondTeacher: secondTeacher,
     });
 
     if (affectedRows === 0) {
@@ -97,9 +94,6 @@ const editInfos: RequestHandler = async (req, res, next) => {
       username,
       email,
       hashed_password,
-      is_admin: account.is_admin,
-      firstTeacher: account.firstTeacher,
-      secondTeacher: account.secondTeacher,
     });
 
     if (affectedRows === 0) {
