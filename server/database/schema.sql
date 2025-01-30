@@ -7,6 +7,7 @@ CREATE TABLE account (
   teacher_1 VARCHAR(50) DEFAULT "Fantine",
   teacher_2 VARCHAR(50) DEFAULT "Soufiane"
 );
+
 CREATE TABLE room (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   boss_name VARCHAR(50) NOT NULL,
@@ -14,6 +15,7 @@ CREATE TABLE room (
   fight_gif_src TEXT NOT NULL,
   room_img_src TEXT
 );
+
 CREATE TABLE challenge (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   title VARCHAR(50) NOT NULL,
@@ -29,6 +31,7 @@ CREATE TABLE challenge (
   room_id INT,
   CONSTRAINT fk_challenge_room FOREIGN KEY (room_id) REFERENCES room(id)
   );
+
 CREATE TABLE progress (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INT,
@@ -38,10 +41,12 @@ CREATE TABLE progress (
   CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id),
   CONSTRAINT fk_progress_challenge FOREIGN KEY (challenge_id) REFERENCES challenge(id)
 );
+
 INSERT INTO account (username, email, hashed_password, is_admin)
 VALUES
   ("admin", "admin@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$plUwfAAwGqdtJgSlYyA/yQ$gEmsZmb+wa8RMvEnRHvJhnYP7mZM96PscaAc4tbou7Y", 1),
   ("user1", "user1@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$OMtvcBoC8Sw1yJRMqeEMBA$+c8sAtpJZ8VcbN52geHzSegdpFIkZunbfT2HH9okLPw", 0);
+
 INSERT INTO room (boss_name, boss_img_src, fight_gif_src, room_img_src)
 VALUES
   ("Le seigneur des balises", "../../src/assets/images/boss/boss-html.png", "../../src/assets/images/boss/boss-html.gif", "../../src/assets/images/room-html.png"),
@@ -50,6 +55,7 @@ VALUES
   ("Captain Hook", "../../src/assets/images/boss/boss-react.png", "../../src/assets/images/boss/boss-react.gif", null),
   ("Nodeferatus", "../../src/assets/images/boss/boss-node.png", "../../src/assets/images/boss/boss-node.gif", null),
   ("Soufiane Maski", "../../src/assets/images/boss/boss-sql.png", "../../src/assets/images/boss/boss-sql.gif", null);
+
 INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4, room_id)
 VALUES
   ("HTML", "guideline", "C'est un raccourci pour 'image' en anglais.", "<img>", "quizz", "Quel est l’élément HTML utilisé pour insérer une image dans une page web ?", "<img>", "<image>", "<picture>", "<media>", 1),
@@ -66,7 +72,8 @@ VALUES
   ("Javascript", "guideline", "Pour déclarer une variable, tu peux utiliser les mots-clés 'let', 'const' ou 'var', qui sont comme des étiquettes pour identifier et gérer tes données.", "const let var", "prompt", "Quels mots-clés peuvent être utilisés pour déclarer une variable ?", "null", "null", "null", "null", 3),
   ("Javascript", "guideline", "Le DOM signifie 'Document Object Model'. C'est une structure qui permet d'accéder et de manipuler les éléments d'une page web, un peu comme une carte des objets qui composent la page.", "document object model", "prompt", "Que signifie DOM ?", "null", "null", "null", "null", 3),
   ("Javascript", "guideline", "Si une variable n'est pas initialisée, c'est comme si elle n'a pas encore été définie et n'a donc pas de valeur spécifique.", "undefined", "prompt", "Quel est le type par défaut d'une variable non initialisée ?", "null", "null", "null", "null", 3);
-INSERT INTO progress (user_id, room_id, challenge_id)
+
+  return numberOfMinutesRemainigINSERT INTO progress (user_id, room_id, challenge_id)
 VALUES
   (1, 1, 1),
   (2, 2, 5);
