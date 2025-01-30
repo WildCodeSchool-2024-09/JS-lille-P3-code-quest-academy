@@ -4,8 +4,8 @@ CREATE TABLE account (
   email VARCHAR(100) NOT NULL UNIQUE,
   hashed_password VARCHAR(255) NOT NULL,
   is_admin BOOLEAN DEFAULT false,
-  teacher_1 VARCHAR(50) DEFAULT "Fantine",
-  teacher_2 VARCHAR(50) DEFAULT "Soufiane"
+  firstTeacher VARCHAR(50) DEFAULT "Fantine",
+  secondTeacher VARCHAR(50) DEFAULT "Soufiane"
 );
 
 CREATE TABLE room (
@@ -31,7 +31,7 @@ CREATE TABLE challenge (
   room_id INT,
   CONSTRAINT fk_challenge_room FOREIGN KEY (room_id) REFERENCES room(id)
   );
-
+  
 CREATE TABLE progress (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INT,
@@ -73,7 +73,7 @@ VALUES
   ("Javascript", "guideline", "Le DOM signifie 'Document Object Model'. C'est une structure qui permet d'accéder et de manipuler les éléments d'une page web, un peu comme une carte des objets qui composent la page.", "document object model", "prompt", "Que signifie DOM ?", "null", "null", "null", "null", 3),
   ("Javascript", "guideline", "Si une variable n'est pas initialisée, c'est comme si elle n'a pas encore été définie et n'a donc pas de valeur spécifique.", "undefined", "prompt", "Quel est le type par défaut d'une variable non initialisée ?", "null", "null", "null", "null", 3);
 
-  return numberOfMinutesRemainigINSERT INTO progress (user_id, room_id, challenge_id)
+INSERT INTO progress (user_id, room_id, challenge_id)
 VALUES
   (1, 1, 1),
   (2, 2, 5);
