@@ -56,13 +56,13 @@ VALUES
   ("Nodeferatus", "../../src/assets/images/boss/boss-node.png", "../src/assets/videos/node-boss-fight.mp4", "../../src/assets/images/node-room.png"),
   ("Soufiane Maski", "../../src/assets/images/boss/boss-sql.png", "../src/assets/videos/sql-boss-fight.mp4", "../../src/assets/images/sql-room.png"),
   (null, null, null, "../src/assets/images/game-background-level0.png"),
-  (null, null, null, "../src/assets/images/game-background-level1.png"),
-  (null, null, null, "../src/assets/images/game-background-level2.png"),
-  (null, null, null, "../src/assets/images/game-background-level3.png"),
-  (null, null, null, "../src/assets/images/game-background-level4.png"),
-  (null, null, null, "../src/assets/images/game-background-level5.png"),
-  (null, null, null, "../src/assets/images/game-background-level6.png"),
-  (null, null, null, "../src/assets/images/game-background-level7.png");
+  (null, null, null, "../src/assets/images/game-background-level1.gif"),
+  (null, null, null, "../src/assets/images/game-background-level2.gif"),
+  (null, null, null, "../src/assets/images/game-background-level3.gif"),
+  (null, null, null, "../src/assets/images/game-background-level4.gif"),
+  (null, null, null, "../src/assets/images/game-background-level5.gif"),
+  (null, null, null, "../src/assets/images/game-background-level6.gif"),
+  (null, null, null, "../src/assets/images/game-background-level7.gif");
 
 INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4, room_id)
 VALUES
@@ -99,7 +99,7 @@ VALUES
   ("Node", "guideline", "Cette commande est utilisée pour initialiser un projet Node.js en créant un fichier package.json.", "npm init", "quizz", "Quelle commande permet d'initialiser un projet Node.js ?", "npm run db:migrate", "npm run dev", "npm init", "npm run check", 5),
   ("Node", "guideline", "🎵 On aaa parcouruu le cheemin...", "path", "quizz", "Quel module Node.js est utilisé pour travailler avec les chemins de fichiers ?", "path", "fs", "url", "http", 5),
   ("Node", "Est-tu prêt à combattre le boss Node ?", "hint", "soluce", "boss", "question", null, null, null, null, 5),
-  ("Transition", "Bravo, tu as vaincu le CORS'aire et maitrise maintenant Node ! Tu as débloqué la salle suivante, clique sur l'image pour t'y rendre.", "hint", "soluce", "transition", "question", null, null, null, null, 13),
+  ("Transition", "Bravo, tu as vaincu Nodeferatu et maitrise maintenant Node ! Tu as débloqué la salle suivante, clique sur l'image pour t'y rendre.", "hint", "soluce", "transition", "question", null, null, null, null, 13),
   ("SQL", "guideline", "Cette commande est utilisée pour extraire des données d'une table en SQL.", "SELECT", "quizz", "Quelle commande SQL est utilisée pour récupérer des données d'une table ?", "FETCH", "INNER JOIN", "USE", "SELECT", 6),
   ("SQL", "guideline", "Cette commande est utilisée pour extraire des données d'une table en SQL.", "NOT NULL", "quizz", "Quelle contrainte SQL empêche qu'une colonne contienne des valeurs nulles ?", "DEFAULT", "PRIMARY KEY", "NOT NULL", "UNIQUE", 6),
   ("SQL", "guideline", "Cette clause permet de filtrer les résultats d’une requête SQL en fonction d’une condition spécifique.", "WHERE", "prompt", " Quelle clause SQL permet de filtrer les résultats d’une requête ?", "null", "null", "null", "null", 6),
