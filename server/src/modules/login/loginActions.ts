@@ -53,7 +53,7 @@ const login: RequestHandler = async (req, res, next) => {
 const verifyToken: RequestHandler = async (req, res, next) => {
   try {
     // Verify there is a Header in the request
-    const autohorizationHeader = req.get("Authorization");
+    const authorizationHeader = req.get("Authorization");
 
     if (!autohorizationHeader) {
       throw new Error("Authorization header is missing");
