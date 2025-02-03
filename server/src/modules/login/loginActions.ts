@@ -37,7 +37,11 @@ const login: RequestHandler = async (req, res, next) => {
         { expiresIn: "1h" },
       );
 
-      res.json({ token, userWithoutHashedPassword });
+      // Send the token in the response header
+      res.setHeader("Authorization", `Bearer ${token}`);
+
+      // Send the user's information in the response body
+      res.json(userWithoutHashedPassword);
     } else {
       res.status(422).json({ message: "Incorrect password." });
     }

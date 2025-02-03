@@ -15,7 +15,7 @@ function LoginForm({ closeForm }: LoginFormProps) {
   if (!userContext) {
     throw new Error("UserContext is null");
   }
-  const { setUser } = userContext;
+  const { setUser, setToken } = userContext;
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -42,16 +42,26 @@ function LoginForm({ closeForm }: LoginFormProps) {
       );
 
       if (response.status === 200) {
+        // Get the token from the Authorization header
+        const token = response.headers
+          .get("Authorization")
+          ?.split("Bearer ")[1];
+
         const user = await response.json();
-        setUser(user);
-        if (user.is_admin) {
-          navigate("/admin");
-        } else {
-          navigate("/profile");
+
+        if (!token) {
+          throw new Error("Token non reçu");
         }
+
+        setUser(user);
+        setToken(token);
+        // Save the token in the local storage
+        localStorage.setItem("token", token);
+
+        navigate(user.is_admin ? "/admin" : "/profile");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Erreur de connexion : ", error);
     }
   };
 

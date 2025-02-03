@@ -6,6 +6,8 @@ interface ContextValue {
   user: AccountProps | null;
   setUser: Dispatch<SetStateAction<AccountProps | null>>;
   userAuth: AccountProps | null;
+  token: string | null;
+  setToken: Dispatch<SetStateAction<string | null>>;
   setUserAuth: Dispatch<SetStateAction<AccountProps | null>>;
   progress: ProgressProps | null;
   setProgress: Dispatch<SetStateAction<ProgressProps | null>>;
@@ -15,6 +17,8 @@ const defaultUserContextValue: ContextValue = {
   user: null,
   setUser: () => null,
   userAuth: null,
+  token: null,
+  setToken: () => null,
   setUserAuth: () => null,
   progress: null,
   setProgress: () => null,
@@ -31,6 +35,7 @@ export const UserContext = createContext<ContextValue | null>(
 export const Provider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState<AccountProps | null>(null);
   const [userAuth, setUserAuth] = useState<AccountProps | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const [progress, setProgress] = useState<ProgressProps | null>(null);
 
   //----------------------------------------------------------
@@ -55,6 +60,8 @@ export const Provider = ({ children }: ProviderProps) => {
         user,
         setUser,
         userAuth,
+        token,
+        setToken,
         setUserAuth,
         progress,
         setProgress,
