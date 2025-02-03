@@ -55,12 +55,12 @@ const verifyToken: RequestHandler = async (req, res, next) => {
     // Verify there is a Header in the request
     const authorizationHeader = req.get("Authorization");
 
-    if (!autohorizationHeader) {
+    if (!authorizationHeader) {
       throw new Error("Authorization header is missing");
     }
 
     // Verify the type is "Bearer <token>"
-    const [type, token] = autohorizationHeader.split(" ");
+    const [type, token] = authorizationHeader.split(" ");
 
     if (type !== "Bearer") {
       res.status(401).json({ message: "Invalide authorization header" });
