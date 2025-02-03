@@ -15,6 +15,7 @@ function LoginForm({ closeForm }: LoginFormProps) {
   if (!userContext) {
     throw new Error("UserContext is null");
   }
+
   const { setUser, setToken } = userContext;
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -26,6 +27,7 @@ function LoginForm({ closeForm }: LoginFormProps) {
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
     setError(null);
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/login`,
@@ -41,27 +43,36 @@ function LoginForm({ closeForm }: LoginFormProps) {
         },
       );
 
-      if (response.status === 200) {
-        // Get the token from the Authorization header
-        const token = response.headers
-          .get("Authorization")
-          ?.split("Bearer ")[1];
-
-        const user = await response.json();
-
-        if (!token) {
-          throw new Error("Token non reçu");
-        }
-
-        setUser(user);
-        setToken(token);
-        // Save the token in the local storage
-        localStorage.setItem("token", token);
-
-        navigate(user.is_admin ? "/admin" : "/profile");
+      if (!response.ok) {
+        const errorMessage = await response.json();
+        throw new Error(errorMessage.message || "Erreur de connexion.");
       }
+
+      // Get the token from the Authorization header
+      const token = response.headers.get("Authorization")?.split("Bearer ")[1];
+
+      if (!token) {
+        throw new Error("Token non reçu");
+      }
+
+      const user = await response.json();
+
+      setUser(user);
+      setToken(token);
+
+      // Save the token in the local storage
+      try {
+        localStorage.setItem("token", token);
+      } catch (storageError) {
+        console.error("Erreur de stockage du token", storageError);
+      }
+
+      navigate(user.is_admin ? "/admin" : "/profile");
     } catch (error) {
       console.error("Erreur de connexion : ", error);
+      setError(
+        error instanceof Error ? error.message : "Une erreur est survenue.",
+      );
     }
   };
 

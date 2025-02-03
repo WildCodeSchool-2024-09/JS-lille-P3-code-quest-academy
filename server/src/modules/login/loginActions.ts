@@ -34,10 +34,10 @@ const login: RequestHandler = async (req, res, next) => {
       const token = await jwt.sign(
         myPayload,
         process.env.APP_SECRET as string,
-        { expiresIn: "1h" },
+        { expiresIn: "24h" },
       );
 
-      // Send the token in the response header
+      // Send the token in the Authorization Header
       res.setHeader("Authorization", `Bearer ${token}`);
 
       // Send the user's information in the response body
@@ -55,19 +55,27 @@ const verifyToken: RequestHandler = async (req, res, next) => {
     // Verify there is a Header in the request
     const autohorizationHeader = req.get("Authorization");
 
-    if (autohorizationHeader == null) {
+    if (!autohorizationHeader) {
       throw new Error("Authorization header is missing");
     }
 
-    // Verify the type is"Bearer <token>"
-    const [type, token] = autohorizationHeader.split("");
+    // Verify the type is "Bearer <token>"
+    const [type, token] = autohorizationHeader.split(" ");
 
     if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
+      res.status(401).json({ message: "Invalide authorization header" });
     }
 
     // Verify the validity of the token
-    req.auth = jwt.verify(token, process.env.APP_SECRET as string) as MyPayload;
+    try {
+      req.auth = jwt.verify(
+        token,
+        process.env.APP_SECRET as string,
+      ) as MyPayload;
+      next();
+    } catch (error) {
+      res.status(401).json({ message: "Invalid or expired token" });
+    }
 
     next();
   } catch (error) {
@@ -76,4 +84,29 @@ const verifyToken: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login };
+const loginByToken: RequestHandler = async (req, res, next) => {
+  try {
+    // userId in the Payload is a string, so we need to convert it to a number
+    const userId = Number(req.auth?.sub);
+
+    if (!userId) {
+      res.sendStatus(401);
+      return;
+    }
+
+    // Get user info from DB
+    const user = await accountRepository.readById(userId);
+
+    if (!user) {
+      res.sendStatus(401);
+      return;
+    }
+
+    const { hashed_password, ...userWithoutHashedPassword } = user;
+    res.json(userWithoutHashedPassword);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+};
+
+export default { login, loginByToken, verifyToken };
