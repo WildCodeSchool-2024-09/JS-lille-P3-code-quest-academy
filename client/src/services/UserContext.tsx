@@ -5,6 +5,8 @@ import type { AccountProps, ProgressProps } from "../types/user";
 interface ContextValue {
   user: AccountProps | null;
   setUser: Dispatch<SetStateAction<AccountProps | null>>;
+  userAuth: AccountProps | null;
+  setUserAuth: Dispatch<SetStateAction<AccountProps | null>>;
   progress: ProgressProps | null;
   setProgress: Dispatch<SetStateAction<ProgressProps | null>>;
 }
@@ -12,6 +14,8 @@ interface ContextValue {
 const defaultUserContextValue: ContextValue = {
   user: null,
   setUser: () => null,
+  userAuth: null,
+  setUserAuth: () => null,
   progress: null,
   setProgress: () => null,
 };
@@ -26,6 +30,7 @@ export const UserContext = createContext<ContextValue | null>(
 
 export const Provider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState<AccountProps | null>(null);
+  const [userAuth, setUserAuth] = useState<AccountProps | null>(null);
   const [progress, setProgress] = useState<ProgressProps | null>(null);
 
   //----------------------------------------------------------
@@ -49,6 +54,8 @@ export const Provider = ({ children }: ProviderProps) => {
       value={{
         user,
         setUser,
+        userAuth,
+        setUserAuth,
         progress,
         setProgress,
       }}

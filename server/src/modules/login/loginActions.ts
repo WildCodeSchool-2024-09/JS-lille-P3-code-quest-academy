@@ -1,5 +1,6 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
+import jwt from "jsonwebtoken";
 import accountRepository from "../account/accountRepository";
 
 const login: RequestHandler = async (req, res, next) => {
@@ -24,12 +25,50 @@ const login: RequestHandler = async (req, res, next) => {
       // Destructure `user` using the spread operator to return all properties except `hashed_password`
       const { hashed_password, ...userWithoutHashedPassword } = user;
 
-      res.json({ message: "Login successful", userWithoutHashedPassword });
+      // Token generation code will be added here
+      const myPayload: MyPayload = {
+        sub: user.id.toString(),
+        isAdmin: user.is_admin,
+      };
+
+      const token = await jwt.sign(
+        myPayload,
+        process.env.APP_SECRET as string,
+        { expiresIn: "1h" },
+      );
+
+      res.json({ token, userWithoutHashedPassword });
     } else {
       res.status(422).json({ message: "Incorrect password." });
     }
   } catch (err) {
     next(err);
+  }
+};
+
+const verifyToken: RequestHandler = async (req, res, next) => {
+  try {
+    // Verify there is a Header in the request
+    const autohorizationHeader = req.get("Authorization");
+
+    if (autohorizationHeader == null) {
+      throw new Error("Authorization header is missing");
+    }
+
+    // Verify the type is"Bearer <token>"
+    const [type, token] = autohorizationHeader.split("");
+
+    if (type !== "Bearer") {
+      throw new Error("Authorization header has not the 'Bearer' type");
+    }
+
+    // Verify the validity of the token
+    req.auth = jwt.verify(token, process.env.APP_SECRET as string) as MyPayload;
+
+    next();
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(401);
   }
 };
 
