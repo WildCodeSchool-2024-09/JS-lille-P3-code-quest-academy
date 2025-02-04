@@ -24,7 +24,7 @@ const login: RequestHandler = async (req, res, next) => {
       // Destructure `user` using the spread operator to return all properties except `hashed_password`
       const { hashed_password, ...userWithoutHashedPassword } = user;
 
-      res.json({ message: "Login successful", userWithoutHashedPassword });
+      res.json(userWithoutHashedPassword);
     } else {
       res.status(422).json({ message: "Incorrect password." });
     }

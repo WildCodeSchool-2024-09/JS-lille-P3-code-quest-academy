@@ -47,14 +47,14 @@ VALUES
   ("admin", "admin@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$plUwfAAwGqdtJgSlYyA/yQ$gEmsZmb+wa8RMvEnRHvJhnYP7mZM96PscaAc4tbou7Y", 1),
   ("user1", "user1@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$OMtvcBoC8Sw1yJRMqeEMBA$+c8sAtpJZ8VcbN52geHzSegdpFIkZunbfT2HH9okLPw", 0);
 
-INSERT INTO room (boss_name, boss_img_src, fight_gif_src, room_img_src)
+INSERT INTO room (boss_name, boss_img_src, fight_video_src, room_img_src)
 VALUES
-  ("Le seigneur des balises", "../../src/assets/images/boss/boss-html.png", "../../src/assets/images/boss/boss-html.gif", "../../src/assets/images/room-html.png"),
-  ("Gridzilla", "../../src/assets/images/boss/boss-css.png", "../../src/assets/images/boss/boss-css.gif", null),
-  ("DOM-inator", "../../src/assets/images/boss/boss-js.png", "../../src/assets/images/boss/boss-js.gif", null),
-  ("Captain Hook", "../../src/assets/images/boss/boss-react.png", "../../src/assets/images/boss/boss-react.gif", null),
-  ("Nodeferatus", "../../src/assets/images/boss/boss-node.png", "../../src/assets/images/boss/boss-node.gif", null),
-  ("Soufiane Maski", "../../src/assets/images/boss/boss-sql.png", "../../src/assets/images/boss/boss-sql.gif", null),
+  ("Le seigneur des balises", "./src/assets/images/boss/boss-html.png", "./src/assets/videos/html-boss-fight.mp4", "./src/assets/images/html-room.png"),
+  ("Gridzilla", "./src/assets/images/boss/boss-css.png", "./src/assets/videos/css-boss-fight.mp4", "./src/assets/images/css-room.png"),
+  ("DOM-inator", "./src/assets/images/boss/boss-js.png", "../src/assets/videos/js-boss-fight.mp4", "./src/assets/images/js-room.png"),
+  ("Captain Hook", "./src/assets/images/boss/boss-react.png", "./src/assets/videos/react-boss-fight.mp4", "./src/assets/images/react-room.png"),
+  ("Nodeferatus", "./src/assets/images/boss/boss-node.png", "./src/assets/videos/node-boss-fight.mp4", "./src/assets/images/node-room.png"),
+  ("Soufiane Maski", "./src/assets/images/boss/boss-sql.png", "./src/assets/videos/sql-boss-fight.mp4", "./src/assets/images/sql-room.png"),
   (null, null, null, "../src/assets/images/game-background-level0.png"),
   (null, null, null, "../src/assets/images/game-background-level1.gif"),
   (null, null, null, "../src/assets/images/game-background-level2.gif"),
