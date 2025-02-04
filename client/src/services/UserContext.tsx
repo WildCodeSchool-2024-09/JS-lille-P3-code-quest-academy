@@ -11,22 +11,11 @@ interface ContextValue {
   setProgress: Dispatch<SetStateAction<ProgressProps | null>>;
 }
 
-const defaultUserContextValue: ContextValue = {
-  user: null,
-  setUser: () => null,
-  token: null,
-  setToken: () => null,
-  progress: null,
-  setProgress: () => null,
-};
-
 interface ProviderProps {
   children: ReactNode;
 }
 
-export const UserContext = createContext<ContextValue | null>(
-  defaultUserContextValue,
-);
+export const UserContext = createContext<ContextValue | null>(null);
 
 export const Provider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState<AccountProps | null>(null);
