@@ -31,7 +31,7 @@ class AccountRepository {
     return rows as Account[];
   }
 
-  async read(id: number) {
+  async readById(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM account WHERE id = ?",
       [id],

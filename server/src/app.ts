@@ -21,7 +21,13 @@ const app = express();
 import cors from "cors";
 
 if (process.env.CLIENT_URL != null) {
-  app.use(cors({ origin: [process.env.CLIENT_URL] }));
+  app.use(
+    cors({
+      origin: [process.env.CLIENT_URL],
+      // permit the Authorization header to be sent to the client
+      exposedHeaders: ["Authorization"],
+    }),
+  );
 }
 
 // If you need to allow extra origins, you can add something like this:

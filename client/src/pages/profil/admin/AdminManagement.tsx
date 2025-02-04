@@ -22,7 +22,12 @@ function AdminManagement() {
   // ------------------------------------- //
   //   Appel API
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/accounts`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/accounts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data: User[]) => {
         setUsers(data);
@@ -49,7 +54,6 @@ function AdminManagement() {
   };
 
   // ------------------------------------- //
-  //    Tri des utilisateurs
   const sortUsers = (key: "username" | "email") => {
     // key: "" nous permet d'utiliser le code plusieurs fois selon ce que l'on souhaite trier
     const sorted = [...filteredUsers].sort((a, b) => {
@@ -67,7 +71,6 @@ function AdminManagement() {
   };
 
   // ------------------------------------ //
-  // Modifier les utilisateurs
   const startEditingUser = (user: User) => {
     setEditingUser(user);
   };
@@ -88,7 +91,6 @@ function AdminManagement() {
   };
 
   // ---------------------------------- //
-  // Supprimer les utilisateurs
   const deleteUser = (id: number) => {
     if (
       window.confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")
@@ -103,7 +105,6 @@ function AdminManagement() {
             );
           }
 
-          // Mise à jour de la liste des utilisateurs
           const updatedUsers = users.filter((user) => user.id !== id);
 
           setUsers(updatedUsers);
@@ -125,13 +126,9 @@ function AdminManagement() {
         onChange={handleSearch}
         className="user-search-bar"
       />
-      {/* la balise table c'est pour représenter sous forme de tableau */}
       <table className="user-table">
-        {/* la balise thead c'est pour nommer les colonnes */}
         <thead>
-          {/* la balise tr représente une ligne dans le tableau */}
           <tr>
-            {/* la balise th représente l'entête d'une cellule */}
             <th>ID</th>
             <th>
               Nom d'utilisateur
@@ -148,11 +145,9 @@ function AdminManagement() {
             <th>Actions</th>
           </tr>
         </thead>
-        {/* la balise tbody contient les lignes principales */}
         <tbody>
           {filteredUsers.map((user) => (
             <tr key={user.id}>
-              {/* la balise td représente une cellule du tableau */}
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>

@@ -14,10 +14,12 @@ function Logout({ closePopupLogout }: closePopupLogoutProps) {
   if (!userContext) {
     throw new Error("UserContext is null");
   }
-  const { setUser } = userContext;
+  const { setUser, setToken } = userContext;
 
   const confirmLogout = () => {
     setUser(null);
+    setToken(null);
+    localStorage.removeItem("token");
     navigate("/");
   };
 
