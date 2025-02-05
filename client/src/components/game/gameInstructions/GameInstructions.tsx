@@ -24,24 +24,10 @@ function GameInstructions() {
     videoRef,
   } = gameContext;
 
-  //--------------------------------------------------------------------
-  // -------------------------BOSS BUTTON-------------------------------
-  //-------------appears only when challenge.type = "boss"--------------
-  //--------------------------------------------------------------------
-  const [bossButtonVisible, setBossButtonVisible] = useState("");
-
-  useEffect(() => {
-    if (actualChallenge?.type === "boss") {
-      setBossButtonVisible("visible");
-    } else {
-      setBossButtonVisible("");
-    }
-  }, [actualChallenge]);
-
   //---------------------------------------------------------------------
   //--enable the button next for the first challenge as an introduction--
   useEffect(() => {
-    if (actualChallenge?.id === 1) {
+    if (actualChallenge?.id === 1 || actualChallenge?.type === "boss-spawn") {
       setIsButtonEnabled(true);
       setButtonStyles("button-enabled");
     }
@@ -58,7 +44,16 @@ function GameInstructions() {
     setIsButtonEnabled(true);
     setButtonStyles("button-enabled");
   };
+  //-------------appears only when challenge.type = "boss"(db)------------
+  const [bossButtonVisible, setBossButtonVisible] = useState("");
 
+  useEffect(() => {
+    if (actualChallenge?.type === "boss") {
+      setBossButtonVisible("visible");
+    } else {
+      setBossButtonVisible("");
+    }
+  }, [actualChallenge]);
   //--------------------------------------------------------------------
   // --------------------------NEXT BUTTON------------------------------
   //-------------increment challenge table when we click----------------
@@ -96,7 +91,6 @@ function GameInstructions() {
       );
     }
   };
-
   //--------------------------------------------------------------------
   // ------------------------HINT CONTAINER-----------------------------
   //--------------Set the hint container visible onclick----------------
