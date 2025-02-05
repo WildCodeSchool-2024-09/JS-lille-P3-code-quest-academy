@@ -45,5 +45,10 @@ router.get("/api/room/:id", roomActions.read);
 import loginActions from "./modules/login/loginActions";
 
 router.post("/api/login", loginActions.login);
+router.get(
+  "/api/accountbytoken",
+  loginActions.verifyToken,
+  loginActions.loginByToken,
+);
 
 export default router;

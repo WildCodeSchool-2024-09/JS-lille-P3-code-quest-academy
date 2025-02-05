@@ -14,7 +14,7 @@ const browse: RequestHandler = async (req, res, next) => {
 const read: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
-    const account = await accountRepository.read(accountId);
+    const account = await accountRepository.readById(accountId);
 
     if (account == null) {
       res.sendStatus(404);
@@ -87,7 +87,7 @@ const editInfos: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    const account = await accountRepository.read(accountId);
+    const account = await accountRepository.readById(accountId);
     const affectedRows = await accountRepository.updateInfos({
       id: accountId,
       username,
@@ -123,7 +123,7 @@ const editTrainers: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    const account = await accountRepository.read(accountId);
+    const account = await accountRepository.readById(accountId);
     if (!account) {
       res.status(404).json({ success: false, message: "Compte non trouvé" });
       return;
