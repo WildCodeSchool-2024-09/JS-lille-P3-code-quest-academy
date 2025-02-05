@@ -12,15 +12,15 @@ function HomePage() {
   const closeForm = () => setActiveForm(null);
 
   return (
-    <div className="home-page">
-      <div className="logo-container">
+    <div className="homepage">
+      <div className="homepage-logo-container">
         <img
-          className="logo"
+          className="homepage-logo"
           src="./src/assets/images/logo.svg"
           alt="Code Quest Academy"
         />
       </div>
-      <div className="home-page-text">
+      <div className="homepage-text">
         <p>
           Code Quest Academy est un jeu où vous progressez en résolvant des
           énigmes de programmation. Vous serez testé sur plusieurs langages tout
@@ -29,17 +29,17 @@ function HomePage() {
           un maître du développement !
         </p>
       </div>
-      <div className="home-page-buttons-container">
+      <div className="homepage-buttons-container">
         <button
           type="button"
-          className="sign-in-button"
+          className="login-button homepage-button"
           onClick={() => setActiveForm("login")}
         >
           Connexion
         </button>
         <button
           type="button"
-          className="subscribe-button"
+          className="subscribe-button homepage-button"
           onClick={() => setActiveForm("signup")}
         >
           Inscription
@@ -57,7 +57,7 @@ function HomePage() {
         </div>
       )}
 
-      <div className="home-page-footer">
+      <div className="homepage-footer">
         Développé par les dev's de la {/**/}
         <a
           href="https://www.wildcodeschool.com/"
