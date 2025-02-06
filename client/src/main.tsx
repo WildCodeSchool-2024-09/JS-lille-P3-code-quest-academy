@@ -8,12 +8,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 
-import AdminPage from "./pages/adminpage/AdminPage";
-import ProfilPage from "./pages/profilpage/ProfilPage";
+import AdminPage from "./pages/profil/AdminPage";
+import ProfilPage from "./pages/profil/ProfilPage";
 
 import GameBoard from "./pages/game/GameBoard";
 import HomePage from "./pages/home/HomePage";
-import AdminManagement from "./pages/profil/admin/AdminManagement";
+import AdminManagement from "./pages/profil/management/AdminManagement";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder

@@ -50,7 +50,8 @@
   border-radius: 18px;
   box-shadow: 4px 4px 0 var(--primary-color-dark), 8px 8px 0 #4d2b27;
   cursor: pointer;
-  transition: transform 0.1s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: transform 0.1s ease-in-out, background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 .logout-button:hover {
@@ -108,7 +109,8 @@
   border-radius: 18px;
   box-shadow: 4px 4px 0 var(--primary-color-dark), 8px 8px 0 #4d2b27;
   cursor: pointer;
-  transition: transform 0.1s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: transform 0.1s ease-in-out, background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 .information-button:hover,
@@ -137,7 +139,8 @@
   border-radius: 50%;
   box-shadow: 4px 4px 0 var(--primary-color-dark), 8px 8px 0 #4d2b27;
   cursor: pointer;
-  transition: transform 0.1s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: transform 0.1s ease-in-out, background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
   align-self: center;
 }
 

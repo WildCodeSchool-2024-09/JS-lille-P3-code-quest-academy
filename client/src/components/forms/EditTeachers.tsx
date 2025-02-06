@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../services/UserContext";
 import "./EditTeachers.css";
 
@@ -21,7 +21,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
     return <p>Chargement...</p>;
   }
 
-  const userId = userContext.user.id; 
+  const userId = userContext.user.id;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import sprite from "../../assets/images/sprite-admin-page (1).png";
@@ -20,13 +20,11 @@ function AdminPage() {
 
   const { user, progress } = userContext;
   const { actualChallenge } = gameContext;
-
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("********");
   const [firstTeacher, setFirstTeacher] = useState(user.firstTeacher);
   const [secondTeacher, setSecondTeacher] = useState(user.secondTeacher);
-
   const [showTeacherPopup, setShowTeacherPopup] = useState(false);
   const [showInfoPopup, setShowInfoPopup] = useState(false);
   const [popupLogout, setPopupLogout] = useState(false);
@@ -93,13 +91,6 @@ function AdminPage() {
           >
             Gestion des Utilisateurs
           </button>
-          <button
-            type="button"
-            className="information-button"
-            onClick={() => navigate("/Admine/information")}
-          >
-            Mes informations
-          </button>
           <h1 className="first-pseudo">PSEUDO FORMATEUR 1 : {firstTeacher}</h1>
           <h1 className="second-pseudo">
             PSEUDO FORMATEUR 2 : {secondTeacher}
@@ -119,7 +110,7 @@ function AdminPage() {
             className="button-modification-photo"
             onClick={() => navigate("/Admine/modification-photo")}
           >
-            MODIFIER MA PHOTO DE Admin
+            MODIFIER MA PHOTO DE Profil
           </button>
           <h1 className="pseudo">PSEUDO: {username}</h1>
           <h1 className="password">MOT DE PASSE: {password}</h1>

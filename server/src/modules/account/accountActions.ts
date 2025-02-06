@@ -79,7 +79,7 @@ const editInfos: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
     const { username, email, password } = req.body;
-    const hashed_password = password
+    const hashed_password = password;
 
     if (!username || !email || !hashed_password) {
       res.status(400).json({
@@ -211,4 +211,13 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, editInfos,editTrainers, add, destroy, hashPassword };
+export default {
+  browse,
+  read,
+  edit,
+  editInfos,
+  editTrainers,
+  add,
+  destroy,
+  hashPassword,
+};

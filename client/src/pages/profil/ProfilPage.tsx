@@ -1,13 +1,13 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import sprite from "../../assets/images/sprite-admin-page (1).png";
 import EditInformations from "../../components/forms/EditInformations";
 import EditTeacher from "../../components/forms/EditTeachers";
 import Logout from "../../components/logout/Logout";
+import { UserContext } from "../../services/UserContext";
 import "./ProfilPage.css";
 import { GameContext } from "../../services/GameContext";
-import { UserContext } from "../../services/UserContext";
 
 function ProfilPage() {
   const navigate = useNavigate();
@@ -21,13 +21,11 @@ function ProfilPage() {
 
   const { user, progress } = userContext;
   const { actualChallenge } = gameContext;
-
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("********");
   const [firstTeacher, setFirstTeacher] = useState(user.firstTeacher);
   const [secondTeacher, setSecondTeacher] = useState(user.secondTeacher);
-
   const [showTeacherPopup, setShowTeacherPopup] = useState(false);
   const [showInfoPopup, setShowInfoPopup] = useState(false);
   const [popupLogout, setPopupLogout] = useState(false);
@@ -86,13 +84,6 @@ function ProfilPage() {
             ROOM : {actualChallenge.room_id} | CHALLENGE :{" "}
             {progress?.challenge_id}
           </h2>
-          <button
-            type="button"
-            className="information-button"
-            onClick={() => navigate("/profile/information")}
-          >
-            Mes informations
-          </button>
           <h1 className="first-pseudo">PSEUDO FORMATEUR 1 : {firstTeacher}</h1>
           <h1 className="second-pseudo">
             PSEUDO FORMATEUR 2 : {secondTeacher}
