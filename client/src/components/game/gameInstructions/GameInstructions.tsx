@@ -63,6 +63,8 @@ function GameInstructions() {
     setIsButtonEnabled(false);
     setButtonStyles("");
     setAnswerStyles("");
+    setHintVisibility("");
+    setIsHintVisible(false);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}/${
@@ -107,6 +109,13 @@ function GameInstructions() {
       setIsHintVisible(false);
     }
   };
+
+  useEffect(() => {
+    if (actualChallenge?.id === 1) {
+      setHintVisibility("hint-visible");
+      setIsHintVisible(true);
+    }
+  }, [actualChallenge]);
   //--------------------------------------------------------------------
 
   return (

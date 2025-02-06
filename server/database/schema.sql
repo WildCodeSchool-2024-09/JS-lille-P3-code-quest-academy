@@ -54,7 +54,7 @@ VALUES
   ("DOM-inator", "./src/assets/images/boss/boss-js.png", "../src/assets/videos/js-boss-fight.mp4", "./src/assets/images/js-room.png"),
   ("Captain Hook", "./src/assets/images/boss/boss-react.png", "./src/assets/videos/react-boss-fight.mp4", "./src/assets/images/react-room.png"),
   ("Nodeferatus", "./src/assets/images/boss/boss-node.png", "./src/assets/videos/node-boss-fight.mp4", "./src/assets/images/node-room.png"),
-  ("Soufiane Maski", "./src/assets/images/boss/boss-sql.png", "./src/assets/videos/sql-boss-fight.mp4", "./src/assets/images/sql-room.png"),
+  ("JOIN Snow", "./src/assets/images/boss/boss-sql.png", "./src/assets/videos/sql-boss-fight.mp4", "./src/assets/images/sql-room.png"),
   (null, null, null, "../src/assets/images/game-background-level0.png"),
   (null, null, null, "../src/assets/images/game-background-level1.gif"),
   (null, null, null, "../src/assets/images/game-background-level2.gif"),
@@ -66,7 +66,7 @@ VALUES
 
 INSERT INTO challenge (title, guideline, hint, soluce, type, question, rep1, rep2, rep3, rep4, room_id)
 VALUES
-  ("Transition", "Bienvenue à la Code Quest Academy ! Un mystérieux bug est apparu et empêche les étudiants de continuer leur apprentissage. Aides nous à remettre de l'ordre, clique sur le bouton suivant pour commencer.", "hint", "soluce", "transition", "question", null, null, null, null, 7),
+  ("Transition", "Bienvenue à la Code Quest Academy ! Un mystérieux bug est apparu et empêche les étudiants de continuer leur apprentissage. Aides nous à remettre de l'ordre, clique sur le bouton suivant pour commencer.", "Hello ! Moi c'est Fantine, je suis là si tu as besoin d'une astuce !", "soluce", "transition", "question", null, null, null, null, 7),
   ("Transition", "La première salle a été débloquée, tu peut cliquer dessus pour t'y rendre et commencer l'aventure !", "hint", "soluce", "transition", "question", null, null, null, null, 8),
   ("HTML", "guideline", "C'est un raccourci pour 'image' en anglais.", "<img>", "quizz", "Quel est l’élément HTML utilisé pour insérer une image dans une page web ?", "<img>", "<image>", "<picture>", "<media>", 1),
   ("HTML", "guideline", "Cette balise est comme une porte vers une autre page. Elle utilise une lettre simple, souvent associée à 'adresse' ou 'ancre' en anglais.", "<a>", "quizz", "Quelle est la balise correcte pour créer un lien hypertexte", "<link>", "<href>", "<a>", "<anchor>", 1),
@@ -109,11 +109,13 @@ VALUES
   ("SQL", "guideline", "Cette commande est utilisée pour extraire des données d'une table en SQL.", "NOT NULL", "quizz", "Quelle contrainte SQL empêche qu'une colonne contienne des valeurs nulles ?", "DEFAULT", "PRIMARY KEY", "NOT NULL", "UNIQUE", 6),
   ("SQL", "guideline", "Cette clause permet de filtrer les résultats d’une requête SQL en fonction d’une condition spécifique.", "WHERE", "prompt", " Quelle clause SQL permet de filtrer les résultats d’une requête ?", "null", "null", "null", "null", 6),
   ("SQL", "guideline", "C'est la première étape de la conception d'une base de donnée.", "modele conceptuel de donnée", "prompt", " C'est quoi un MCD ?", "null", "null", "null", "null", 6),
-  ("SQL", "Est-tu prêt à combattre le boss SQL ? Attends, mais c'est Soufiane Maski, le formateur des data du campus de Lille !", "hint", "soluce", "boss", "question", null, null, null, null, 6),
-  ("Transition", "Bravo, tu as vaincu Soufiane et maitrise maintenant SQL ! Tu as débloqué la dernière salle, clique sur l'image pour t'y rendre.", "hint", "soluce", "transition", "question", null, null, null, null, 14);
+  ("SQL", "guideline", "SQL", "", "boss-spawn",  "", "null", "null", "null", "null", 6),
+  ("SQL", "Est-tu prêt à combattre le boss SQL ?", "hint", "soluce", "boss", "question", null, null, null, null, 6),
+  ("SQL", "Bravo ! tu as battu le boss SQ... mais attends... il y a quelqu'un sous ce costume !", "hint", "soluce", "transition", "question", null, null, null, null, 6),
+  ("Transition", "Tu as débloqué la dernière salle ! Clique sur le bouton pour t'y rendre.", "hint", "soluce", "transition", "question", null, null, null, null, 14);
   
 
 INSERT INTO progress (user_id, room_id, challenge_id)
 VALUES
   (1, 1, 1),
-  (2, 1, 1);
+  (2, 6, 42);
