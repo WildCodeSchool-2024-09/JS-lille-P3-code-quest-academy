@@ -43,7 +43,6 @@ function LoginForm({ closeForm }: LoginFormProps) {
         },
       );
 
-
       if (!response.ok) {
         const errorMessage = await response.json();
         throw new Error(errorMessage.message || "Erreur de connexion.");
@@ -79,34 +78,37 @@ function LoginForm({ closeForm }: LoginFormProps) {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      <div className="close-button-container">
+      <section className="close-button-container grid-close-button-container">
         <button type="button" className="close-form-button" onClick={closeForm}>
           +
         </button>
-      </div>
+      </section>
       <h3 className="form-title">Connexion</h3>
 
       {error && <p className="form-error">{error}</p>}
 
-      <label htmlFor="email-login" className="form-label">
+      <label htmlFor="email-login" className="form-label grid-label-email">
         Email
       </label>
       <input
         type="email"
         ref={emailRef}
-        className="form-input"
-        placeholder="Enter your email"
+        className="form-input grid-input-email"
+        placeholder="Entrez votre adresse email"
       />
-      <label htmlFor="password-login" className="form-label">
-        Password
+      <label
+        htmlFor="password-login"
+        className="form-label grid-label-password"
+      >
+        Mot de passe
       </label>
       <input
         type="password"
         ref={passwordRef}
-        className="form-input"
-        placeholder="Enter your password"
+        className="form-input grid-input-password"
+        placeholder="Entrez votre mot de passe"
       />
-      <button type="submit" className="form-button">
+      <button type="submit" className="form-button grid-form-button">
         Se connecter
       </button>
     </form>
