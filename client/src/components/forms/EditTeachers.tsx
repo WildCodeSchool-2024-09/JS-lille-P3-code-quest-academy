@@ -62,7 +62,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit} className="form-edit-teacher">
         <label htmlFor="firstTeacher" className="first-label-teacher">
           Enseignant 1 :
@@ -95,7 +95,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
         </button>
       </form>
       {message && <p className="message-teacher">{message}</p>}
-    </div>
+    </>
   );
 }
 

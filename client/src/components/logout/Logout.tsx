@@ -26,8 +26,12 @@ function Logout({ closePopupLogout }: closePopupLogoutProps) {
   return (
     <section className="logout-form">
       <h2>Voulez-vous vraiment vous déconnecter ?</h2>
-      <section className="logout-buttons-container">
-        <button type="button" className="logout-button" onClick={confirmLogout}>
+      <article className="logout-buttons-container">
+        <button
+          type="button"
+          className="logout-form-button"
+          onClick={confirmLogout}
+        >
           Se déconnecter
         </button>
         <button
@@ -37,7 +41,7 @@ function Logout({ closePopupLogout }: closePopupLogoutProps) {
         >
           Annuler
         </button>
-      </section>
+      </article>
     </section>
   );
 }
