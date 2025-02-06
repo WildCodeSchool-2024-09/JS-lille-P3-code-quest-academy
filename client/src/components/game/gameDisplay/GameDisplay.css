@@ -18,94 +18,49 @@
   height: 100%;
 }
 
-.overlay-item {
-  position: absolute;
-  color: white;
-  font-size: 1.5rem;
-  text-shadow: 1px 1px 2px black;
+.player-character {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  z-index: 2;
+}
+.player-character-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  bottom: 33%;
+  background-color: rgba(207, 207, 207, 0.8);
+  animation: slideInFade 1s forwards;
 }
 
-.item1 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 31.5%;
-  left: 5%;
-  width: 185px;
-  height: 96px;
-  z-index: 1;
+.boss-character {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  z-index: 2;
+}
+.boss-character-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  bottom: 95%;
+  left: 66%;
+  animation: slideInFade 1s forwards;
 }
 
-.item2 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 31.5%;
-  left: 27%;
-  width: 185px;
-  height: 96px;
-  z-index: 1;
-}
-
-.item3 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 31.5%;
-  left: 49%;
-  width: 200px;
-  height: 96px;
-  z-index: 1;
-}
-
-.item4 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 31.5%;
-  left: 72.5%;
-  width: 190px;
-  height: 96px;
-  z-index: 1;
-}
-
-.item5 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 52%;
-  left: 4.5%;
-  width: 190px;
-  height: 102px;
-  z-index: 1;
-}
-
-.item6 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 52%;
-  left: 27%;
-  width: 400px;
-  height: 105px;
-  z-index: 1;
-}
-
-.item7 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 52%;
-  left: 72%;
-  width: 190px;
-  height: 102px;
-  z-index: 1;
-}
-
-.item8 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 73%;
-  left: 4%;
-  width: 195px;
-  height: 96px;
-  z-index: 1;
-}
-
-.item9 {
-  background-color: rgba(253, 54, 32, 0.3);
-  top: 73%;
-  left: 72%;
-  width: 195px;
-  height: 96px;
-  z-index: 1;
-}
-
-.unlocked {
-  background-color: rgba(253, 54, 32, 0);
+@keyframes slideInFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

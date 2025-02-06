@@ -16,10 +16,27 @@
 .help-img {
   width: 250px;
   height: 250px;
+  cursor: help;
+}
+
+.help-img:hover {
+  animation: increaseBrightness 1s linear forwards;
+}
+
+@keyframes increaseBrightness {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.6);
+    transform: scale(1.05);
+  }
+  1000% {
+    filter: brightness(1);
+  }
 }
 
 .instructions-button {
-  margin-top: 2rem;
   padding: 0.5rem;
   color: rgb(95, 95, 95);
   background-color: rgb(185, 185, 185);
@@ -44,5 +61,48 @@
 }
 
 .visible {
+  display: initial;
+}
+
+.hint-container {
+  position: relative;
+  background: #f0f0f0;
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 300px;
+  font-size: 16px;
+  box-shadow: 3px 3px 0 #000;
+  display: none;
+}
+
+.hint-container::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #000;
+}
+
+.hint-container::before {
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #f0f0f0;
+  z-index: 1;
+}
+
+.hint-visible {
   display: initial;
 }
