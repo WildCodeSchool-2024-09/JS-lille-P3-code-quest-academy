@@ -1,23 +1,24 @@
-.home-page {
+.homepage {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.logo-container {
+.homepage-logo-container {
   position: fixed;
+  width: 18%;
   left: 2rem;
   top: 2rem;
 }
 
-.home-page-buttons-container {
+.homepage-buttons-container {
   display: flex;
   justify-content: center;
   margin: 2rem 15rem;
   gap: 2rem;
 }
 
-.home-page-text p {
+.homepage-text p {
   text-align: center;
   margin-left: 10rem;
   margin-right: 10rem;
@@ -25,44 +26,39 @@
   margin-bottom: 3rem;
 }
 
-.sign-in-button {
+.homepage-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
   text-decoration: none;
+  font-weight: bold;
+  border-radius: 20px;
+  width: 12rem;
+  height: 3rem;
+  cursor: pointer;
+}
+
+.login-button {
+  line-height: 1;
   color: #ffffff;
   font-size: 18px;
-  border-radius: 20px;
-  width: 200px;
-  height: 40px;
-  font-weight: bold;
   border-bottom: 5px solid var(--primary-color);
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
-
   transition: 0.3s;
   background-color: var(--primary-color);
 }
 
-.sign-in-button:hover {
+.login-button:hover {
   border-bottom-width: 0;
   transform: translateY(5px);
 }
 
 .subscribe-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   line-height: 1;
-  text-decoration: none;
   color: var(--primary-color);
   font-size: 18px;
-  border-radius: 20px;
-  width: 200px;
-  height: 40px;
-  font-weight: bold;
   border-top: 2px solid var(--primary-color);
   border-right: 2px solid var(--primary-color);
   border-left: 2px solid var(--primary-color);
@@ -76,7 +72,7 @@
   transform: translateY(5px);
 }
 
-.home-page-footer {
+.homepage-footer {
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -88,7 +84,7 @@
   color: white;
 }
 
-.home-page-footer a {
+.homepage-footer a {
   text-decoration: none;
   color: white;
 }
@@ -104,4 +100,45 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+@media screen and (max-width: 820px) {
+  .homepage {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 7%;
+  }
+
+  .homepage-logo-container {
+    width: 10%;
+  }
+
+  .homepage-logo {
+    width: fit-content;
+  }
+
+  .homepage-text {
+    margin: 6rem, 10rem, 3rem, 1rem;
+  }
+
+  .homepage-text p {
+    margin-top: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    text-align: center;
+  }
+
+  .homepage-buttons-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .homepage-button {
+    width: 10rem;
+  }
+
+  .homepage-footer {
+    text-align: center;
+  }
 }

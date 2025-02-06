@@ -45,51 +45,57 @@ const SignupForm = ({ closeForm }: SignupFormProps) => {
 
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
-      <div className="close-button-container">
+      <section className="close-button-container grid-close-button-container">
         <button type="button" className="close-form-button" onClick={closeForm}>
           +
         </button>
-      </div>
+      </section>
       <h3 className="form-title">S'inscrire</h3>
       {/* Message d'erreur ou de réussite de l'inscription */}
       {message && <p className="form-message">{message}</p>}
-      <label htmlFor="username-signup" className="form-label">
-        Username
+      <label
+        htmlFor="username-signup"
+        className="form-label grid-label-username"
+      >
+        Pseudo
       </label>
       <input
         type="text"
         id="username-signup"
-        className="form-input"
-        placeholder="Enter your username"
+        className="form-input grid-input-username"
+        placeholder="Entrez votre pseudo"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required
       />
-      <label htmlFor="email-signup" className="form-label">
+      <label htmlFor="email-signup" className="form-label grid-label-email">
         Email
       </label>
       <input
         type="email"
         id="email-signup"
-        className="form-input"
-        placeholder="Enter your email"
+        className="form-input grid-input-email"
+        placeholder="Entrez votre adresse email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      <label htmlFor="password-signup" className="form-label">
-        Password
+      <label
+        htmlFor="password-signup"
+        className="form-label grid-label-password"
+      >
+        Mot de passe
       </label>
       <input
         type="password"
         id="password-signup"
-        className="form-input"
-        placeholder="Enter your password"
+        className="form-input grid-input-password"
+        placeholder="Entrez votre mot de passe"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit" className="form-button">
+      <button type="submit" className="form-button grid-form-button">
         S'inscrire
       </button>
     </form>
