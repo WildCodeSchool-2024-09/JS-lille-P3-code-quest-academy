@@ -8,8 +8,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 
-import AdminPage from "./components/adminpage/AdminPage";
-import ProfilPage from "./components/profilpage/ProfilPage";
+import AdminPage from "./pages/adminpage/AdminPage";
+import ProfilPage from "./pages/profilpage/ProfilPage";
 
 import GameBoard from "./pages/game/GameBoard";
 import HomePage from "./pages/home/HomePage";
@@ -43,12 +43,12 @@ const router = createBrowserRouter([
         element: <ProfilPage />,
       },
       {
-        path: "/admin", // The profile path
-        element: <AdminPage />, // Renders the AdminPage component for the profile page
-      },
-      {
         path: "/admin/manage",
         element: <AdminManagement />,
+      },
+      {
+        path: "/admin", // The profile path
+        element: <AdminPage />, // Renders the AdminPage component for the profile page
       },
     ],
   },

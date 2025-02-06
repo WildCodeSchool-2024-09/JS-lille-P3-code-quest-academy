@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./EditInformations.css";
+import { UserContext } from "../../services/UserContext";
 
 type EditInformationsProps = {
   updateUserInformation: (
@@ -16,17 +17,23 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const userId = 1;
+  const userContext = useContext(UserContext);
+
+  if (!userContext || !userContext.user) {
+    return <p>Chargement...</p>;
+  }
+ const userId = userContext.user.id; 
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!email || !password || !username) {
-      setMessage("Veuillez remplir les trois champs.");
+    if (!username || !email || !password) {
+      setMessage("Veuillez remplir tous les champs.");
       return;
     }
 
     setIsLoading(true);
+    setMessage("");
 
     try {
       const response = await fetch(
@@ -40,21 +47,16 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
         },
       );
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage("Vos informations sont modifiées !!");
-
-        updateUserInformation(username, email, password);
-
-        setUsername("");
-        setEmail("");
-        setPassword("");
-      } else {
-        setMessage(data.message || "Une erreur est survenue.");
+      if (!response.ok) {
+        throw new Error("Erreur lors de la mise à jour.");
       }
+
+      updateUserInformation(username, email, password);
+      setMessage("Vos informations ont été mises à jour !");
+      setUsername("");
+      setEmail("");
+      setPassword("");
     } catch (error) {
-      console.error("Erreur lors de la mise à jour :", error);
       setMessage("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setIsLoading(false);
@@ -64,20 +66,20 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
   return (
     <div>
       <form onSubmit={handleSubmit} className="form-edit-informations">
-        <label htmlFor="Pseudo" className="label-edit-informations">
+        <label htmlFor="username" className="label-edit-informations">
           Pseudo :
           <input
             type="text"
             className="input-pseudo"
-            id="pseudo"
+            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
         <br />
 
-        <label htmlFor="Password">
-          Password :
+        <label htmlFor="password">
+          Mot de passe :
           <input
             type="password"
             className="input-password"
@@ -88,7 +90,7 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
         </label>
         <br />
 
-        <label htmlFor="Email">
+        <label htmlFor="email">
           Email :
           <input
             type="email"
@@ -99,12 +101,13 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
           />
         </label>
         <br />
+
         <button
           type="submit"
           disabled={isLoading}
           className="button-edit-informations"
         >
-          {isLoading ? "Mise à jour..." : "Mettre à jour"}{" "}
+          {isLoading ? "Mise à jour..." : "Mettre à jour"}
         </button>
       </form>
 

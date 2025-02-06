@@ -1,52 +1,42 @@
-import { useEffect, useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import sprite from "../../assets/images/sprite-admin-page (1).png";
 import EditInformations from "../../components/forms/EditInformations";
 import EditTeacher from "../../components/forms/EditTeachers";
+import Logout from "../../components/logout/Logout";
 import "./AdminPage.css";
-
-// Type pour les données utilisateur
-type User = {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  firstTeacher: string;
-  secondTeacher: string;
-};
+import { GameContext } from "../../services/GameContext";
+import { UserContext } from "../../services/UserContext";
 
 function AdminPage() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("Chargement...");
-  const [email, setEmail] = useState("Chargement...");
+  const userContext = useContext(UserContext);
+  const gameContext = useContext(GameContext);
+
+  if (!userContext?.user || !gameContext?.actualChallenge) {
+    return <div>Loading...</div>;
+  }
+
+  const { user, progress } = userContext;
+  const { actualChallenge } = gameContext;
+
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("********");
-  const [firstTeacher, setfirstTeacher] = useState("Chargement...");
-  const [secondTeacher, setsecondTeacher] = useState("Chargement...");
+  const [firstTeacher, setFirstTeacher] = useState(user.firstTeacher);
+  const [secondTeacher, setSecondTeacher] = useState(user.secondTeacher);
+
   const [showTeacherPopup, setShowTeacherPopup] = useState(false);
   const [showInfoPopup, setShowInfoPopup] = useState(false);
-  const userId = 1;
+  const [popupLogout, setPopupLogout] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/accounts/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Erreur lors de la récupération des données.");
-        }
-        return response.json();
-      })
-      .then((data: User) => {
-        setUsername(data.username);
-        setEmail(data.email);
-        setPassword(data.password);
-        setfirstTeacher(data.firstTeacher);
-        setsecondTeacher(data.secondTeacher);
-      })
-      .catch((error) => {
-        console.error("Erreur :", error);
-        alert("Impossible de charger les informations utilisateur.");
-      });
-  }, []);
+    setUsername(user.username);
+    setEmail(user.email);
+    setFirstTeacher(user.firstTeacher);
+    setSecondTeacher(user.secondTeacher);
+  }, [user]);
 
   const updateUserInfo = (
     newUsername: string,
@@ -55,24 +45,19 @@ function AdminPage() {
   ) => {
     setUsername(newUsername);
     setEmail(newEmail);
-    setPassword(newPassword);
+    setPassword(newPassword || "********");
     setShowInfoPopup(false);
   };
 
   const updateTeachers = (newTeacher1: string, newTeacher2: string) => {
-    setfirstTeacher(newTeacher1);
-    setsecondTeacher(newTeacher2);
+    setFirstTeacher(newTeacher1);
+    setSecondTeacher(newTeacher2);
     setShowTeacherPopup(false);
-  };
-
-  const handleClosePopup = () => {
-    setShowTeacherPopup(false);
-    setShowInfoPopup(false);
   };
 
   return (
-    <div className="admin-page">
-      <div className="admin-header">
+    <div className="Admin-page">
+      <div className="Admin-header">
         <img src={logo} alt="Logo" className="logo" />
         <img
           src={sprite}
@@ -81,29 +66,44 @@ function AdminPage() {
         />
       </div>
 
+      <button
+        type="button"
+        className="logout-button"
+        onClick={() => setPopupLogout(true)}
+      >
+        Déconnexion
+      </button>
+
+      {popupLogout && (
+        <section className="logout-popup-container">
+          <Logout closePopupLogout={() => setPopupLogout(false)} />
+        </section>
+      )}
+
       <div className="left-and-right-side">
         <div className="left-side">
-          <h2 className="level-quest">Level 2 Quête 3</h2>
+          <h2 className="level-quest">
+            ROOM : {actualChallenge.room_id} | CHALLENGE :{" "}
+            {progress?.challenge_id}
+          </h2>
           <button
             type="button"
             className="gestion-button"
-            onClick={() => navigate("/profile/admin/manage")}
+            onClick={() => navigate("/admin/manage")}
           >
             Gestion des Utilisateurs
           </button>
           <button
             type="button"
             className="information-button"
-            onClick={() => navigate("/profile/information")}
+            onClick={() => navigate("/Admine/information")}
           >
             Mes informations
           </button>
-          <h2 className="first-pseudo">
-            PSEUDO FORMATEUR 1 : <h3>{firstTeacher}</h3>
-          </h2>
-          <h2 className="second-pseudo">
-            PSEUDO FORMATEUR 2 : <h3>{secondTeacher}</h3>
-          </h2>
+          <h1 className="first-pseudo">PSEUDO FORMATEUR 1 : {firstTeacher}</h1>
+          <h1 className="second-pseudo">
+            PSEUDO FORMATEUR 2 : {secondTeacher}
+          </h1>
           <button
             type="button"
             className="left-modification-button"
@@ -117,18 +117,13 @@ function AdminPage() {
           <button
             type="button"
             className="button-modification-photo"
-            onClick={() => navigate("/profile/modification-photo")}
+            onClick={() => navigate("/Admine/modification-photo")}
           >
-            MODIFIER MA PHOTO DE PROFIL
+            MODIFIER MA PHOTO DE Admin
           </button>
-          <h2 className="pseudo">
-            PSEUDO:
-            <h3>{username}</h3>
-          </h2>
-          <h2 className="email">
-            EMAIL: <h3> {email}</h3>
-          </h2>
-          <h2 className="password">{password}</h2>
+          <h1 className="pseudo">PSEUDO: {username}</h1>
+          <h1 className="password">MOT DE PASSE: {password}</h1>
+          <h1 className="email">EMAIL: {email}</h1>
           <button
             type="button"
             className="right-modification-button"
@@ -149,18 +144,18 @@ function AdminPage() {
       {showTeacherPopup && (
         <div
           className="popup-overlay"
-          onClick={handleClosePopup}
-          onKeyUp={(e) => e.key === "Escape" && handleClosePopup()}
+          onClick={() => setShowTeacherPopup(false)}
+          onKeyUp={(e) => e.key === "Escape" && setShowTeacherPopup(false)}
         >
           <div
             className="popup-content"
             onClick={(e) => e.stopPropagation()}
-            onKeyUp={(e) => e.key === "Escape" && handleClosePopup()}
+            onKeyUp={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               className="close-button"
-              onClick={handleClosePopup}
+              onClick={() => setShowTeacherPopup(false)}
             >
               ×
             </button>
@@ -172,18 +167,18 @@ function AdminPage() {
       {showInfoPopup && (
         <div
           className="popup-overlay"
-          onClick={handleClosePopup}
-          onKeyUp={(e) => e.key === "Escape" && handleClosePopup()}
+          onClick={() => setShowInfoPopup(false)}
+          onKeyUp={(e) => e.key === "Escape" && setShowInfoPopup(false)}
         >
           <div
             className="popup-content"
             onClick={(e) => e.stopPropagation()}
-            onKeyUp={(e) => e.key === "Escape" && handleClosePopup()}
+            onKeyUp={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               className="close-button"
-              onClick={handleClosePopup}
+              onClick={() => setShowInfoPopup(false)}
             >
               ×
             </button>

@@ -78,7 +78,8 @@ const edit: RequestHandler = async (req, res, next) => {
 const editInfos: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
-    const { username, email, hashed_password } = req.body;
+    const { username, email, password } = req.body;
+    const hashed_password = password
 
     if (!username || !email || !hashed_password) {
       res.status(400).json({
@@ -88,7 +89,7 @@ const editInfos: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    const account = await accountRepository.readById(accountId);
+    // const account = await accountRepository.readById(accountId);
     const affectedRows = await accountRepository.updateInfos({
       id: accountId,
       username,
@@ -210,4 +211,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add, destroy, hashPassword };
+export default { browse, read, edit, editInfos,editTrainers, add, destroy, hashPassword };

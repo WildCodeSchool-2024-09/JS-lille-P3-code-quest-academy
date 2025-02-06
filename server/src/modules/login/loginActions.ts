@@ -76,8 +76,7 @@ const verifyToken: RequestHandler = async (req, res, next) => {
     } catch (error) {
       res.status(401).json({ message: "Invalid or expired token" });
     }
-
-    next();
+    
   } catch (error) {
     console.error(error);
     res.sendStatus(401);
