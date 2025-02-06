@@ -43,6 +43,7 @@ function LoginForm({ closeForm }: LoginFormProps) {
         },
       );
 
+
       if (!response.ok) {
         const errorMessage = await response.json();
         throw new Error(errorMessage.message || "Erreur de connexion.");

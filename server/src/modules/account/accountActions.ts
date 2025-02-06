@@ -29,7 +29,6 @@ const read: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     const accountId = Number(req.params.id);
-    const account = await accountRepository.readById(accountId);
     const {
       username,
       email,
