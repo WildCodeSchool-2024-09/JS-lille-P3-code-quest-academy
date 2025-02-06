@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import challengeRepository from "../challenge/challengeRepository";
+import challengeRepository from "../account/challenge/challengeRepository";
 import progressRepository from "./progressRepository";
 
 const browse: RequestHandler = async (req, res, next) => {

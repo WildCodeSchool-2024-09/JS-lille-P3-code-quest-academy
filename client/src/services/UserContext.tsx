@@ -51,7 +51,7 @@ export const Provider = ({ children }: ProviderProps) => {
             console.warn(
               "Token expiré ou invalide, suppression du localStorage",
             );
-            localStorage.removeItem("token"); // We delete only if the token is really invalid 
+            localStorage.removeItem("token"); // We delete only if the token is really invalid
             setToken(null);
             setUser(null);
           }

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../services/UserContext";
 import "./EditTeachers.css";
 
 type EditTeacherProps = {
@@ -9,12 +10,18 @@ type EditTeacherProps = {
 };
 
 function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
-  const [firstTeacher, setfirstTeacher] = useState("");
-  const [secondTeacher, setsecondTeacher] = useState("");
+  const [firstTeacher, setFirstTeacher] = useState("");
+  const [secondTeacher, setSecondTeacher] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const userId = 1;
+  const userContext = useContext(UserContext);
+
+  if (!userContext || !userContext.user) {
+    return <p>Chargement...</p>;
+  }
+
+  const userId = userContext.user.id;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -39,22 +46,15 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
         },
       );
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(
-          `${firstTeacher} et ${secondTeacher} sont désormais vos enseignants !`,
-        );
-
-        updateTeacherInformation(firstTeacher, secondTeacher);
-
-        setfirstTeacher("");
-        setsecondTeacher("");
-      } else {
-        setMessage(data.message || "Une erreur est survenue.");
+      if (!response.ok) {
+        throw new Error("Erreur lors de la mise à jour.");
       }
+
+      updateTeacherInformation(firstTeacher, secondTeacher);
+      setMessage("Les formateurs ont été mis à jour !");
+      setFirstTeacher("");
+      setSecondTeacher("");
     } catch (error) {
-      console.error("Erreur:", error);
       setMessage("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setIsLoading(false);
@@ -71,7 +71,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
             className="first-input-teacher"
             id="firstTeacher"
             value={firstTeacher}
-            onChange={(e) => setfirstTeacher(e.target.value)}
+            onChange={(e) => setFirstTeacher(e.target.value)}
           />
         </label>
         <br />
@@ -80,18 +80,18 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
           <input
             type="text"
             className="second-input-teacher"
-            id="second-input-teacher"
+            id="secondTeacher"
             value={secondTeacher}
-            onChange={(e) => setsecondTeacher(e.target.value)}
+            onChange={(e) => setSecondTeacher(e.target.value)}
           />
         </label>
         <br />
         <button
-          className="button-sumbmit-teacher"
+          className="button-submit-teacher"
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? "Mise à jour..." : "Mettre à jour"}{" "}
+          {isLoading ? "Mise à jour..." : "Mettre à jour"}
         </button>
       </form>
       {message && <p className="message-teacher">{message}</p>}

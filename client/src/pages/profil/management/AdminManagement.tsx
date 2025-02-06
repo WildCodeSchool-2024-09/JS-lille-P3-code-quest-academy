@@ -23,7 +23,7 @@ function AdminManagement() {
   //   Appel API
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/accounts`, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },

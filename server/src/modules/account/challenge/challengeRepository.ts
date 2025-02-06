@@ -1,6 +1,6 @@
-import databaseClient from "../../../database/client";
-import type { Result, Rows } from "../../../database/client";
-import type { Challenge } from "../../types/express";
+import databaseClient from "../../../../database/client";
+import type { Result, Rows } from "../../../../database/client";
+import type { Challenge } from "../../../types/express";
 
 class ChallengeRepository {
   async read(id: number) {

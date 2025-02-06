@@ -14,6 +14,7 @@ export type AccountProps = {
   secondTeacher: string;
   room_id: number;
   challenge_id: number;
+  token: string;
 };
 
 export type ProgressProps = {
