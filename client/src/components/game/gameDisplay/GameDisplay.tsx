@@ -2,6 +2,7 @@ import "./GameDisplay.css";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
 import type { RoomProps } from "../../../types/user";
+import SoufianeDialog from "./SoufianeDialog";
 
 function GameDisplay() {
   const gameContext = useContext(GameContext);
@@ -63,20 +64,6 @@ function GameDisplay() {
     }
   };
 
-  const soufianeDialog = [
-    "Hello ! c'était bien moi sous ce déguisement, teacher2",
-    "Désolé pour cette supercherie, je voulais tester tes connaissances en SQL avant que tu puisse affronter le boss final",
-    "Tu as réussi à répondre à toutes mes questions, tu es prêt",
-    "Bonne chance !",
-  ];
-  const [dialogIndex, setDialogIndex] = useState(0);
-
-  const handleSoufianeDialog = () => {
-    if (dialogIndex < soufianeDialog.length - 1) {
-      setDialogIndex(dialogIndex + 1);
-    }
-  };
-
   return (
     <>
       <div className="gamedisplay-container">
@@ -125,16 +112,9 @@ function GameDisplay() {
                 />
               </div>
             ) : actualChallenge?.type === "soufiane" ? (
-              <div className="soufiane-character-container">
-                <p className="soufiane-bd">{soufianeDialog[dialogIndex]}</p>
-                <img
-                  src="./src/assets/images/boss/soufiane.png"
-                  alt=""
-                  className="soufiane-character"
-                  onClick={handleSoufianeDialog}
-                  onKeyUp={handleSoufianeDialog}
-                />
-              </div>
+              // Si le "type" du challenge est "soufiane", on affiche l'image de Soufiane par dessus l'image de la salle
+              // (après le combat contre le boss SQL)
+              <SoufianeDialog />
             ) : (
               ""
             )}

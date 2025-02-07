@@ -74,6 +74,11 @@
   z-index: 2;
 }
 
+.soufiane-character:hover {
+  filter: brightness(1.6);
+  transition: 1s;
+}
+
 .soufiane-bd {
   position: relative;
   background: white;
