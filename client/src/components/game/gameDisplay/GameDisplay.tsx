@@ -1,13 +1,7 @@
 import "./GameDisplay.css";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
-
-type RoomProps = {
-  boss_name: string;
-  boss_img_src: string;
-  fight_video_src: string;
-  room_img_src: string;
-};
+import type { RoomProps } from "../../../types/user";
 
 function GameDisplay() {
   const gameContext = useContext(GameContext);
@@ -24,6 +18,7 @@ function GameDisplay() {
     fetchUserProgress,
     setActualChallenge,
   } = gameContext;
+
   const [roomInfos, setRoomInfos] = useState<RoomProps | null>(null);
 
   useEffect(() => {
@@ -68,9 +63,24 @@ function GameDisplay() {
     }
   };
 
+  const soufianeDialog = [
+    "Hello ! c'était bien moi sous ce déguisement, teacher2",
+    "Désolé pour cette supercherie, je voulais tester tes connaissances en SQL avant que tu puisse affronter le boss final",
+    "Tu as réussi à répondre à toutes mes questions, tu es prêt",
+    "Bonne chance !",
+  ];
+  const [dialogIndex, setDialogIndex] = useState(0);
+
+  const handleSoufianeDialog = () => {
+    if (dialogIndex < soufianeDialog.length - 1) {
+      setDialogIndex(dialogIndex + 1);
+    }
+  };
+
   return (
     <>
       <div className="gamedisplay-container">
+        {/* Si le "type" du challenge est "boss", alors on affiche la vidéo*/}
         {actualChallenge?.type === "boss" ? (
           <video
             className="gamedisplay-video"
@@ -80,6 +90,8 @@ function GameDisplay() {
             <track kind="captions" />
           </video>
         ) : (
+          // Si le type n'est pas "boss", on affiche l'image de la salle lié au challenge actuel
+          // Cette image change en fonction du "title" et du "type"
           <>
             <img
               className="gamedisplay-img"
@@ -88,6 +100,8 @@ function GameDisplay() {
               onClick={handleRoomSelection}
               onKeyDown={handleRoomSelection}
             />
+            {/* Si le "title" du challenge n'est pas égal à "Transition", on affiche le personnage du joueur 
+            par dessus l'image de la salle */}
             {actualChallenge?.title !== "Transition" ? (
               <div className="player-character-container">
                 <img
@@ -97,14 +111,28 @@ function GameDisplay() {
                 />
               </div>
             ) : (
+              // Sinon, le personnage n'est pas affiché
               ""
             )}
             {actualChallenge?.type === "boss-spawn" ? (
+              // Si le "type" du challenge est "boss-spawn", on affiche l'image du boss par dessus l'image de la salle
+              // (pendant les phase précédent le combat contre le boss)
               <div className="boss-character-container">
                 <img
                   src={roomInfos?.boss_img_src}
                   alt=""
                   className="boss-character"
+                />
+              </div>
+            ) : actualChallenge?.type === "soufiane" ? (
+              <div className="soufiane-character-container">
+                <p className="soufiane-bd">{soufianeDialog[dialogIndex]}</p>
+                <img
+                  src="./src/assets/images/boss/soufiane.png"
+                  alt=""
+                  className="soufiane-character"
+                  onClick={handleSoufianeDialog}
+                  onKeyUp={handleSoufianeDialog}
                 />
               </div>
             ) : (
