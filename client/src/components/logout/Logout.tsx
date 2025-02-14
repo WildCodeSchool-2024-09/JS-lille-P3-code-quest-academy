@@ -24,7 +24,11 @@ function Logout({ closePopupLogout }: closePopupLogoutProps) {
   };
 
   return (
-    <section className="logout-form">
+    <section
+      className="logout-form"
+      onClick={closePopupLogout}
+      onKeyUp={(e) => e.key === "Escape" && closePopupLogout()}
+    >
       <h2>Voulez-vous vraiment vous déconnecter ?</h2>
       <article className="logout-buttons-container">
         <button
