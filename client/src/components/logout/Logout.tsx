@@ -30,7 +30,7 @@ function Logout({ closePopupLogout }: closePopupLogoutProps) {
       onKeyUp={(e) => e.key === "Escape" && closePopupLogout()}
     >
       <h2>Voulez-vous vraiment vous déconnecter ?</h2>
-      <section className="logout-buttons-container">
+      <article className="logout-buttons-container">
         <button
           type="button"
           className="logout-form-button"
@@ -45,7 +45,7 @@ function Logout({ closePopupLogout }: closePopupLogoutProps) {
         >
           Annuler
         </button>
-      </section>
+      </article>
     </section>
   );
 }

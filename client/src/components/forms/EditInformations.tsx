@@ -64,7 +64,7 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit} className="form-edit-informations">
         <label htmlFor="username" className="label-edit-informations">
           Pseudo :
@@ -112,7 +112,7 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
       </form>
 
       {message && <p className="message-success-info">{message}</p>}
-    </div>
+    </>
   );
 }
 

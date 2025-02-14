@@ -80,13 +80,37 @@ function GameDisplay() {
             <track kind="captions" />
           </video>
         ) : (
-          <img
-            className="gamedisplay-img"
-            src={roomInfos?.room_img_src}
-            alt="plateau de jeu"
-            onClick={handleRoomSelection}
-            onKeyDown={handleRoomSelection}
-          />
+          <>
+            <img
+              className="gamedisplay-img"
+              src={roomInfos?.room_img_src}
+              alt="plateau de jeu"
+              onClick={handleRoomSelection}
+              onKeyDown={handleRoomSelection}
+            />
+            {actualChallenge?.title !== "Transition" ? (
+              <div className="player-character-container">
+                <img
+                  src="./src/assets/images/profil.png"
+                  alt=""
+                  className="player-character"
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            {actualChallenge?.type === "boss-spawn" ? (
+              <div className="boss-character-container">
+                <img
+                  src={roomInfos?.boss_img_src}
+                  alt=""
+                  className="boss-character"
+                />
+              </div>
+            ) : (
+              ""
+            )}
+          </>
         )}
       </div>
     </>

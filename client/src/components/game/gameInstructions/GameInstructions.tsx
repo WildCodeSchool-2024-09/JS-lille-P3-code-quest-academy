@@ -24,6 +24,27 @@ function GameInstructions() {
     videoRef,
   } = gameContext;
 
+  //---------------------------------------------------------------------
+  //--enable the button next for the first challenge as an introduction--
+  useEffect(() => {
+    if (actualChallenge?.id === 1 || actualChallenge?.type === "boss-spawn") {
+      setIsButtonEnabled(true);
+      setButtonStyles("button-enabled");
+    }
+  }, [actualChallenge, setIsButtonEnabled, setButtonStyles]);
+
+  //--------------------------------------------------------------------
+  // ----------------------BOSS LAUNCH BUTTON---------------------------
+  //--------------------------------------------------------------------
+  const handleLaunchBoss = () => {
+    if (videoRef) {
+      videoRef.current?.play(); //We use useRef in the context to access the video element
+    }
+    setBossButtonVisible("");
+    setIsButtonEnabled(true);
+    setButtonStyles("button-enabled");
+  };
+  //-------------appears only when challenge.type = "boss"(db)------------
   const [bossButtonVisible, setBossButtonVisible] = useState("");
 
   useEffect(() => {
@@ -33,23 +54,10 @@ function GameInstructions() {
       setBossButtonVisible("");
     }
   }, [actualChallenge]);
-
-  useEffect(() => {
-    if (actualChallenge?.id === 1) {
-      setIsButtonEnabled(true);
-      setButtonStyles("button-enabled");
-    }
-  }, [actualChallenge, setIsButtonEnabled, setButtonStyles]);
-
-  const handleLaunchBoss = () => {
-    if (videoRef) {
-      videoRef.current?.play(); //We use useRef in the context to access the video element
-    }
-    setBossButtonVisible("");
-    setIsButtonEnabled(true);
-    setButtonStyles("button-enabled");
-  };
-
+  //--------------------------------------------------------------------
+  // --------------------------NEXT BUTTON------------------------------
+  //-------------increment challenge table when we click----------------
+  //--------------------------------------------------------------------
   const handleProgressUpdate = async () => {
     setFeedbackMessage("");
     setIsButtonEnabled(false);
@@ -83,6 +91,23 @@ function GameInstructions() {
       );
     }
   };
+  //--------------------------------------------------------------------
+  // ------------------------HINT CONTAINER-----------------------------
+  //--------------Set the hint container visible onclick----------------
+  //--------------------------------------------------------------------
+  const [hintVisibility, setHintVisibility] = useState("");
+  const [isHintVisible, setIsHintVisible] = useState(false);
+
+  const handleHintVisibility = () => {
+    if (isHintVisible === false) {
+      setHintVisibility("hint-visible");
+      setIsHintVisible(true);
+    } else {
+      setHintVisibility("");
+      setIsHintVisible(false);
+    }
+  };
+  //--------------------------------------------------------------------
 
   return (
     <>
@@ -90,8 +115,6 @@ function GameInstructions() {
       {/* replace "if (!actualChallenge)" */}
       {actualChallenge && (
         <div className="instructions-container">
-          challenge id :{actualChallenge.id} <br />
-          room id : {actualChallenge.room_id}
           <p className="instructions-text">
             {actualChallenge.guideline
               ? actualChallenge.guideline
@@ -112,10 +135,15 @@ function GameInstructions() {
           >
             Lancer le combat
           </button>
+          <p className={`hint-container ${hintVisibility}`}>
+            {actualChallenge?.hint}
+          </p>
           <img
             className="help-img"
             src="./src/assets/images/fantine.png"
             alt="Fantine la formatrice"
+            onClick={handleHintVisibility}
+            onKeyUp={handleHintVisibility}
           />
         </div>
       )}
