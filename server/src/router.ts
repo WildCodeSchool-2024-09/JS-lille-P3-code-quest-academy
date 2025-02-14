@@ -33,6 +33,7 @@ router.get(
   "/api/progress/:userId/:roomId/:challengeId",
   gameActions.getProgressByUserId,
 );
+router.put("/api/selfupdate/:userId", progressActions.chooseChallenge);
 
 /* ************************************************************************* */
 // Define room-related routes
