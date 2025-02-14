@@ -24,6 +24,23 @@ class ProgressRepository {
     return result.affectedRows;
   }
 
+  async selfUpdate(challengeId: number, userId: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT room_id FROM challenge WHERE id = ?",
+      [challengeId],
+    );
+    if (rows.length === 0) {
+      throw new Error("Challenge not found");
+    }
+    const roomId = rows[0].room_id;
+
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE progress SET challenge_id = ?, room_id = ? WHERE user_id = ?",
+      [challengeId, roomId, userId],
+    );
+    return result.affectedRows;
+  }
+
   // we get all game infos for a user by his progression
   async getPlayerProgress(userId: number, roomId: number, challengeId: number) {
     const [rows] = await databaseClient.query<Rows>(

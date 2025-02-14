@@ -46,4 +46,25 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit };
+const chooseChallenge: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.userId);
+    const challengeId = Number(req.body.challengeId);
+
+    const affectedRows = await progressRepository.selfUpdate(
+      challengeId,
+      userId,
+    );
+
+    if (affectedRows === 0) {
+      res.sendStatus(404).json({ message: "Challenge cannot be updated" });
+    } else {
+      const challenge = await challengeRepository.read(challengeId);
+      res.json(challenge);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { browse, read, edit, chooseChallenge };
