@@ -54,8 +54,8 @@ function AdminPage() {
   };
 
   return (
-    <div className="Admin-page">
-      <div className="Admin-header">
+    <div className="admin-page">
+      <div className="admin-header">
         <img src={logo} alt="Logo" className="logo" />
         <img
           src={sprite}
@@ -108,7 +108,7 @@ function AdminPage() {
           <button
             type="button"
             className="button-modification-photo"
-            onClick={() => navigate("/Admine/modification-photo")}
+            onClick={() => navigate("/Admin/modification-photo")}
           >
             MODIFIER MA PHOTO DE Profil
           </button>

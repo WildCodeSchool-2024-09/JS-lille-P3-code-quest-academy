@@ -77,7 +77,6 @@
   padding: 12px 24px;
   background-color: var(--primary-color);
   color: var(--bg-color);
-  font-family: "Press Start 2P", cursive;
   font-size: 14px;
   text-transform: uppercase;
   text-align: center;
@@ -116,7 +115,6 @@
   height: 300px;
   background-color: var(--primary-color);
   color: var(--bg-color);
-  font-family: "Press Start 2P", cursive;
   font-size: 5rem;
   text-transform: uppercase;
   text-align: center;
@@ -156,7 +154,6 @@
   display: inline-block;
   cursor: pointer;
   color: #3a8a9e;
-  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;
@@ -194,7 +191,6 @@
   display: inline-block;
   cursor: pointer;
   color: #3a8a9e;
-  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;
@@ -231,7 +227,6 @@
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;
@@ -279,7 +274,6 @@
   display: inline-block;
   cursor: pointer;
   color: #3a8a9e;
-  font-family: "Courier New", Courier, monospace;
   font-size: 17px;
   padding: 7px 25px;
   text-decoration: none;

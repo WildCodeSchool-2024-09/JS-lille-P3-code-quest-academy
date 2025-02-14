@@ -7,7 +7,7 @@
   --text-color-dark: #ff977d;
 }
 
-.Admin-page {
+.admin-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,8 +17,7 @@
   background-color: var(--bg-color);
 }
 
-/* HEADER */
-.Admin-header {
+.admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +34,6 @@
   height: 120px;
 }
 
-/* BOUTON DE DÉCONNEXION */
 .logout-button {
   position: absolute;
   top: 20px;
@@ -43,7 +41,6 @@
   padding: 12px 24px;
   background-color: var(--primary-color);
   color: var(--bg-color);
-  font-family: "Press Start 2P", cursive;
   font-size: 14px;
   text-transform: uppercase;
   border: 4px solid var(--bg-color);
@@ -61,7 +58,6 @@
   box-shadow: 4px 4px 0 #4d2b27, 8px 8px 0 #261613;
 }
 
-/* CONTENU PRINCIPAL */
 .left-and-right-side {
   display: flex;
   justify-content: space-between;
@@ -78,7 +74,7 @@
   width: 48%;
 }
 
-/* ALIGNEMENT DES ÉLÉMENTS */
+
 .level-quest {
   text-align: center;
   font-size: 18px;
@@ -93,7 +89,6 @@
   margin-top: 10px;
 }
 
-/* BOUTONS */
 .information-button,
 .left-modification-button,
 .right-modification-button,
@@ -102,7 +97,6 @@
   padding: 12px 24px;
   background-color: var(--primary-color);
   color: var(--bg-color);
-  font-family: "Press Start 2P", cursive;
   font-size: 14px;
   text-transform: uppercase;
   border: 4px solid var(--bg-color);
@@ -124,13 +118,11 @@
   box-shadow: 4px 4px 0 #4d2b27, 8px 8px 0 #261613;
 }
 
-/* BOUTON JOUER */
 .game-button {
   width: 250px;
   height: 250px;
   background-color: var(--primary-color);
   color: var(--bg-color);
-  font-family: "Press Start 2P", cursive;
   font-size: 2rem;
   text-transform: uppercase;
   text-align: center;
@@ -151,7 +143,6 @@
   box-shadow: 4px 4px 0 #4d2b27, 8px 8px 0 #261613;
 }
 
-/* MASQUER LE MOT DE PASSE */
 .password {
   visibility: hidden;
 }
