@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
 import type { RoomProps } from "../../../types/user";
 import SoufianeDialog from "./SoufianeDialog";
+import FinalDialog from "./FInalDialog";
 
 function GameDisplay() {
   const gameContext = useContext(GameContext);
@@ -115,6 +116,8 @@ function GameDisplay() {
               // Si le "type" du challenge est "soufiane", on affiche l'image de Soufiane par dessus l'image de la salle
               // (après le combat contre le boss SQL)
               <SoufianeDialog />
+            ) : actualChallenge?.type === "final" ? (
+              <FinalDialog />
             ) : (
               ""
             )}
