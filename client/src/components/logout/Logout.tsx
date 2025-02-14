@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../services/UserContext";
 import "./Logout.css";
 
-
 interface closePopupLogoutProps {
   closePopupLogout: () => void;
 }
@@ -27,8 +26,8 @@ function Logout({ closePopupLogout }: closePopupLogoutProps) {
   return (
     <section
       className="logout-form"
-      onClick={() => setShowrPopup(false)}
-      onKeyUp={(e) => e.key === "Escape" && setShowPopup(false)}
+      onClick={closePopupLogout}
+      onKeyUp={(e) => e.key === "Escape" && closePopupLogout()}
     >
       <h2>Voulez-vous vraiment vous déconnecter ?</h2>
       <section className="logout-buttons-container">
