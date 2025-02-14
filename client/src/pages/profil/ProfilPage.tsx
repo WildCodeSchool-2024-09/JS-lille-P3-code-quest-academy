@@ -55,18 +55,14 @@ function ProfilPage() {
   };
 
   return (
-    <div className="profil-page">
-      <div className="profile-header">
+    <section className="profil-page">
+      <header className="profil-header">
         <img src={logo} alt="Logo" className="logo" />
-        <img
-          src={sprite}
-          alt="Sprite Admin Page"
-          className="sprite-admin-page"
-        />
-      </div>
+        <img src={sprite} alt="" className="sprite-admin-page" />
+      </header>
       <button
         type="button"
-        className="logout-button"
+        className="button-type1 logout-button"
         onClick={() => setPopupLogout(true)}
       >
         Déconnexion
@@ -78,51 +74,51 @@ function ProfilPage() {
         </section>
       )}
 
-      <div className="left-and-right-side">
-        <div className="left-side">
+      <section className="left-and-right-side">
+        <article className="left-side">
           <h2 className="level-quest">
-            ROOM : {actualChallenge.room_id} | CHALLENGE :{" "}
-            {progress?.challenge_id}
+            Pièce : {actualChallenge.room_id}
+            Question : {progress?.challenge_id}
           </h2>
-          <h1 className="first-pseudo">PSEUDO FORMATEUR 1 : {firstTeacher}</h1>
-          <h1 className="second-pseudo">
+          <h2 className="first-pseudo">PSEUDO FORMATEUR 1 : {firstTeacher}</h2>
+          <h2 className="second-pseudo">
             PSEUDO FORMATEUR 2 : {secondTeacher}
-          </h1>
+          </h2>
           <button
             type="button"
-            className="left-modification-button"
+            className="button-type2 left-modification-button"
             onClick={() => setShowTeacherPopup(true)}
           >
             Modifier mes formateurs
           </button>
-        </div>
-        <div className="right-side">
+        </article>
+        <article className="right-side">
           <button
             type="button"
-            className="button-modification-photo"
+            className="button-type2 button-modification-photo"
             onClick={() => navigate("/profile/modification-photo")}
           >
             MODIFIER MA PHOTO DE PROFIL
           </button>
-          <h1 className="pseudo">PSEUDO: {username}</h1>
-          <h1 className="password">MOT DE PASSE: {password}</h1>
-          <h1 className="email">EMAIL: {email}</h1>
+          <h2 className="pseudo">PSEUDO: {username}</h2>
+          <h2 className="password">MOT DE PASSE: {password}</h2>
+          <h2 className="email">EMAIL: {email}</h2>
           <button
             type="button"
-            className="right-modification-button"
+            className="button-type2 right-modification-button"
             onClick={() => setShowInfoPopup(true)}
           >
             Modifier mes informations
           </button>
           <button
             type="button"
-            className="game-button"
+            className="button-type1 game-button"
             onClick={() => navigate("/game")}
           >
             Jouer
           </button>
-        </div>
-      </div>
+        </article>
+      </section>
       {showTeacherPopup && (
         <div
           className="popup-overlay"
@@ -168,7 +164,7 @@ function ProfilPage() {
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }
 

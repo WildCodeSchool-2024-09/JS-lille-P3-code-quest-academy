@@ -105,7 +105,7 @@ function EditInformations({ updateUserInformation }: EditInformationsProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="button-edit-informations"
+          className="button-type1 button-edit-informations"
         >
           {isLoading ? "Mise à jour..." : "Mettre à jour"}
         </button>

@@ -88,27 +88,12 @@
   border-color: #888;
 }
 
-.first-input-teacher:focus,
-.second-input-teacher:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
 .button-submit-teacher {
   padding: 10px;
-  background-color: var(--primary-color);
-  color: #ffffff;
-  border: 2px solid var(--primary-color);
-  border-radius: 6px;
   cursor: pointer;
   width: 100%;
   text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0
     #000;
-}
-
-.button-submit-teacher:hover {
-  background-color: var(--primary-color-dark);
 }
 
 .button-submit-teacher:disabled {

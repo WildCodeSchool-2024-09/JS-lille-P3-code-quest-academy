@@ -117,8 +117,8 @@ function AdminManagement() {
   };
 
   return (
-    <div className="user-table-container">
-      <h1>Liste des utilisateurs</h1>
+    <section className="user-table-container">
+      <h2>Liste des utilisateurs</h2>
       <input
         type="text"
         placeholder="recherche par nom ou email..."
@@ -166,7 +166,7 @@ function AdminManagement() {
       {editingUser && (
         <EditUser user={editingUser} onUpdate={handleUserUpdate} />
       )}
-    </div>
+    </section>
   );
 }
 

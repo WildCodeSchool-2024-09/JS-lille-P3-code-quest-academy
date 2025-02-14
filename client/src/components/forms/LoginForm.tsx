@@ -4,7 +4,6 @@ import { useContext, useRef, useState } from "react";
 import type { FormEventHandler } from "react";
 import { UserContext } from "../../services/UserContext";
 
-// Claimed by TypeScript
 interface LoginFormProps {
   closeForm: () => void;
 }
@@ -108,7 +107,10 @@ function LoginForm({ closeForm }: LoginFormProps) {
         className="form-input grid-input-password"
         placeholder="Entrez votre mot de passe"
       />
-      <button type="submit" className="form-button grid-form-button">
+      <button
+        type="submit"
+        className=" button-type1 form-button grid-form-button"
+      >
         Se connecter
       </button>
     </form>

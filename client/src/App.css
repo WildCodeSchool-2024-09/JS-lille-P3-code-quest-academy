@@ -8,7 +8,7 @@ Large devices (desktops, 992px and up)
 @media screen (min-width: 992px) */
 
 * {
-  margin: 0.2rem;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -20,4 +20,51 @@ Large devices (desktops, 992px and up)
   --bg-color-dark: #1f1513;
   --text-color: #d13415;
   --text-color-dark: #ff977d;
+}
+
+.button-type1 {
+  line-height: 1;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 5px solid var(--primary-color);
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-radius: 20px;
+  transition: 0.3s;
+  background-color: var(--primary-color);
+}
+
+.button-type1:hover {
+  border-bottom-width: 0;
+  transform: translateY(5px);
+}
+
+.button-type2 {
+  line-height: 1;
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: bold;
+  border-top: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+  border-left: 2px solid var(--primary-color);
+  border-bottom: 5px solid var(--primary-color);
+  border-radius: 20px;
+  transition: 0.3s;
+  background-color: #ffffff;
+}
+
+.button-type2:hover {
+  border-bottom: 2px solid var(--primary-color);
+  transform: translateY(5px);
+}
+
+.close-form-button {
+  color: red;
+  transform: rotate(45deg);
+  background: #ffffff;
+  border: 0px;
+  font-size: 2rem;
+  cursor: pointer;
 }
