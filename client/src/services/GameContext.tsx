@@ -30,6 +30,8 @@ interface ContextValue {
   setProgress: React.Dispatch<React.SetStateAction<ProgressProps | null>>;
   videoRef: React.RefObject<HTMLVideoElement>;
   fetchUserProgress: () => void;
+  level: number;
+  setLevel: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface ProviderProps {
@@ -47,6 +49,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [feedbackMessage, setFeedbackMessage] = useState(""); //set message if the reponse is correct or not
   const [buttonStyles, setButtonStyles] = useState({}); // set the color to the game button if enabled
   const videoRef = useRef(null); //reference to the video element
+  const [level, setLevel] = useState(1); //set the level of the user
 
   // get challenge and room from actual user
   const userContext = useContext(UserContext);
@@ -109,6 +112,8 @@ export const Provider = ({ children }: ProviderProps) => {
         setProgress,
         videoRef,
         fetchUserProgress,
+        level,
+        setLevel,
       }}
     >
       {children}

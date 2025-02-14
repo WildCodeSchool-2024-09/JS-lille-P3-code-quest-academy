@@ -54,7 +54,8 @@
   animation: slideInFade 1s forwards;
 }
 
-.soufiane-character-container, .final-character-container {
+.soufiane-character-container,
+.final-character-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -67,19 +68,22 @@
   animation: slideInFade 1s forwards;
 }
 
-.soufiane-character, .final-character {
+.soufiane-character,
+.final-character {
   position: relative;
   width: 300px;
   height: 300px;
   z-index: 2;
 }
 
-.soufiane-character:hover, .final-character:hover {
+.soufiane-character:hover,
+.final-character:hover {
   filter: brightness(1.6);
   transition: 0.2s;
 }
 
-.soufiane-bd, .final-bd {
+.soufiane-bd,
+.final-bd {
   position: relative;
   background: white;
   padding: 10px 15px;
@@ -89,7 +93,8 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.soufiane-bd::after, .final-bd::after {
+.soufiane-bd::after,
+.final-bd::after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -101,7 +106,8 @@
   display: block;
 }
 
-.soufiane-bd::before, .final-bd::before {
+.soufiane-bd::before,
+.final-bd::before {
   content: "";
   position: absolute;
   bottom: -18px;

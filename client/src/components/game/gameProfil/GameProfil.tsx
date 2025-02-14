@@ -1,5 +1,5 @@
 import "./GameProfil.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GameContext } from "../../../services/GameContext";
 import { UserContext } from "../../../services/UserContext";
@@ -19,14 +19,46 @@ function GameProfil() {
   }
 
   const { user } = userContext;
-  const { actualChallenge } = gameContext;
+  const { actualChallenge, level, setLevel } = gameContext;
+
+  useEffect(() => {
+    if (actualChallenge && actualChallenge.id >= 9 && actualChallenge.id < 16) {
+      setLevel(2);
+    } else if (
+      actualChallenge &&
+      actualChallenge.id >= 16 &&
+      actualChallenge.id < 25
+    ) {
+      setLevel(3);
+    } else if (
+      actualChallenge &&
+      actualChallenge.id >= 25 &&
+      actualChallenge.id < 32
+    ) {
+      setLevel(4);
+    } else if (
+      actualChallenge &&
+      actualChallenge.id >= 32 &&
+      actualChallenge.id < 39
+    ) {
+      setLevel(5);
+    } else if (
+      actualChallenge &&
+      actualChallenge.id >= 39 &&
+      actualChallenge.id < 47
+    ) {
+      setLevel(6);
+    } else if (actualChallenge && actualChallenge.id >= 47) {
+      setLevel(7);
+    }
+  }, [actualChallenge, setLevel]);
 
   return (
     <>
       <div className="profil-container">
         <div className="profil-text">
           <h2>{user?.username}</h2>
-          <p>Challenge {actualChallenge?.id}</p>
+          <p>NIveau {level}</p>
           <button
             className="profil-button"
             type="button"
