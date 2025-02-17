@@ -22,6 +22,8 @@ function GameInstructions() {
     setFeedbackMessage,
     setAnswerStyles,
     videoRef,
+    setEndGameTransition,
+    setShowEnding,
   } = gameContext;
 
   //---------------------------------------------------------------------
@@ -91,6 +93,14 @@ function GameInstructions() {
         "Erreur lors de la mise à jour ou récupération du progrès :",
         error,
       );
+    }
+    if (actualChallenge?.id === 50) {
+      // for the last challenge (id=50), we set the transition to the final screen for 3s.
+      // Then we display the ending video with setShowEnding
+      setEndGameTransition("final-screen-transition");
+      setTimeout(() => {
+        setShowEnding(true);
+      }, 3000);
     }
   };
   //--------------------------------------------------------------------

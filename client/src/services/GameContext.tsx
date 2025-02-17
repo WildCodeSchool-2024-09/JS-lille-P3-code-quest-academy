@@ -32,6 +32,10 @@ interface ContextValue {
   fetchUserProgress: () => void;
   level: number;
   setLevel: React.Dispatch<React.SetStateAction<number>>;
+  endGameTransition: string;
+  setEndGameTransition: React.Dispatch<React.SetStateAction<string>>;
+  showEnding: boolean;
+  setShowEnding: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ProviderProps {
@@ -50,6 +54,8 @@ export const Provider = ({ children }: ProviderProps) => {
   const [buttonStyles, setButtonStyles] = useState({}); // set the color to the game button if enabled
   const videoRef = useRef(null); //reference to the video element
   const [level, setLevel] = useState(1); //set the level of the user
+  const [endGameTransition, setEndGameTransition] = useState(""); // set the black screen transition at the last challenge
+  const [showEnding, setShowEnding] = useState(false); //set the ending video if true at GameBoard.
 
   // get challenge and room from actual user
   const userContext = useContext(UserContext);
@@ -114,6 +120,10 @@ export const Provider = ({ children }: ProviderProps) => {
         fetchUserProgress,
         level,
         setLevel,
+        endGameTransition,
+        setEndGameTransition,
+        showEnding,
+        setShowEnding,
       }}
     >
       {children}
