@@ -5,7 +5,7 @@ import { GameContext } from "../../../services/GameContext";
 function FinalBossDialog() {
   const gameContext = useContext(GameContext);
 
-  if (!gameContext ) {
+  if (!gameContext) {
     return <div>Error: gameContext is not available</div>;
   }
 
