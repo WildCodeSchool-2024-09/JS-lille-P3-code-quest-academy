@@ -2,8 +2,9 @@ import "./GameDisplay.css";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
 import type { RoomProps } from "../../../types/user";
-import FinalDialog from "./FInalDialog";
-import SoufianeDialog from "./SoufianeDialog";
+import EndingDialog from "./EndingDialog";
+import FinalBossDialog from "./FinalBossDialog";
+import SecondTeacherDialog from "./SecondTeacherDialog";
 
 function GameDisplay() {
   const gameContext = useContext(GameContext);
@@ -111,12 +112,18 @@ function GameDisplay() {
                   className="boss-character"
                 />
               </div>
-            ) : actualChallenge?.type === "soufiane" ? (
-              // If challenge's type is "soufiane", we display Soufiane' character on top of the room's img
+            ) : actualChallenge?.type === "secondTeacher" ? (
+              // If challenge's type is "secondTeacher", we display secondTeacher' character on top of the room's img
               // (after the fight against the SQL boss)
-              <SoufianeDialog />
-            ) : actualChallenge?.type === "final" ? (
-              <FinalDialog />
+              <SecondTeacherDialog />
+            ) : actualChallenge?.type === "final-boss" ? (
+              // If challenge's type is "final-boss", we display the final boss character on top of the room's img
+              // (before the fight against the final boss )
+              <FinalBossDialog />
+            ) : actualChallenge?.type === "ending" ? (
+              // If challenge's type is "final", we display the final boss character on top of the room's img
+              // (after the fight against the final boss)
+              <EndingDialog />
             ) : (
               ""
             )}
