@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { GameContext } from "../../../services/GameContext";
 
-function FinalDialog() {
+function EndingDialog() {
   const gameContext = useContext(GameContext);
 
   if (!gameContext) {
@@ -11,7 +11,7 @@ function FinalDialog() {
 
   const { setButtonStyles, setIsButtonEnabled } = gameContext;
 
-  const finalDialog = [
+  const endingDialog = [
     "Bien joué, il semblerait que je t'ai sous-estimé !",
     "C'est moi qui ai causé le bug du campus, je voulais essayer une nouvelle technique de recrutement.",
     "Malgré le peu de temps de formation que tu as eu, tu as acquis de solides compétences !",
@@ -20,7 +20,7 @@ function FinalDialog() {
   const [dialogIndex, setDialogIndex] = useState(0);
 
   const handleFinalDialog = () => {
-    if (dialogIndex < finalDialog.length - 1) {
+    if (dialogIndex < endingDialog.length - 1) {
       setDialogIndex(dialogIndex + 1);
     }
     if (dialogIndex === 2) {
@@ -32,7 +32,7 @@ function FinalDialog() {
   return (
     <>
       <div className="final-character-container">
-        <p className="final-bd">{finalDialog[dialogIndex]}</p>
+        <p className="final-bd">{endingDialog[dialogIndex]}</p>
         <img
           src="./src/assets/images/boss/final-boss.png"
           alt=""
@@ -45,4 +45,4 @@ function FinalDialog() {
   );
 }
 
-export default FinalDialog;
+export default EndingDialog;

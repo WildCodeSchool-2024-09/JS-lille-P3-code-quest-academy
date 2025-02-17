@@ -22,6 +22,8 @@ function GameInstructions() {
     setFeedbackMessage,
     setAnswerStyles,
     videoRef,
+    setEndGameTransition,
+    setShowEnding,
   } = gameContext;
 
   //---------------------------------------------------------------------
@@ -92,6 +94,14 @@ function GameInstructions() {
         error,
       );
     }
+    if (actualChallenge?.id === 50) {
+      // for the last challenge (id=50), we set the transition to the final screen for 3s.
+      // Then we display the ending video with setShowEnding
+      setEndGameTransition("final-screen-transition");
+      setTimeout(() => {
+        setShowEnding(true);
+      }, 3000);
+    }
   };
   //--------------------------------------------------------------------
   // ------------------------HINT CONTAINER-----------------------------
@@ -155,6 +165,7 @@ function GameInstructions() {
             onClick={handleHintVisibility}
             onKeyUp={handleHintVisibility}
           />
+          <p className="firstTeacher-name">{user?.firstTeacher}</p>
         </div>
       )}
     </>
