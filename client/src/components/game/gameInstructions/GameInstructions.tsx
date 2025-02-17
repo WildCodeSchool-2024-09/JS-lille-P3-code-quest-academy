@@ -63,6 +63,8 @@ function GameInstructions() {
     setIsButtonEnabled(false);
     setButtonStyles("");
     setAnswerStyles("");
+    setHintVisibility("");
+    setIsHintVisible(false);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}/${
@@ -95,8 +97,9 @@ function GameInstructions() {
   // ------------------------HINT CONTAINER-----------------------------
   //--------------Set the hint container visible onclick----------------
   //--------------------------------------------------------------------
-  const [hintVisibility, setHintVisibility] = useState("");
-  const [isHintVisible, setIsHintVisible] = useState(false);
+  const [hintVisibility, setHintVisibility] = useState(""); // set the visibility of the hint container with css
+  const [isHintVisible, setIsHintVisible] = useState(false); // to know if the hint is visible or not
+  // if the hint is visible, we remove the css class to hide it, and vice versa
 
   const handleHintVisibility = () => {
     if (isHintVisible === false) {
@@ -107,6 +110,13 @@ function GameInstructions() {
       setIsHintVisible(false);
     }
   };
+
+  useEffect(() => {
+    if (actualChallenge?.id === 1) {
+      setHintVisibility("hint-visible");
+      setIsHintVisible(true);
+    }
+  }, [actualChallenge]);
   //--------------------------------------------------------------------
 
   return (

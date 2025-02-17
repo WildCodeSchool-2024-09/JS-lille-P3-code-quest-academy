@@ -20,8 +20,8 @@
 
 .player-character {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 220px;
+  height: 220px;
   z-index: 2;
 }
 .player-character-container {
@@ -29,29 +29,96 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 150px;
-  height: 150px;
-  bottom: 33%;
-  background-color: rgba(207, 207, 207, 0.8);
+  width: 220px;
+  height: 220px;
+  bottom: 46%;
   animation: slideInFade 1s forwards;
 }
 
 .boss-character {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   z-index: 2;
 }
+
 .boss-character-container {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 400px;
+  height: 400px;
+  bottom: 126%;
+  left: 57%;
+  animation: slideInFade 1s forwards;
+}
+
+.soufiane-character-container,
+.final-character-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   width: 300px;
-  height: 300px;
-  bottom: 95%;
+  height: 500px;
+  bottom: 146%;
   left: 66%;
   animation: slideInFade 1s forwards;
+}
+
+.soufiane-character,
+.final-character {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  z-index: 2;
+}
+
+.soufiane-character:hover,
+.final-character:hover {
+  filter: brightness(1.6);
+  transition: 0.2s;
+}
+
+.soufiane-bd,
+.final-bd {
+  position: relative;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 2px solid black;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.soufiane-bd::after,
+.final-bd::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  display: block;
+}
+
+.soufiane-bd::before,
+.final-bd::before {
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid white;
+  z-index: 1;
 }
 
 @keyframes slideInFade {

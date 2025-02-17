@@ -1,13 +1,9 @@
 import "./GameDisplay.css";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
-
-type RoomProps = {
-  boss_name: string;
-  boss_img_src: string;
-  fight_video_src: string;
-  room_img_src: string;
-};
+import type { RoomProps } from "../../../types/user";
+import FinalDialog from "./FInalDialog";
+import SoufianeDialog from "./SoufianeDialog";
 
 function GameDisplay() {
   const gameContext = useContext(GameContext);
@@ -24,6 +20,7 @@ function GameDisplay() {
     fetchUserProgress,
     setActualChallenge,
   } = gameContext;
+
   const [roomInfos, setRoomInfos] = useState<RoomProps | null>(null);
 
   useEffect(() => {
@@ -71,6 +68,7 @@ function GameDisplay() {
   return (
     <>
       <div className="gamedisplay-container">
+        {/* If challenge's type is "boss", we display the boss's vidéo*/}
         {actualChallenge?.type === "boss" ? (
           <video
             className="gamedisplay-video"
@@ -80,6 +78,8 @@ function GameDisplay() {
             <track kind="captions" />
           </video>
         ) : (
+          // If challenge's type is not "boss", we display the room's img
+          // This img change depending on challenge's "title" and "type"
           <>
             <img
               className="gamedisplay-img"
@@ -88,6 +88,7 @@ function GameDisplay() {
               onClick={handleRoomSelection}
               onKeyDown={handleRoomSelection}
             />
+            {/* If challenge's title is not "Transition", we display the player character on top of room img*/}
             {actualChallenge?.title !== "Transition" ? (
               <div className="player-character-container">
                 <img
@@ -97,9 +98,12 @@ function GameDisplay() {
                 />
               </div>
             ) : (
+              // Otherwise, player's character is not displayed
               ""
             )}
             {actualChallenge?.type === "boss-spawn" ? (
+              // If challenge's type is "boss-span", we display the boss's img on top of room's img
+              // (during the phase preceding the boss fight)
               <div className="boss-character-container">
                 <img
                   src={roomInfos?.boss_img_src}
@@ -107,6 +111,12 @@ function GameDisplay() {
                   className="boss-character"
                 />
               </div>
+            ) : actualChallenge?.type === "soufiane" ? (
+              // If challenge's type is "soufiane", we display Soufiane' character on top of the room's img
+              // (after the fight against the SQL boss)
+              <SoufianeDialog />
+            ) : actualChallenge?.type === "final" ? (
+              <FinalDialog />
             ) : (
               ""
             )}
