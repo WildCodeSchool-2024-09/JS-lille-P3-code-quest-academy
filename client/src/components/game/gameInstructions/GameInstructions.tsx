@@ -97,8 +97,9 @@ function GameInstructions() {
   // ------------------------HINT CONTAINER-----------------------------
   //--------------Set the hint container visible onclick----------------
   //--------------------------------------------------------------------
-  const [hintVisibility, setHintVisibility] = useState("");
-  const [isHintVisible, setIsHintVisible] = useState(false);
+  const [hintVisibility, setHintVisibility] = useState(""); // set the visibility of the hint container with css
+  const [isHintVisible, setIsHintVisible] = useState(false); // to know if the hint is visible or not
+  // if the hint is visible, we remove the css class to hide it, and vice versa
 
   const handleHintVisibility = () => {
     if (isHintVisible === false) {

@@ -55,6 +55,7 @@ VALUES
   ("Captain Hook", "./src/assets/images/boss/boss-react.png", "./src/assets/videos/react-boss-fight.mp4", "./src/assets/images/react-room.png"),
   ("Nodeferatus", "./src/assets/images/boss/boss-node.png", "./src/assets/videos/node-boss-fight.mp4", "./src/assets/images/node-room.png"),
   ("JOIN Snow", "./src/assets/images/boss/boss-sql.png", "./src/assets/videos/sql-boss-fight.mp4", "./src/assets/images/sql-room.png"),
+  ("Le recruteur", "./src/assets/images/boss/final-boss.png", "./src/assets/videos/final-boss.mp4", "./src/assets/images/final-room.png"),
   (null, null, null, "../src/assets/images/game-background-level0.png"),
   (null, null, null, "../src/assets/images/game-background-level1.gif"),
   (null, null, null, "../src/assets/images/game-background-level2.gif"),
@@ -112,9 +113,10 @@ VALUES
   ("SQL", "Le bug a pris la forme d'un boss ! tu vas pouvoir utiliser les compétences que tu viens d'apprendre pour le vaincre", "SQL", "", "boss-spawn",  "", "null", "null", "null", "null", 6),
   ("SQL", "Est-tu prêt à combattre le boss SQL ?", "hint", "soluce", "boss", "question", null, null, null, null, 6),
   ("SQL", "Bravo ! tu as battu le boss SQ... mais attends... il y a quelqu'un sous ce costume !", "Cette tête me dit quelque chose...", "soluce", "soufiane", "question", null, null, null, null, 6),
-  ("Transition", "Tu as débloqué la dernière salle ! Clique sur le bouton pour t'y rendre.", "hint", "soluce", "transition", "question", null, null, null, null, 14);
-  
-
+  ("Transition", "Tu as débloqué la dernière salle ! Clique sur le bouton pour t'y rendre.", "hint", "soluce", "transition", "question", null, null, null, null, 14),
+  ("Final", "Te voici dans la dernière salle !", "Final boss", "", "boss-spawn",  "", "null", "null", "null", "null", 7),
+  ("Final", "Est-tu prêt à combattre le boss Final ?", "hint", "soluce", "boss", "question", null, null, null, null, 7),
+  ("Final", "Félicitations ! tu as résolu le mystère du campus et terminé le jeu !", "Final boss", "", "final",  "", "null", "null", "null", "null", 7);
 INSERT INTO progress (user_id, room_id, challenge_id)
 VALUES
   (1, 1, 1),

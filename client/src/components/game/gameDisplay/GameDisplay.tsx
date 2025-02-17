@@ -2,8 +2,8 @@ import "./GameDisplay.css";
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../../services/GameContext";
 import type { RoomProps } from "../../../types/user";
-import SoufianeDialog from "./SoufianeDialog";
 import FinalDialog from "./FInalDialog";
+import SoufianeDialog from "./SoufianeDialog";
 
 function GameDisplay() {
   const gameContext = useContext(GameContext);
@@ -25,7 +25,7 @@ function GameDisplay() {
 
   useEffect(() => {
     fetch(
-      `${import.meta.env.VITE_API_URL}/api/room/${actualChallenge?.room_id}`
+      `${import.meta.env.VITE_API_URL}/api/room/${actualChallenge?.room_id}`,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -43,7 +43,7 @@ function GameDisplay() {
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-          }
+          },
         );
 
         if (!response.ok) {
@@ -59,7 +59,7 @@ function GameDisplay() {
       } catch (error) {
         console.error(
           "Erreur lors de la mise à jour ou récupération du progrès :",
-          error
+          error,
         );
       }
     }
@@ -101,7 +101,7 @@ function GameDisplay() {
               // Otherwise, player's character is not displayed
               ""
             )}
-            {actualChallenge?.type === "boss-spawn" ? ( 
+            {actualChallenge?.type === "boss-spawn" ? (
               // If challenge's type is "boss-span", we display the boss's img on top of room's img
               // (during the phase preceding the boss fight)
               <div className="boss-character-container">
@@ -112,7 +112,7 @@ function GameDisplay() {
                 />
               </div>
             ) : actualChallenge?.type === "soufiane" ? (
-              // If challenge's type is "soufiane", we display Soufiane' character on top of the room's img 
+              // If challenge's type is "soufiane", we display Soufiane' character on top of the room's img
               // (after the fight against the SQL boss)
               <SoufianeDialog />
             ) : actualChallenge?.type === "final" ? (
