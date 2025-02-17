@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./HomePage.css";
 import LoginForm from "../../components/forms/LoginForm";
 import SignupForm from "../../components/forms/SignupForm";
+import trainerlogo from "./../../assets/images/SoufianeetFantine.png";
 
 // Type for the active form
 type activeForm = "login" | "signup" | null;
@@ -21,13 +22,20 @@ function HomePage() {
         />
       </header>
       <article className="homepage-text">
-        <p>
-          Code Quest Academy est un jeu où vous progressez en résolvant des
-          énigmes de programmation. Vous serez testé sur plusieurs langages tout
-          au long de l'aventure avec des questions à la complexité variable.
-          Transformez l’apprentissage du code en une aventure épique et devenez
-          un maître du développement !
-        </p>
+        <div className="text-content">
+          <img
+            src={trainerlogo}
+            alt="Soufiane et Fantine"
+            className="soufiane-fantine"
+          />
+          <p className="text-homepage">
+            Code Quest Academy est un jeu où vous progressez en résolvant des
+            énigmes de programmation. Vous serez testé sur plusieurs langages
+            tout au long de l'aventure avec des questions à la complexité
+            variable. Transformez l’apprentissage du code en une aventure épique
+            et devenez un maître du développement !
+          </p>
+        </div>
       </article>
       <section className="homepage-buttons-container">
         <button

@@ -10,7 +10,15 @@
   left: 2rem;
   top: 2rem;
 }
-
+.text-homepage {
+  font-size: 2rem;
+  text-align: justify;
+  text-align: center;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-bottom: 5rem;
+  text-align: justify;
+}
 .homepage-buttons-container {
   display: flex;
   justify-content: center;
@@ -18,12 +26,21 @@
   gap: 2rem;
 }
 
-.homepage-text p {
+.soufiane-fantine {
+  width: 50rem;
+  height: auto;
+  display: block;
+  margin: 0 auto 2rem auto;
+  margin-top: 5rem;
+}
+.text-homepage {
+  font-size: 2rem;
+  text-align: justify;
   text-align: center;
   margin-left: 10rem;
   margin-right: 10rem;
-  margin-top: 25rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
+  text-align: justify;
 }
 
 .homepage-button {
