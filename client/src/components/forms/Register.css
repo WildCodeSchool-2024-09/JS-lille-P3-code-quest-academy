@@ -27,15 +27,6 @@
   justify-content: end;
 }
 
-.close-form-button {
-  color: red;
-  transform: rotate(45deg);
-  background: #ffffff;
-  border: 0px;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
 .form-title {
   margin-bottom: 1.5rem;
   color: var(--primary-color);
@@ -62,12 +53,7 @@
 }
 
 .form-button {
-  background: var(--primary-color);
-  color: #ffffff;
-  border: none;
   padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }

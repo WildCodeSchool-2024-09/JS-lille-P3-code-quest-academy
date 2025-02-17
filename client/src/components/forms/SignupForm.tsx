@@ -1,7 +1,6 @@
 import "./Register.css";
 import { useState } from "react";
 
-// Claimed by TypeScript
 interface SignupFormProps {
   closeForm: () => void;
 }
@@ -95,7 +94,10 @@ const SignupForm = ({ closeForm }: SignupFormProps) => {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit" className="form-button grid-form-button">
+      <button
+        type="submit"
+        className="button-type2 form-button grid-form-button"
+      >
         S'inscrire
       </button>
     </form>

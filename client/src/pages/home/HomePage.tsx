@@ -32,14 +32,14 @@ function HomePage() {
       <section className="homepage-buttons-container">
         <button
           type="button"
-          className="login-button homepage-button"
+          className="button-type1 homepage-button login-button"
           onClick={() => setActiveForm("login")}
         >
           Connexion
         </button>
         <button
           type="button"
-          className="subscribe-button homepage-button"
+          className="button-type2 homepage-button register-button"
           onClick={() => setActiveForm("signup")}
         >
           Inscription
@@ -58,7 +58,7 @@ function HomePage() {
       )}
 
       <footer className="homepage-footer">
-        Développé par les dev's de la {/**/}
+        Développé par les dev's de la{/**/}
         <a
           href="https://www.wildcodeschool.com/"
           className="wcs"

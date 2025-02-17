@@ -87,7 +87,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
         </label>
         <br />
         <button
-          className="button-submit-teacher"
+          className="button-type1 button-submit-teacher"
           type="submit"
           disabled={isLoading}
         >
