@@ -25,7 +25,7 @@ function GameDisplay() {
 
   useEffect(() => {
     fetch(
-      `${import.meta.env.VITE_API_URL}/api/room/${actualChallenge?.room_id}`,
+      `${import.meta.env.VITE_API_URL}/api/room/${actualChallenge?.room_id}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -43,7 +43,7 @@ function GameDisplay() {
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-          },
+          }
         );
 
         if (!response.ok) {
@@ -59,7 +59,7 @@ function GameDisplay() {
       } catch (error) {
         console.error(
           "Erreur lors de la mise à jour ou récupération du progrès :",
-          error,
+          error
         );
       }
     }
@@ -68,7 +68,7 @@ function GameDisplay() {
   return (
     <>
       <div className="gamedisplay-container">
-        {/* Si le "type" du challenge est "boss", alors on affiche la vidéo*/}
+        {/* If challenge's type is "boss", we display the boss's vidéo*/}
         {actualChallenge?.type === "boss" ? (
           <video
             className="gamedisplay-video"
@@ -78,8 +78,8 @@ function GameDisplay() {
             <track kind="captions" />
           </video>
         ) : (
-          // Si le type n'est pas "boss", on affiche l'image de la salle lié au challenge actuel
-          // Cette image change en fonction du "title" et du "type"
+          // If challenge's type is not "boss", we display the room's img
+          // This img change depending on challenge's "title" and "type"
           <>
             <img
               className="gamedisplay-img"
@@ -88,8 +88,7 @@ function GameDisplay() {
               onClick={handleRoomSelection}
               onKeyDown={handleRoomSelection}
             />
-            {/* Si le "title" du challenge n'est pas égal à "Transition", on affiche le personnage du joueur 
-            par dessus l'image de la salle */}
+            {/* If challenge's title is not "Transition", we display the player character on top of room img*/}
             {actualChallenge?.title !== "Transition" ? (
               <div className="player-character-container">
                 <img
@@ -99,12 +98,12 @@ function GameDisplay() {
                 />
               </div>
             ) : (
-              // Sinon, le personnage n'est pas affiché
+              // Otherwise, player's character is not displayed
               ""
             )}
-            {actualChallenge?.type === "boss-spawn" ? (
-              // Si le "type" du challenge est "boss-spawn", on affiche l'image du boss par dessus l'image de la salle
-              // (pendant les phase précédent le combat contre le boss)
+            {actualChallenge?.type === "boss-spawn" ? ( 
+              // If challenge's type is "boss-span", we display the boss's img on top of room's img
+              // (during the phase preceding the boss fight)
               <div className="boss-character-container">
                 <img
                   src={roomInfos?.boss_img_src}
@@ -113,8 +112,8 @@ function GameDisplay() {
                 />
               </div>
             ) : actualChallenge?.type === "soufiane" ? (
-              // Si le "type" du challenge est "soufiane", on affiche l'image de Soufiane par dessus l'image de la salle
-              // (après le combat contre le boss SQL)
+              // If challenge's type is "soufiane", we display Soufiane' character on top of the room's img 
+              // (after the fight against the SQL boss)
               <SoufianeDialog />
             ) : actualChallenge?.type === "final" ? (
               <FinalDialog />
