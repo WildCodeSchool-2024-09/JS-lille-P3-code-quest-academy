@@ -155,6 +155,7 @@ function GameInstructions() {
             onClick={handleHintVisibility}
             onKeyUp={handleHintVisibility}
           />
+          <p className="firstTeacher-name">{user?.firstTeacher}</p>
         </div>
       )}
     </>
