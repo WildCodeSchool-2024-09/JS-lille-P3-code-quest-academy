@@ -113,7 +113,7 @@ VALUES
   ("SQL", "Le bug a pris la forme d'un boss ! Tu vas pouvoir utiliser les compétences que tu viens d'apprendre pour le vaincre", "Tu ne sais rien Jean Neige !", "", "boss-spawn",  "", "null", "null", "null", "null", 6),
   ("SQL", "Est-tu prêt à combattre le boss SQL ?", "Wilder is coming !", "soluce", "boss", "question", null, null, null, null, 6),
   ("SQL", "Bravo ! tu as battu le boss SQ... mais attends... il y a quelqu'un sous ce costume !", "Attendez... je le connais !", "soluce", "secondTeacher", "question", null, null, null, null, 6),
-  ("Transition", "Tu as débloqué la dernière salle ! Clique sur le bouton pour t'y rendre.", "Ah tu es encore là ?", "soluce", "transition", "question", null, null, null, null, 14),
+  ("Transition", "Tu as débloqué la dernière salle ! Clique sur le bouton pour t'y rendre.", "Ah tu es encore là ?", "soluce", "transition", "question", null, null, null, null, 15),
   ("Final", "Te voici dans la dernière salle !", "Prépare ton pitch !", "", "final-boss",  "", null, null, null, null, 7),
   ("Final", "Est-tu prêt à combattre le boss Final ?", "Bravo, tout ça sans linkedin premium !", "soluce", "boss", "question", null, null, null, null, 7),
   ("Final", "Félicitations ! tu as résolu le mystère du campus et terminé le jeu !", "Bon courage pour la suite !", "", "ending",  "", null, null, null, null, 7),
