@@ -1,0 +1,20 @@
+form label {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.form-update-challenge {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 1rem;
+}
+
+.update-challenge-label {
+  margin: 1rem;
+}
+
+select option {
+  font-size: 1rem;
+}

@@ -4,6 +4,7 @@ import logo from "../../assets/images/logo.svg";
 import sprite from "../../assets/images/sprite-admin-page (1).png";
 import EditInformations from "../../components/forms/EditInformations";
 import EditTeacher from "../../components/forms/EditTeachers";
+import SelfEditChallenge from "../../components/forms/SelfEditChallenge";
 import Logout from "../../components/logout/Logout";
 import "./ProfilPage.css";
 import { GameContext } from "../../services/GameContext";
@@ -11,30 +12,41 @@ import { UserContext } from "../../services/UserContext";
 
 function AdminPage() {
   const navigate = useNavigate();
+
   const userContext = useContext(UserContext);
   const gameContext = useContext(GameContext);
 
-  if (!userContext?.user || !gameContext?.actualChallenge) {
+  if (!userContext || !gameContext) {
     return <div>Loading...</div>;
   }
 
   const { user, progress } = userContext;
   const { actualChallenge } = gameContext;
-  const [username, setUsername] = useState(user.username);
-  const [email, setEmail] = useState(user.email);
+
+  const [username, setUsername] = useState(user?.username);
+  const [email, setEmail] = useState(user?.email);
   const [password, setPassword] = useState("********");
-  const [firstTeacher, setFirstTeacher] = useState(user.firstTeacher);
-  const [secondTeacher, setSecondTeacher] = useState(user.secondTeacher);
+  const [firstTeacher, setFirstTeacher] = useState(user?.firstTeacher);
+  const [secondTeacher, setSecondTeacher] = useState(user?.secondTeacher);
+  const [challengeId, setChallengeId] = useState(progress?.challenge_id);
   const [showTeacherPopup, setShowTeacherPopup] = useState(false);
   const [showInfoPopup, setShowInfoPopup] = useState(false);
+  const [showProgressPopup, setShowProgressPopup] = useState(false);
   const [popupLogout, setPopupLogout] = useState(false);
 
   useEffect(() => {
-    setUsername(user.username);
-    setEmail(user.email);
-    setFirstTeacher(user.firstTeacher);
-    setSecondTeacher(user.secondTeacher);
-  }, [user]);
+    setUsername(user?.username);
+    setEmail(user?.email);
+    setFirstTeacher(user?.firstTeacher);
+    setSecondTeacher(user?.secondTeacher);
+    setChallengeId(progress?.challenge_id);
+  }, [user, progress]);
+
+  const updateTeachers = (newTeacher1: string, newTeacher2: string) => {
+    setFirstTeacher(newTeacher1);
+    setSecondTeacher(newTeacher2);
+    setShowTeacherPopup(false);
+  };
 
   const updateUserInfo = (
     newUsername: string,
@@ -47,26 +59,24 @@ function AdminPage() {
     setShowInfoPopup(false);
   };
 
-  const updateTeachers = (newTeacher1: string, newTeacher2: string) => {
-    setFirstTeacher(newTeacher1);
-    setSecondTeacher(newTeacher2);
-    setShowTeacherPopup(false);
+  const updateChallenge = (newChallengeId: number) => {
+    setChallengeId(newChallengeId);
+    setShowProgressPopup(false);
   };
 
   return (
-    <section className="admin-page">
+    <>
       <header className="profil-header">
         <img src={logo} alt="Logo" className="logo" />
         <img src={sprite} alt="" className="sprite-admin-page" />
+        <button
+          type="button"
+          className="button-type1 logout-button"
+          onClick={() => setPopupLogout(true)}
+        >
+          Déconnexion
+        </button>
       </header>
-
-      <button
-        type="button"
-        className="button-type1 logout-button"
-        onClick={() => setPopupLogout(true)}
-      >
-        Déconnexion
-      </button>
 
       {popupLogout && (
         <section className="logout-popup-container">
@@ -74,59 +84,104 @@ function AdminPage() {
         </section>
       )}
 
-      <section className="left-and-right-side">
-        <article className="left-side">
-          <h2 className="level-quest">
-            Pièce : {actualChallenge.room_id} | Question :{" "}
-            {progress?.challenge_id}
-          </h2>
-          <button
-            type="button"
-            className="button-type2 gestion-button"
-            onClick={() => navigate("/admin/manage")}
-          >
-            Gestion des Utilisateurs
-          </button>
-          <h2 className="first-pseudo">PSEUDO FORMATEUR 1 : {firstTeacher}</h2>
-          <h2 className="second-pseudo">
-            PSEUDO FORMATEUR 2 : {secondTeacher}
-          </h2>
-          <button
-            type="button"
-            className="button-type2 left-modification-button"
-            onClick={() => setShowTeacherPopup(true)}
-          >
-            Modifier mes formateurs
-          </button>
-        </article>
+      <main className="main-container">
+        {/* LEFT SIDE */}
+        <section className="left-side">
+          <article className="article artcile1">
+            <h2 className="pseudo">
+              Pseudo : {username} <br /> Email : {email}
+            </h2>
+            <h2 className="password">Mot de passe : {password}</h2>
+          </article>
 
-        <article className="right-side">
-          <button
-            type="button"
-            className="button-type2 button-modification-photo"
-            onClick={() => navigate("/Admin/modification-photo")}
+          <article className="article article2">
+            <button
+              type="button"
+              className="button-type2 right-modification-button"
+              onClick={() => setShowInfoPopup(true)}
+            >
+              Modifier mes informations
+            </button>
+          </article>
+
+          <article className="article article3">
+            <h2 className="profil-teacher">
+              Pseudo formateur 1 : {firstTeacher} <br />
+              Pseudo formateur 2 : {secondTeacher}
+            </h2>
+          </article>
+
+          <article className="article article4">
+            <button
+              type="button"
+              className="button-type2"
+              onClick={() => setShowTeacherPopup(true)}
+            >
+              Modifier mes formateurs
+            </button>
+          </article>
+        </section>
+
+        {/* RIGHT SIDE */}
+
+        <section className="right-side">
+          <article className="article article1">
+            <h2 className="level-quest">
+              Salle : {actualChallenge?.room_id} | Question : {challengeId}
+            </h2>
+          </article>
+          <article className="article article2">
+            <button
+              type="button"
+              className="button-type2"
+              onClick={() => setShowProgressPopup(true)}
+            >
+              Modifier ma progression
+            </button>
+          </article>
+          <article className="article article3">
+            <button
+              type="button"
+              className="button-type2 gestion-button"
+              onClick={() => navigate("/admin/manage")}
+            >
+              Gestion des Utilisateurs
+            </button>
+          </article>
+          <article className="article article4">
+            <button
+              type="button"
+              className="button-type1"
+              onClick={() => navigate("/game")}
+            >
+              Jouer
+            </button>
+          </article>
+        </section>
+      </main>
+
+      {showInfoPopup && (
+        <div
+          className="popup-overlay"
+          onClick={() => setShowInfoPopup(false)}
+          onKeyUp={(e) => e.key === "Escape" && setShowInfoPopup(false)}
+        >
+          <div
+            className="popup-content"
+            onClick={(e) => e.stopPropagation()}
+            onKeyUp={(e) => e.stopPropagation()}
           >
-            MODIFIER MA PHOTO DE Profil
-          </button>
-          <h2 className="pseudo">PSEUDO: {username}</h2>
-          <h2 className="password">MOT DE PASSE: {password}</h2>
-          <h2 className="email">EMAIL: {email}</h2>
-          <button
-            type="button"
-            className="button-type2 right-modification-button"
-            onClick={() => setShowInfoPopup(true)}
-          >
-            Modifier mes informations
-          </button>
-          <button
-            type="button"
-            className="button-type1 game-button"
-            onClick={() => navigate("/game")}
-          >
-            Jouer
-          </button>
-        </article>
-      </section>
+            <button
+              type="button"
+              className="close-button"
+              onClick={() => setShowInfoPopup(false)}
+            >
+              ×
+            </button>
+            <EditInformations updateUserInformation={updateUserInfo} />
+          </div>
+        </div>
+      )}
 
       {showTeacherPopup && (
         <div
@@ -151,11 +206,11 @@ function AdminPage() {
         </div>
       )}
 
-      {showInfoPopup && (
+      {showProgressPopup && (
         <div
           className="popup-overlay"
-          onClick={() => setShowInfoPopup(false)}
-          onKeyUp={(e) => e.key === "Escape" && setShowInfoPopup(false)}
+          onClick={() => setShowProgressPopup(false)}
+          onKeyUp={(e) => e.key === "Escape" && setShowProgressPopup(false)}
         >
           <div
             className="popup-content"
@@ -164,16 +219,16 @@ function AdminPage() {
           >
             <button
               type="button"
-              className="close-button"
-              onClick={() => setShowInfoPopup(false)}
+              className="close-form-button"
+              onClick={() => setShowProgressPopup(false)}
             >
               ×
             </button>
-            <EditInformations updateUserInformation={updateUserInfo} />
+            <SelfEditChallenge updateChallenge={updateChallenge} />
           </div>
         </div>
       )}
-    </section>
+    </>
   );
 }
 

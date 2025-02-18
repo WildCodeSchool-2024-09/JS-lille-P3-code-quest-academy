@@ -43,21 +43,6 @@
   }
 }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
-}
-
-.close-button:hover {
-  color: #000;
-}
-
 .form-edit-informations {
   display: flex;
   flex-direction: column;
@@ -66,12 +51,7 @@
   margin: auto;
 }
 
-.label-edit-informations {
-  font-size: 14px;
-  color: #333;
-}
-
-.label-pseudo,
+/* .label-pseudo,
 .label-password,
 .label-email {
   font-size: 14px;
@@ -79,7 +59,7 @@
   display: block;
   margin-bottom: 4px;
   font-weight: bold;
-}
+} */
 
 .input-pseudo,
 .input-password,
