@@ -9,8 +9,6 @@ import { UserContext } from "../../services/UserContext";
 import "./ProfilPage.css";
 import { GameContext } from "../../services/GameContext";
 
-
-
 function ProfilPage() {
   const navigate = useNavigate();
 
