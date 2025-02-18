@@ -19,8 +19,11 @@ function Prompt() {
 
   const handlePrompt = () => {
     const answer = prompt("tapez le mot manquant");
-
-    if (answer === actualChallenge?.soluce) {
+    if (
+      answer &&
+      actualChallenge?.soluce &&
+      answer.includes(actualChallenge.soluce)
+    ) {
       setIsButtonEnabled(true);
       setButtonStyles("button-enabled");
       setFeedbackMessage("Bonne réponse ! 🎉");

@@ -109,7 +109,7 @@ VALUES
   ("SQL", "Tu dois trouver la bonne réponse parmi les 4 propositions pour débloquer la suite", "Cette commande est utilisée pour extraire des données d'une table en SQL.", "SELECT", "quizz", "Quelle commande SQL est utilisée pour récupérer des données d'une table ?", "FETCH", "INNER JOIN", "USE", "SELECT", 6),
   ("SQL", "Tu dois trouver la bonne réponse parmi les 4 propositions pour débloquer la suite", "La réponse est dans la question.", "NOT NULL", "quizz", "Quelle contrainte SQL empêche qu'une colonne contienne des valeurs nulles ?", "DEFAULT", "PRIMARY KEY", "NOT NULL", "UNIQUE", 6),
   ("SQL", "Clique sur le bouton et tape directement la réponse", "Cette clause permet de filtrer les résultats d’une requête SQL en fonction d’une condition spécifique.", "WHERE", "prompt", " Quelle clause SQL permet de filtrer les résultats d’une requête ?", null, null, null, null, 6),
-  ("SQL", "Clique sur le bouton et tape directement la réponse", "C'est la première étape de la conception d'une base de donnée.", "modele conceptuel de donnée", "prompt", " C'est quoi un MCD ?", "null", "null", "null", "null", 6),
+  ("SQL", "Clique sur le bouton et tape directement la réponse", "C'est la première étape de la conception d'une base de donnée.", "modele conceptuel donnée", "prompt", " C'est quoi un MCD ?", "null", "null", "null", "null", 6),
   ("SQL", "Le bug a pris la forme d'un boss ! Tu vas pouvoir utiliser les compétences que tu viens d'apprendre pour le vaincre", "Tu ne sais rien Jean Neige !", "", "boss-spawn",  "", "null", "null", "null", "null", 6),
   ("SQL", "Est-tu prêt à combattre le boss SQL ?", "Wilder is coming !", "soluce", "boss", "question", null, null, null, null, 6),
   ("SQL", "Bravo ! tu as battu le boss SQ... mais attends... il y a quelqu'un sous ce costume !", "Attendez... je le connais !", "soluce", "secondTeacher", "question", null, null, null, null, 6),
@@ -121,4 +121,4 @@ VALUES
 INSERT INTO progress (user_id, room_id, challenge_id)
 VALUES
   (1, 1, 1),
-  (2, 6, 45);
+  (2, 6, 42);
