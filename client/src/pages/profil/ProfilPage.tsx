@@ -10,8 +10,6 @@ import { UserContext } from "../../services/UserContext";
 import "./ProfilPage.css";
 import { GameContext } from "../../services/GameContext";
 
-
-
 function ProfilPage() {
   const navigate = useNavigate();
 
@@ -19,7 +17,7 @@ function ProfilPage() {
   const gameContext = useContext(GameContext);
 
   if (!userContext || !gameContext) {
-    return <div>Loading...</div>;
+    return <div>Error : Context is not available.</div>;
   }
 
   const { user, progress } = userContext;
@@ -85,6 +83,7 @@ function ProfilPage() {
           <Logout closePopupLogout={() => setPopupLogout(false)} />
         </section>
       )}
+
 
       <main className="main-container">
         {/* LEFT SIDE */}

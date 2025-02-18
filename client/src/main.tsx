@@ -9,7 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
 import AdminPage from "./pages/profil/AdminPage";
-import ProfilPage from "./pages/profil/AdminPage";
+import ProfilPage from "./pages/profil/ProfilPage";
 
 import GameBoard from "./pages/game/GameBoard";
 import HomePage from "./pages/home/HomePage";

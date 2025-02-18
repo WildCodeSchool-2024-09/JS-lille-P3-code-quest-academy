@@ -17,7 +17,7 @@ function AdminPage() {
   const gameContext = useContext(GameContext);
 
   if (!userContext || !gameContext) {
-    return <div>Loading...</div>;
+    return <div>Error : Context is not available.</div>;
   }
 
   const { user, progress } = userContext;
