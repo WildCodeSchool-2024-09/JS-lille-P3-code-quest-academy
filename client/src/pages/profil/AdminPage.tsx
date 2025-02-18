@@ -14,26 +14,26 @@ function AdminPage() {
   const userContext = useContext(UserContext);
   const gameContext = useContext(GameContext);
 
-  if (!userContext?.user || !gameContext?.actualChallenge) {
-    return <div>Loading...</div>;
+  if (!userContext || !gameContext) {
+    return <div>Error : Context is not available.</div>;
   }
 
   const { user, progress } = userContext;
   const { actualChallenge } = gameContext;
-  const [username, setUsername] = useState(user.username);
-  const [email, setEmail] = useState(user.email);
+  const [username, setUsername] = useState(user?.username);
+  const [email, setEmail] = useState(user?.email);
   const [password, setPassword] = useState("********");
-  const [firstTeacher, setFirstTeacher] = useState(user.firstTeacher);
-  const [secondTeacher, setSecondTeacher] = useState(user.secondTeacher);
+  const [firstTeacher, setFirstTeacher] = useState(user?.firstTeacher);
+  const [secondTeacher, setSecondTeacher] = useState(user?.secondTeacher);
   const [showTeacherPopup, setShowTeacherPopup] = useState(false);
   const [showInfoPopup, setShowInfoPopup] = useState(false);
   const [popupLogout, setPopupLogout] = useState(false);
 
   useEffect(() => {
-    setUsername(user.username);
-    setEmail(user.email);
-    setFirstTeacher(user.firstTeacher);
-    setSecondTeacher(user.secondTeacher);
+    setUsername(user?.username);
+    setEmail(user?.email);
+    setFirstTeacher(user?.firstTeacher);
+    setSecondTeacher(user?.secondTeacher);
   }, [user]);
 
   const updateUserInfo = (
@@ -77,7 +77,7 @@ function AdminPage() {
       <section className="left-and-right-side">
         <article className="left-side">
           <h2 className="level-quest">
-            Pièce : {actualChallenge.room_id} | Question :{" "}
+            Pièce : {actualChallenge?.room_id} | Question :{" "}
             {progress?.challenge_id}
           </h2>
           <button
