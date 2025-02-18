@@ -23,8 +23,6 @@ function ProfilPage() {
   const { user, progress } = userContext;
   const { actualChallenge } = gameContext;
 
-  // const challengeId = progress?.challenge_id;
-
   const [username, setUsername] = useState(user?.username);
   const [email, setEmail] = useState(user?.email);
   const [password, setPassword] = useState("********");
@@ -88,7 +86,6 @@ function ProfilPage() {
 
       <main className="main-container">
         {/* LEFT SIDE */}
-
         <section className="left-side">
           <article className="article artcile1">
             <h2 className="pseudo">
