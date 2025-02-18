@@ -10,7 +10,7 @@ const login: RequestHandler = async (req, res, next) => {
 
     // Check if the user exists in the database
     if (user == null) {
-      res.status(422).json({ message: "Unknown email address." });
+      res.status(422).json({ message: "Adresse mail inconnue" });
       return;
     }
 
@@ -43,7 +43,7 @@ const login: RequestHandler = async (req, res, next) => {
       // Send the user's information in the response body
       res.json(userWithoutHashedPassword);
     } else {
-      res.status(422).json({ message: "Incorrect password." });
+      res.status(422).json({ message: "Mauvais mot de passe." });
     }
   } catch (err) {
     next(err);
