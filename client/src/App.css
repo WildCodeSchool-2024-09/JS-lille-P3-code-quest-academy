@@ -73,3 +73,15 @@ Large devices (desktops, 992px and up)
   background: #ffffff;
   border: 0px;
 }
+
+.login-close-form-button {
+  top: 1rem;
+  right: 1rem;
+  color: var(--primary-color);
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  background: #ffffff;
+  border: 0px;
+}

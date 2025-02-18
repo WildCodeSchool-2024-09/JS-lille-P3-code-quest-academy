@@ -97,7 +97,7 @@ function AdminPage() {
           <article className="article article2">
             <button
               type="button"
-              className="button-type2 right-modification-button"
+              className="button-type2"
               onClick={() => setShowInfoPopup(true)}
             >
               Modifier mes informations
@@ -142,7 +142,7 @@ function AdminPage() {
           <article className="article article3">
             <button
               type="button"
-              className="button-type2 gestion-button"
+              className="button-type2"
               onClick={() => navigate("/admin/manage")}
             >
               Gestion des Utilisateurs
@@ -173,7 +173,7 @@ function AdminPage() {
           >
             <button
               type="button"
-              className="close-button"
+              className="close-form-button"
               onClick={() => setShowInfoPopup(false)}
             >
               ×
@@ -196,7 +196,7 @@ function AdminPage() {
           >
             <button
               type="button"
-              className="close-button"
+              className="close-form-button"
               onClick={() => setShowTeacherPopup(false)}
             >
               ×
