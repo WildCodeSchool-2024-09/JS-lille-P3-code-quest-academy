@@ -79,7 +79,7 @@ function LoginForm({ closeForm }: LoginFormProps) {
     <form className="login-form" onSubmit={handleSubmit}>
       <section className="close-button-container grid-close-button-container">
         <button type="button" className="close-form-button" onClick={closeForm}>
-          +
+          ×
         </button>
       </section>
       <h3 className="form-title">Connexion</h3>

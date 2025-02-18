@@ -46,7 +46,7 @@ const SignupForm = ({ closeForm }: SignupFormProps) => {
     <form className="signup-form" onSubmit={handleSubmit}>
       <section className="close-button-container grid-close-button-container">
         <button type="button" className="close-form-button" onClick={closeForm}>
-          +
+          ×
         </button>
       </section>
       <h3 className="form-title">S'inscrire</h3>

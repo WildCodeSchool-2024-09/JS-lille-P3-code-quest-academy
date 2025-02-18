@@ -32,12 +32,10 @@
 }
 
 .logout-form-button:hover {
-  border-bottom-width: 0;
   transform: translateY(5px);
 }
 
 .cancel-logout-button:hover {
-  border-bottom: 2px solid var(--primary-color);
   transform: translateY(5px);
 }
 
