@@ -90,7 +90,6 @@
   display: flex;
 }
 
-.main-container .button-type1,
-.button-type2 {
+.game-start-button {
   width: 70%;
 }

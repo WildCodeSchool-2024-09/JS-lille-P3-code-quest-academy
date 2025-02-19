@@ -151,7 +151,7 @@ function AdminPage() {
           <article className="article article4">
             <button
               type="button"
-              className="button-type1"
+              className="button-type1 game-start-button"
               onClick={() => navigate("/game")}
             >
               Jouer

@@ -18,7 +18,7 @@ class AccountRepository {
 
     // we add a base progress for new users
     await databaseClient.query(
-      `INSERT INTO progress (user_id, room_id, challenge_id),
+      `INSERT INTO progress (user_id, room_id, challenge_id)
       VALUES (?, ?, ?);`,
       [userId, 1, 1],
     );
