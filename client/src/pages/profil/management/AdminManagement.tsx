@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import logo from "../../../assets/images/logo.svg";
+import sprite from "../../../assets/images/sprite-admin-page (1).png";
 import "./AdminManagement.css";
+import { useNavigate } from "react-router-dom";
 import EditUser from "./EditUser";
 
 type User = {
@@ -10,6 +13,8 @@ type User = {
 };
 
 function AdminManagement() {
+  const navigate = useNavigate();
+
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   // Gère la liste des utilisateurs avec la barre de recherche
@@ -117,56 +122,69 @@ function AdminManagement() {
   };
 
   return (
-    <section className="user-table-container">
-      <h2>Liste des utilisateurs</h2>
-      <input
-        type="text"
-        placeholder="recherche par nom ou email..."
-        value={searchQuery}
-        onChange={handleSearch}
-        className="user-search-bar"
-      />
-      <table className="user-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>
-              Nom d'utilisateur
-              <button type="button" onClick={() => sortUsers("username")}>
-                Trier {isAsc ? "↓" : "↑"}
-              </button>
-            </th>
-            <th>
-              Email
-              <button type="button" onClick={() => sortUsers("email")}>
-                Trier {isAsc ? "↓" : "↑"}
-              </button>
-            </th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>
-                <button type="button" onClick={() => startEditingUser(user)}>
-                  Modifier
+    <>
+      <header className="profil-header">
+        <img src={logo} alt="Logo" className="logo" />
+        <img src={sprite} alt="" className="sprite-admin-page" />
+        <button
+          type="button"
+          className="button-type1 logout-button"
+          onClick={() => navigate("/admin")}
+        >
+          Retour
+        </button>
+      </header>
+      <section className="user-table-container">
+        <h2>Liste des utilisateurs</h2>
+        <input
+          type="text"
+          placeholder="recherche par nom ou email..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="user-search-bar"
+        />
+        <table className="user-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>
+                Nom d'utilisateur
+                <button type="button" onClick={() => sortUsers("username")}>
+                  Trier {isAsc ? "↓" : "↑"}
                 </button>
-                <button type="button" onClick={() => deleteUser(user.id)}>
-                  Supprimer
+              </th>
+              <th>
+                Email
+                <button type="button" onClick={() => sortUsers("email")}>
+                  Trier {isAsc ? "↓" : "↑"}
                 </button>
-              </td>
+              </th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {editingUser && (
-        <EditUser user={editingUser} onUpdate={handleUserUpdate} />
-      )}
-    </section>
+          </thead>
+          <tbody>
+            {filteredUsers.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>
+                  <button type="button" onClick={() => startEditingUser(user)}>
+                    Modifier
+                  </button>
+                  <button type="button" onClick={() => deleteUser(user.id)}>
+                    Supprimer
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {editingUser && (
+          <EditUser user={editingUser} onUpdate={handleUserUpdate} />
+        )}
+      </section>
+    </>
   );
 }
 

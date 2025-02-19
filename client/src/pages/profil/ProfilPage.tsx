@@ -21,7 +21,7 @@ function ProfilPage() {
   }
 
   const { user, progress } = userContext;
-  const { actualChallenge } = gameContext;
+  const { actualChallenge, setEndGameTransition, setShowEnding } = gameContext;
 
   const [username, setUsername] = useState(user?.username);
   const [email, setEmail] = useState(user?.email);
@@ -64,6 +64,12 @@ function ProfilPage() {
     setShowProgressPopup(false);
   };
 
+  const goToGame = () => {
+    setEndGameTransition("");
+    setShowEnding(false);
+    navigate("/game");
+  };
+
   return (
     <>
       <header className="profil-header">
@@ -83,7 +89,6 @@ function ProfilPage() {
           <Logout closePopupLogout={() => setPopupLogout(false)} />
         </section>
       )}
-
 
       <main className="main-container">
         {/* LEFT SIDE */}
@@ -145,11 +150,7 @@ function ProfilPage() {
           <article className="article article3" />
 
           <article className="article article4">
-            <button
-              type="button"
-              className="button-type1"
-              onClick={() => navigate("/game")}
-            >
+            <button type="button" className="button-type1" onClick={goToGame}>
               Jouer
             </button>
           </article>

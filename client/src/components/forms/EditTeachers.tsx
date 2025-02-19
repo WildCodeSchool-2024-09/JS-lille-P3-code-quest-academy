@@ -50,6 +50,21 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
         throw new Error("Erreur lors de la mise à jour.");
       }
 
+      const updateUser = {
+        ...userContext.user,
+        id: userContext.user?.id || 0,
+        username: userContext.user?.username || "",
+        email: userContext.user?.email || "",
+        password: userContext.user?.password || "",
+        firstTeacher,
+        secondTeacher,
+        room_id: userContext.user?.room_id || 0,
+        challenge_id: userContext.user?.challenge_id || 0,
+        token: userContext.user?.token || "",
+      };
+
+      userContext.setUser(updateUser);
+
       updateTeacherInformation(firstTeacher, secondTeacher);
       setMessage("Les formateurs ont été mis à jour !");
       setFirstTeacher("");
