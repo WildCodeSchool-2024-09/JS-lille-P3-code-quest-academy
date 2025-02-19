@@ -113,7 +113,7 @@ function LoginForm({ closeForm }: LoginFormProps) {
       />
       <button
         type="submit"
-        className=" button-type1 form-button grid-form-button"
+        className="button-type1 form-button grid-form-button"
       >
         Se connecter
       </button>

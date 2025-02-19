@@ -150,7 +150,11 @@ function ProfilPage() {
           <article className="article article3" />
 
           <article className="article article4">
-            <button type="button" className="button-type1" onClick={goToGame}>
+            <button
+              type="button"
+              className="button-type1 game-start-button"
+              onClick={goToGame}
+            >
               Jouer
             </button>
           </article>
