@@ -22,7 +22,7 @@
 .homepage-buttons-container {
   display: flex;
   justify-content: center;
-  margin: 2rem 15rem;
+  margin: 2rem 15rem 4rem 15rem;
   gap: 2rem;
 }
 
@@ -34,7 +34,7 @@
   margin-top: 5rem;
 }
 .text-homepage {
-  font-size: 2rem;
+  font-size: 1.4rem;
   text-align: justify;
   text-align: center;
   margin-left: 10rem;
