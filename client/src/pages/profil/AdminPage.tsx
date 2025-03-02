@@ -66,167 +66,181 @@ function AdminPage() {
 
   return (
     <>
-      <header className="profil-header">
-        <img src={logo} alt="Logo" className="logo" />
-        <img src={sprite} alt="" className="sprite-admin-page" />
-        <button
-          type="button"
-          className="button-type1 logout-button"
-          onClick={() => setPopupLogout(true)}
-        >
-          Déconnexion
-        </button>
-      </header>
-
-      {popupLogout && (
-        <section className="logout-popup-container">
-          <Logout closePopupLogout={() => setPopupLogout(false)} />
-        </section>
+      {user?.is_admin !== 1 && (
+        <div>
+          Erreur : vous n'avez pas la permission d'accéder à cette page.
+        </div>
       )}
 
-      <main className="main-container">
-        {/* LEFT SIDE */}
-        <section className="left-side">
-          <article className="article artcile1">
-            <h2 className="pseudo">
-              Pseudo : {username} <br /> Email : {email}
-            </h2>
-            <h2 className="password">Mot de passe : {password}</h2>
-          </article>
-
-          <article className="article article2">
+      {user?.is_admin === 1 && (
+        <>
+          <header className="profil-header">
+            <img src={logo} alt="Logo" className="logo" />
+            <img src={sprite} alt="" className="sprite-admin-page" />
             <button
               type="button"
-              className="button-type2"
-              onClick={() => setShowInfoPopup(true)}
+              className="button-type1 logout-button"
+              onClick={() => setPopupLogout(true)}
             >
-              Modifier mes informations
+              Déconnexion
             </button>
-          </article>
+          </header>
 
-          <article className="article article3">
-            <h2 className="profil-teacher">
-              Pseudo formateur 1 : {firstTeacher} <br />
-              Pseudo formateur 2 : {secondTeacher}
-            </h2>
-          </article>
+          {popupLogout && (
+            <section className="logout-popup-container">
+              <Logout closePopupLogout={() => setPopupLogout(false)} />
+            </section>
+          )}
 
-          <article className="article article4">
-            <button
-              type="button"
-              className="button-type2"
-              onClick={() => setShowTeacherPopup(true)}
-            >
-              Modifier mes formateurs
-            </button>
-          </article>
-        </section>
+          <main className="main-container">
+            {/* LEFT SIDE */}
+            <section className="left-side">
+              <article className="article artcile1">
+                <h2 className="pseudo">
+                  Pseudo : {username} <br /> Email : {email}
+                </h2>
+                <h2 className="password">Mot de passe : {password}</h2>
+              </article>
 
-        {/* RIGHT SIDE */}
+              <article className="article article2">
+                <button
+                  type="button"
+                  className="button-type2"
+                  onClick={() => setShowInfoPopup(true)}
+                >
+                  Modifier mes informations
+                </button>
+              </article>
 
-        <section className="right-side">
-          <article className="article article1">
-            <h2 className="level-quest">
-              Salle : {actualChallenge?.room_id} | Question : {challengeId}
-            </h2>
-          </article>
-          <article className="article article2">
-            <button
-              type="button"
-              className="button-type2"
-              onClick={() => setShowProgressPopup(true)}
-            >
-              Modifier ma progression
-            </button>
-          </article>
-          <article className="article article3">
-            <button
-              type="button"
-              className="button-type2"
-              onClick={() => navigate("/admin/manage")}
-            >
-              Gestion des Utilisateurs
-            </button>
-          </article>
-          <article className="article article4">
-            <button
-              type="button"
-              className="button-type1 game-start-button"
-              onClick={() => navigate("/game")}
-            >
-              Jouer
-            </button>
-          </article>
-        </section>
-      </main>
+              <article className="article article3">
+                <h2 className="profil-teacher">
+                  Pseudo formateur 1 : {firstTeacher} <br />
+                  Pseudo formateur 2 : {secondTeacher}
+                </h2>
+              </article>
 
-      {showInfoPopup && (
-        <div
-          className="popup-overlay"
-          onClick={() => setShowInfoPopup(false)}
-          onKeyUp={(e) => e.key === "Escape" && setShowInfoPopup(false)}
-        >
-          <div
-            className="popup-content"
-            onClick={(e) => e.stopPropagation()}
-            onKeyUp={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="close-form-button"
+              <article className="article article4">
+                <button
+                  type="button"
+                  className="button-type2"
+                  onClick={() => setShowTeacherPopup(true)}
+                >
+                  Modifier mes formateurs
+                </button>
+              </article>
+            </section>
+
+            {/* RIGHT SIDE */}
+            <section className="right-side">
+              <article className="article article1">
+                <h2 className="level-quest">
+                  Salle : {actualChallenge?.room_id} | Question : {challengeId}
+                </h2>
+              </article>
+              <article className="article article2">
+                <button
+                  type="button"
+                  className="button-type2"
+                  onClick={() => setShowProgressPopup(true)}
+                >
+                  Modifier ma progression
+                </button>
+              </article>
+              <article className="article article3">
+                <button
+                  type="button"
+                  className="button-type2"
+                  onClick={() => navigate("/admin/manage")}
+                >
+                  Gestion des Utilisateurs
+                </button>
+              </article>
+              <article className="article article4">
+                <button
+                  type="button"
+                  className="button-type1 game-start-button"
+                  onClick={() => navigate("/game")}
+                >
+                  Jouer
+                </button>
+              </article>
+            </section>
+          </main>
+
+          {/* Popups for editing information */}
+          {showInfoPopup && (
+            <div
+              className="popup-overlay"
               onClick={() => setShowInfoPopup(false)}
+              onKeyDown={(e) => e.key === "Escape" && setShowInfoPopup(false)}
             >
-              ×
-            </button>
-            <EditInformations updateUserInformation={updateUserInfo} />
-          </div>
-        </div>
-      )}
+              <div
+                className="popup-content"
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  className="close-form-button"
+                  onClick={() => setShowInfoPopup(false)}
+                >
+                  ×
+                </button>
+                <EditInformations updateUserInformation={updateUserInfo} />
+              </div>
+            </div>
+          )}
 
-      {showTeacherPopup && (
-        <div
-          className="popup-overlay"
-          onClick={() => setShowTeacherPopup(false)}
-          onKeyUp={(e) => e.key === "Escape" && setShowTeacherPopup(false)}
-        >
-          <div
-            className="popup-content"
-            onClick={(e) => e.stopPropagation()}
-            onKeyUp={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="close-form-button"
+          {showTeacherPopup && (
+            <div
+              className="popup-overlay"
               onClick={() => setShowTeacherPopup(false)}
+              onKeyDown={(e) =>
+                e.key === "Escape" && setShowTeacherPopup(false)
+              }
             >
-              ×
-            </button>
-            <EditTeacher updateTeacherInformation={updateTeachers} />
-          </div>
-        </div>
-      )}
+              <div
+                className="popup-content"
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  className="close-form-button"
+                  onClick={() => setShowTeacherPopup(false)}
+                >
+                  ×
+                </button>
+                <EditTeacher updateTeacherInformation={updateTeachers} />
+              </div>
+            </div>
+          )}
 
-      {showProgressPopup && (
-        <div
-          className="popup-overlay"
-          onClick={() => setShowProgressPopup(false)}
-          onKeyUp={(e) => e.key === "Escape" && setShowProgressPopup(false)}
-        >
-          <div
-            className="popup-content"
-            onClick={(e) => e.stopPropagation()}
-            onKeyUp={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="close-form-button"
+          {showProgressPopup && (
+            <div
+              className="popup-overlay"
               onClick={() => setShowProgressPopup(false)}
+              onKeyDown={(e) =>
+                e.key === "Escape" && setShowProgressPopup(false)
+              }
             >
-              ×
-            </button>
-            <SelfEditChallenge updateChallenge={updateChallenge} />
-          </div>
-        </div>
+              <div
+                className="popup-content"
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  className="close-form-button"
+                  onClick={() => setShowProgressPopup(false)}
+                >
+                  ×
+                </button>
+                <SelfEditChallenge updateChallenge={updateChallenge} />
+              </div>
+            </div>
+          )}
+        </>
       )}
     </>
   );

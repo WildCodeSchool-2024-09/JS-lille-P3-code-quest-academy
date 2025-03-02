@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import logo from "../../../assets/images/logo.svg";
 import sprite from "../../../assets/images/sprite-admin-page (1).png";
 import "./AdminManagement.css";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../services/UserContext";
 import EditUser from "./EditUser";
 
 type User = {
@@ -14,6 +16,14 @@ type User = {
 
 function AdminManagement() {
   const navigate = useNavigate();
+
+  const userContext = useContext(UserContext);
+
+  if (!userContext) {
+    return <div>Error : Context is not available.</div>;
+  }
+
+  const { user } = userContext;
 
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
@@ -123,67 +133,80 @@ function AdminManagement() {
 
   return (
     <>
-      <header className="profil-header">
-        <img src={logo} alt="Logo" className="logo" />
-        <img src={sprite} alt="" className="sprite-admin-page" />
-        <button
-          type="button"
-          className="button-type1 logout-button"
-          onClick={() => navigate("/admin")}
-        >
-          Retour
-        </button>
-      </header>
-      <section className="user-table-container">
-        <h2>Liste des utilisateurs</h2>
-        <input
-          type="text"
-          placeholder="recherche par nom ou email..."
-          value={searchQuery}
-          onChange={handleSearch}
-          className="user-search-bar"
-        />
-        <table className="user-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>
-                Nom d'utilisateur
-                <button type="button" onClick={() => sortUsers("username")}>
-                  Trier {isAsc ? "↓" : "↑"}
-                </button>
-              </th>
-              <th>
-                Email
-                <button type="button" onClick={() => sortUsers("email")}>
-                  Trier {isAsc ? "↓" : "↑"}
-                </button>
-              </th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredUsers.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-                <td>
-                  <button type="button" onClick={() => startEditingUser(user)}>
-                    Modifier
-                  </button>
-                  <button type="button" onClick={() => deleteUser(user.id)}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {editingUser && (
-          <EditUser user={editingUser} onUpdate={handleUserUpdate} />
-        )}
-      </section>
+      {user?.is_admin !== 1 && (
+        <div>
+          Erreur : vous n'avez pas la permission d'accéder à cette page.
+        </div>
+      )}
+
+      {user?.is_admin === 1 && (
+        <>
+          <header className="profil-header">
+            <img src={logo} alt="Logo" className="logo" />
+            <img src={sprite} alt="" className="sprite-admin-page" />
+            <button
+              type="button"
+              className="button-type1 logout-button"
+              onClick={() => navigate("/admin")}
+            >
+              Retour
+            </button>
+          </header>
+          <section className="user-table-container">
+            <h2>Liste des utilisateurs</h2>
+            <input
+              type="text"
+              placeholder="recherche par nom ou email..."
+              value={searchQuery}
+              onChange={handleSearch}
+              className="user-search-bar"
+            />
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>
+                    Nom d'utilisateur
+                    <button type="button" onClick={() => sortUsers("username")}>
+                      Trier {isAsc ? "↓" : "↑"}
+                    </button>
+                  </th>
+                  <th>
+                    Email
+                    <button type="button" onClick={() => sortUsers("email")}>
+                      Trier {isAsc ? "↓" : "↑"}
+                    </button>
+                  </th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredUsers.map((user) => (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() => startEditingUser(user)}
+                      >
+                        Modifier
+                      </button>
+                      <button type="button" onClick={() => deleteUser(user.id)}>
+                        Supprimer
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {editingUser && (
+              <EditUser user={editingUser} onUpdate={handleUserUpdate} />
+            )}
+          </section>
+        </>
+      )}
     </>
   );
 }
