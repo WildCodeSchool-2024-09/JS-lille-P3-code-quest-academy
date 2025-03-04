@@ -109,10 +109,6 @@
     width: fit-content;
   }
 
-  .homepage-text {
-    margin: 6rem, 10rem, 3rem, 1rem;
-  }
-
   .homepage-text p {
     margin-top: 3rem;
     margin-left: 1rem;
@@ -132,5 +128,11 @@
 
   .homepage-footer {
     text-align: center;
+  }
+  .soufiane-fantine {
+    width: 20rem;
+    height: auto;
+    display: block;
+    margin: 0rem 0rem 0rem 13rem;
   }
 }

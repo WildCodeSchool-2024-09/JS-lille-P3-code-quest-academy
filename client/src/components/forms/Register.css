@@ -13,13 +13,17 @@
 }
 
 .login-form {
-  width: 30vw;
-  height: 60vh;
+  min-width: 35vw;
+  max-width: fit-content;
+  min-height: 35vh;
+  max-height: fit-content;
 }
 
 .signup-form {
-  width: 30vw;
-  height: 75vh;
+  min-width: 35vw;
+  max-width: fit-content;
+  min-height: 40vh;
+  max-height: fit-content;
 }
 
 .close-button-container {

@@ -3,14 +3,8 @@ import logo from "../../../assets/images/logo.svg";
 import sprite from "../../../assets/images/sprite-admin-page (1).png";
 import "./AdminManagement.css";
 import { useNavigate } from "react-router-dom";
+import type { User } from "../../../types/user";
 import EditUser from "./EditUser";
-
-type User = {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-};
 
 function AdminManagement() {
   const navigate = useNavigate();
@@ -148,13 +142,13 @@ function AdminManagement() {
             <tr>
               <th>ID</th>
               <th>
-                Nom d'utilisateur
+                Nom d'utilisateur {/* */}
                 <button type="button" onClick={() => sortUsers("username")}>
                   Trier {isAsc ? "↓" : "↑"}
                 </button>
               </th>
               <th>
-                Email
+                Email {/* */}
                 <button type="button" onClick={() => sortUsers("email")}>
                   Trier {isAsc ? "↓" : "↑"}
                 </button>
