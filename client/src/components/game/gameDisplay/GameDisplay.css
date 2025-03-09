@@ -132,3 +132,81 @@ ending {
     transform: translateX(0);
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1174px) {
+  .gamedisplay-container {
+    min-width: 560px;
+    max-width: 830px;
+  }
+  .boss-character-container {
+    width: 200px;
+    height: 200px;
+    bottom: 115%;
+    left: 65%;
+  }
+
+  .boss-character {
+    width: 200px;
+    height: 200px;
+  }
+
+  .player-character-container {
+    width: 150px;
+    height: 150px;
+    bottom: 46%;
+  }
+
+  .player-character {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .gamedisplay-container {
+    min-width: initial;
+    max-width: 320px;
+    margin: 10rem 0 0 0;
+  }
+  .player-character-container {
+    width: 80px;
+    height: 80px;
+    bottom: 50%;
+  }
+
+  .player-character {
+    width: 80px;
+    height: 80px;
+  }
+
+  .boss-character-container {
+    width: 120px;
+    height: 120px;
+    bottom: 123%;
+    left: 60%;
+  }
+
+  .boss-character {
+    width: 120px;
+    height: 120px;
+  }
+
+  .second-teacher-character-container,
+  .final-character-container {
+    width: 100px;
+    height: 100px;
+    bottom: 109%;
+    left: 66%;
+  }
+
+  .second-teacher-character,
+  .final-character {
+    width: 100px;
+    height: 100px;
+  }
+
+  .second-teacher-bd,
+  .final-bd {
+    font-size: 0.7rem;
+  }
+}

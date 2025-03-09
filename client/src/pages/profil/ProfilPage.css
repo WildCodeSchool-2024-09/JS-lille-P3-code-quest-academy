@@ -93,3 +93,33 @@
 .game-start-button {
   width: 70%;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .left-side,
+  .right-side {
+    width: 100%;
+  }
+
+  .level-quest {
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.2rem;
+  }
+
+  .game-start-button {
+    margin-top: 3rem;
+  }
+
+  .pseudo {
+    font-size: 1.2rem;
+  }
+
+  .profil-teacher {
+    font-size: 1.2rem;
+  }
+}

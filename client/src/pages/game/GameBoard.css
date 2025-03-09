@@ -54,3 +54,19 @@
   background-color: white;
   opacity: 1;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .gameboard-page {
+    height: 100vh;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .gameboard-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+}
