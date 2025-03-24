@@ -61,6 +61,7 @@ function EditTeacher({ updateTeacherInformation }: EditTeacherProps) {
         room_id: userContext.user?.room_id || 0,
         challenge_id: userContext.user?.challenge_id || 0,
         token: userContext.user?.token || "",
+        is_admin: userContext.user?.is_admin || 0,
       };
 
       userContext.setUser(updateUser);

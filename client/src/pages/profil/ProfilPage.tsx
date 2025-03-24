@@ -93,7 +93,7 @@ function ProfilPage() {
       <main className="main-container">
         {/* LEFT SIDE */}
         <section className="left-side">
-          <article className="article artcile1">
+          <article className="article article1">
             <h2 className="pseudo">
               Pseudo : {username} <br /> Email : {email}
             </h2>

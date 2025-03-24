@@ -44,3 +44,10 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .command-container {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+}
